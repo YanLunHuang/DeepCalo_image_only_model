@@ -19,6 +19,7 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ```
 ## Some detail
 ```bash
-This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
+Those weight file are stored in kernel.
+(They are not sent by host.)
 ```
 
