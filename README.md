@@ -1,21 +1,24 @@
-# hls4ml on Alveo U250 (HLS C/C++ Kernel)
-
-Setup tools, licenses, check connection to FPGA card
-
-Check out packages
+# hls4ml on Alveo U50 (HLS C/C++ Kernel)
+## Vitis version 2019.2
+## Some Information
+### This branch is fork from Dylan.
 ```bash
-# check out hls4ml_c SDAccel project
 git clone https://github.com/drankincms/hls4ml_c -b alveo_deepcalo
 ```
-Compile SDAccel project
+## Compile project
 ```bash
-cd hls4ml_c
-make check TARGET=sw DEVICE=xilinx_u250_xdma_201830_2 all # software emulation
-make check TARGET=hw_emu DEVICE=xilinx_u250_xdma_201830_2 all # hardware emulation
-make TARGET=hw DEVICE=xilinx_u250_xdma_201830_2 all # build
+make check TARGET=sw_emu DEVICE=xilinx_u50_xdma_201920_1 all  # software emulation
+make check TARGET=hw_emu DEVICE=xilinx_u50_xdma_201920_1 all  # hardware emulation
+make TARGET=hw DEVICE=xilinx_u50_xdma_201920_1 all # build
+```
+## Run project
+```bash
+XCL_EMULATION_MODE=sw_emu ./host ./build_dir.sw_emu.xilinx_u50_xdma_201920_1/alveo_hls4ml.xclbin  # software emulation
+XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alveo_hls4ml.xclbin  # hardware emulation
+./host alveo_hls4ml.xclbin  # run on U50
+```
+## Some detail
+```bash
+This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
 ```
 
-Run project
-```bash
-./host 
-```
