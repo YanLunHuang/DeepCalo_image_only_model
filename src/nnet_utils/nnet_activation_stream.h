@@ -74,7 +74,6 @@ void relu(hls::stream<data_T> &data, hls::stream<res_T> &res) {
     }
 }
 
-
 template<class data_T, class res_T, typename CONFIG_T>
 void relu_me(hls::stream<data_T> &data, hls::stream<res_T> &res) {
     for (int i = 0; i < CONFIG_T::n_in; i++) {
@@ -90,6 +89,7 @@ void relu_me(hls::stream<data_T> &data, hls::stream<res_T> &res) {
         res.write(out_data);
     }
 }
+
 // *************************************************
 //       Sigmoid Activation
 // *************************************************

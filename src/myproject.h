@@ -29,7 +29,16 @@
 // Prototype of top level function for C-synthesis
 void myproject(
     hls::stream<input_t> &input_1,
-    hls::stream<result_t> &layer55_out
+    hls::stream<result_t> &layer55_out,
+    model_default_t w13[9216],
+    model_default_t w18[18432],
+    model_default_t w22[36864],
+    model_default_t w27[73728],
+    model_default_t w31[147456],
+    model_default_t w36[294912],
+    model_default_t w40[589824],
+    model_default_t w45[589824],
+    model_default_t w49[65536]
 );
 
 #endif

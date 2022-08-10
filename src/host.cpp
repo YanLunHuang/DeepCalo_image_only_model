@@ -37,20 +37,59 @@ typedef std::chrono::high_resolution_clock Clock;
 #define STRINGIFY(var) STRINGIFY2(var)
 
 
+template<class T, size_t SIZE>
+void load_weights_from_txt(T *w, const char* fname) {
+
+    std::string full_path = "./src/weights/" + std::string(fname);
+    std::ifstream infile(full_path.c_str(), std::ios::binary);
+    
+    if (infile.fail()) {
+        std::cerr << "ERROR: file " << std::string(fname) << " does not exist" << std::endl;
+        exit(1);
+    }
+
+    std::string line;
+    if (std::getline(infile, line)) {
+        std::istringstream iss(line);
+        std::string token;
+
+        size_t i = 0;
+        while(std::getline(iss, token, ',')) {
+            std::istringstream(token) >> w[i];
+            i++;
+        }
+
+        if (SIZE != i) {
+            std::cerr << "ERROR: Expected " << SIZE << " values";
+            std::cerr << " but read only " << i << " values" << std::endl;
+        }
+    }
+}
+
+
 int main(int argc, char** argv)
 {
 
-    int nevents = 1;
+	int nevents = 1;
 	cl_int err;
 	cl::Kernel krnl_aws_hls4ml;
-    std::string datadir = STRINGIFY(HLS4ML_DATA_DIR);
+	std::string datadir = STRINGIFY(HLS4ML_DATA_DIR);
 	std::string xclbinFilename = "";
 	if (argc > 1) xclbinFilename = argv[1];
 	if (argc > 2) nevents = atoi(argv[2]);
 	if (argc > 3) datadir = argv[3];
-    std::cout << "Will run " << nevents << " time(s), using " << datadir << " to get input features and output predictions (tb_input_features.dat and tb_output_predictions.dat)" << std::endl;
+	std::cout << "Will run " << nevents << " time(s), using " << datadir << " to get input features and output predictions (tb_input_features.dat and tb_output_predictions.dat)" << std::endl;
 
-    size_t vector_size_in_bytes = sizeof(bigdata_t) *IN_STREAM_LEN*DATA_SIZE_IN;
+    size_t vector_size_in_bytes  = sizeof(bigdata_t) *IN_STREAM_LEN*DATA_SIZE_IN;
+    size_t vector_size_w13_bytes = sizeof(model_default_t) *NW1;
+    size_t vector_size_w18_bytes = sizeof(model_default_t) *NW2;
+    size_t vector_size_w22_bytes = sizeof(model_default_t) *NW3;
+    size_t vector_size_w27_bytes = sizeof(model_default_t) *NW4;
+    size_t vector_size_w31_bytes = sizeof(model_default_t) *NW5;
+    size_t vector_size_w36_bytes = sizeof(model_default_t) *NW6;
+    size_t vector_size_w40_bytes = sizeof(model_default_t) *NW7;
+    size_t vector_size_w45_bytes = sizeof(model_default_t) *NW8;
+    size_t vector_size_w49_bytes = sizeof(model_default_t) *NW9;
     size_t vector_size_out_bytes = sizeof(bigdata_t) *2;
     // Allocate Memory in Host Memory
     // When creating a buffer with user pointer (CL_MEM_USE_HOST_PTR), under the hood user ptr 
@@ -59,14 +98,68 @@ int main(int argc, char** argv)
     // create buffer using CL_MEM_USE_HOST_PTR to align user buffer to page boundary. It will 
     // ensure that user buffer is used when user create Buffer/Mem object with CL_MEM_USE_HOST_PTR 
     std::vector<bigdata_t,aligned_allocator<bigdata_t>> source_in(IN_STREAM_LEN*DATA_SIZE_IN);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w13_in(NW1);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w18_in(NW2);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w22_in(NW3);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w27_in(NW4);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w31_in(NW5);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w36_in(NW6);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w40_in(NW7);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w45_in(NW8);
+    std::vector<model_default_t,aligned_allocator<model_default_t>> source_w49_in(NW9);
     std::vector<bigdata_t,aligned_allocator<bigdata_t>> source_hw_results(2);
 
 	//Reset the input data
 	for(int i0 = 0; i0 < IN_STREAM_LEN*DATA_SIZE_IN; i0++) { 
 		source_in[i0] = 0;
-		//std::cout<<(double)fpga.source_in[i0]<<std::endl;
 	}
-
+	//get weight data 
+	model_default_t w13[NW1];
+	model_default_t w18[NW2];
+	model_default_t w22[NW3];
+	model_default_t w27[NW4];
+	model_default_t w31[NW5];
+	model_default_t w36[NW6];
+	model_default_t w40[NW7];
+	model_default_t w45[NW8];
+	model_default_t w49[NW9];
+	load_weights_from_txt<model_default_t, NW1>(w13, "w13.txt");
+	load_weights_from_txt<model_default_t, NW2>(w18, "w18.txt");
+	load_weights_from_txt<model_default_t, NW3>(w22, "w22.txt");
+	load_weights_from_txt<model_default_t, NW4>(w27, "w27.txt");
+	load_weights_from_txt<model_default_t, NW5>(w31, "w31.txt");
+	load_weights_from_txt<model_default_t, NW6>(w36, "w36.txt");
+	load_weights_from_txt<model_default_t, NW7>(w40, "w40.txt");
+	load_weights_from_txt<model_default_t, NW8>(w45, "w45.txt");
+	load_weights_from_txt<model_default_t, NW9>(w49, "w49.txt");
+	for(int j = 0; j < NW1; j++){
+		source_w13_in[j] = w13[j];
+	}
+	for(int j = 0; j < NW2; j++){
+		source_w18_in[j] = w18[j];
+	}
+	for(int j = 0; j < NW3; j++){
+		source_w22_in[j] = w22[j];
+	}
+	for(int j = 0; j < NW4; j++){
+		source_w27_in[j] = w27[j];
+	}
+	for(int j = 0; j < NW5; j++){
+		source_w31_in[j] = w31[j];
+	}
+	for(int j = 0; j < NW6; j++){
+		source_w36_in[j] = w36[j];
+	}
+	for(int j = 0; j < NW7; j++){
+		source_w40_in[j] = w40[j];
+	}
+	for(int j = 0; j < NW8; j++){
+		source_w45_in[j] = w45[j];
+	}
+	for(int j = 0; j < NW9; j++){
+		source_w49_in[j] = w49[j];
+	}
+	
 	//Reset the output result
 	for(int j = 0 ; j < 2 ; j++){
 		source_hw_results[j] = 0;
@@ -121,40 +214,92 @@ int main(int argc, char** argv)
     // Device-to-host communication
     cl::Buffer buffer_in   (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
             vector_size_in_bytes, source_in.data());
+    cl::Buffer buffer_w13_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w13_bytes, source_w13_in.data());
+    cl::Buffer buffer_w18_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w18_bytes, source_w18_in.data());
+    cl::Buffer buffer_w22_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w22_bytes, source_w22_in.data());
+    cl::Buffer buffer_w27_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w27_bytes, source_w27_in.data());
+    cl::Buffer buffer_w31_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w31_bytes, source_w31_in.data());
+    cl::Buffer buffer_w36_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w36_bytes, source_w36_in.data());
+    cl::Buffer buffer_w40_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w40_bytes, source_w40_in.data());
+    cl::Buffer buffer_w45_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w45_bytes, source_w45_in.data());
+    cl::Buffer buffer_w49_tmp    (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,
+            vector_size_w49_bytes, source_w49_in.data());
     cl::Buffer buffer_output(context,CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, 
             vector_size_out_bytes, source_hw_results.data());
 
     int narg = 0;
     krnl_aws_hls4ml.setArg(narg++, buffer_in);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w13_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w18_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w22_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w27_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w31_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w36_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w40_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w45_tmp);
+    krnl_aws_hls4ml.setArg(narg++, buffer_w49_tmp);
     krnl_aws_hls4ml.setArg(narg++, buffer_output);
 
     auto t1 = Clock::now();
     auto t2 = Clock::now();
 		
+		
 //=====================
-//input
+//send weight data
 //=====================
 
 	//load input data from text file
-    std::ifstream fin(datadir+"/tb_input_features.dat");
-    //load predictions from text file
-    std::ifstream fpr(datadir+"/tb_output_predictions.dat");
-    //open output file
+	std::ifstream fin(datadir+"/tb_input_features.dat");
+	//load predictions from text file
+	std::ifstream fpr(datadir+"/tb_output_predictions.dat");
+	//open output file
 	std::ofstream fout;
-    fout.open("tb_output_data.dat");
+	fout.open("tb_output_data.dat");
 	
-    std::string iline;
-    std::string pline;
+	std::string iline;
+	std::string pline;
 	
-    int e = 0;
+	int e = 0;
 
-    if (!(fin.is_open()) || !(fpr.is_open())) {
+	if (!(fin.is_open()) || !(fpr.is_open())) {
 		std::cout << "Unable to open input/predictions file, using random input" << std::endl;
 		exit(EXIT_FAILURE);
 		//flag for success/failure of finding data files
 	}
 	else std::cout <<"successfully open input and output file"<<std::endl;
-	
+
+	std::cout <<"load the weight data"<<std::endl;
+	fout << "load the weight data \n";
+	t1 = Clock::now();
+	// Copy input data to device global memory
+	q.enqueueMigrateMemObjects({buffer_in,buffer_w13_tmp,buffer_w18_tmp,buffer_w22_tmp,buffer_w27_tmp,
+								buffer_w31_tmp,buffer_w36_tmp,buffer_w40_tmp,buffer_w45_tmp,buffer_w49_tmp},0/* 0 means from host*/);
+	// Launch the Kernel
+	// For HLS kernels global and local size is always (1,1,1). So, it is recommended
+	// to always use enqueueTask() for invoking HLS kernel
+	q.enqueueTask(krnl_aws_hls4ml);
+	// Copy Result from Device Global Memory to Host Local Memory
+	q.enqueueMigrateMemObjects({buffer_output},CL_MIGRATE_MEM_OBJECT_HOST);
+	// Check for any errors from the command queue
+	q.finish();
+	t2 = Clock::now();
+	std::cout << "FPGA time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " ns" << std::endl;
+	fout << "FPGA time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << " ns \n";
+
+
+
+
+//=====================
+//input
+//=====================
 
 	//start to run
 	if(fin.is_open() && fpr.is_open()){
@@ -195,7 +340,8 @@ int main(int argc, char** argv)
 
         t1 = Clock::now();
         // Copy input data to device global memory
-        q.enqueueMigrateMemObjects({buffer_in},0/* 0 means from host*/);
+	    q.enqueueMigrateMemObjects({buffer_in,buffer_w13_tmp,buffer_w18_tmp,buffer_w22_tmp,buffer_w27_tmp,
+									buffer_w31_tmp,buffer_w36_tmp,buffer_w40_tmp,buffer_w45_tmp,buffer_w49_tmp},0/* 0 means from host*/);
         // Launch the Kernel
         // For HLS kernels global and local size is always (1,1,1). So, it is recommended
         // to always use enqueueTask() for invoking HLS kernel
