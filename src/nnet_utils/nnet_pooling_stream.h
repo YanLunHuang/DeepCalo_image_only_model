@@ -241,7 +241,6 @@ void pooling2d_buffer_cl(
     }
 }
 
-
 template<class data_T, class res_T, typename CONFIG_T>
   void pooling2d_large_cl_nopad_pad_me(
 		    hls::stream<data_T> &data,
@@ -256,69 +255,68 @@ template<class data_T, class res_T, typename CONFIG_T>
 	  
 	  //start to calculate
       data_T memory1[CONFIG_T::in_width][CONFIG_T::n_filt];
-	  #pragma HLS ARRAY_PARTITION variable=memory1 cyclic factor=2 
+	  #pragma HLS ARRAY_PARTITION variable=memory1 cyclic factor=2 dim=1
       data_T memory2[CONFIG_T::n_filt];
-      data_T memory3[CONFIG_T::n_filt];
       data_T tmpt,tmpt2,tmpt3,tmpt4,tmpt5;
 	  data_T pool[4];
 	  #pragma HLS ARRAY_PARTITION variable=pool complete
 	  
 	  int cal_height2 = cal_height/2;
-      for(int i=0; i<cal_height2; i++){
+      loop1:for(int i=0; i<cal_height2; i++){
 		  //read data
-		  for(int j=0; j<cal_width; j++){
-            for(int k=0; k<CONFIG_T::n_chan; k++){
+		  loop2:for(int j=0; j<cal_width; j++){
+            loop3:for(int k=0; k<CONFIG_T::n_chan; k++){
+				#pragma HLS UNROLL
 				tmpt = data.read();
 				memory1[j][k] = tmpt;
 			}
 		  }
-		  for(int k=0; k<CONFIG_T::n_chan; k++){
+		  loop4:for(int k=0; k<CONFIG_T::n_chan; k++){
+				#pragma HLS UNROLL
 				if(CONFIG_T::in_width > cal_width){
 					tmpt = data.read();
 				}
 		  }
 		  //decide which is the biggest
 		  int cal_width2 = cal_width/2;
-		  for(int j=0; j<cal_width2; j++){
-			#pragma HLS UNROLL
-			for(int k=0; k<CONFIG_T::n_chan; k++){
+		  loop5:for(int j=0; j<cal_width2; j++){
+			loop6:for(int k=0; k<CONFIG_T::n_chan; k++){
+				#pragma HLS UNROLL
 				tmpt2 = data.read();
 				memory2[k] = tmpt2;
 			}
-			for(int k=0; k<CONFIG_T::n_chan; k++){
-				tmpt3 = data.read();
-				memory3[k] = tmpt3;
-			}
-			for(int k=0; k<CONFIG_T::n_chan; k++){
-				#pragma hls pipeline II=1
+			loop7:for(int k=0; k<CONFIG_T::n_chan; k++){
+				#pragma HLS UNROLL
 				pool[0] = memory1[2*j][k];
 				pool[1] = memory1[2*j+1][k];
 				pool[2] = memory2[k];
-				pool[3] = memory3[k];
+				tmpt3 = data.read();
+				pool[3] = tmpt3;
 				
 				res_T max = pool[0];
-				for(int m=1; m<4; m++){
+				loop8:for(int m=1; m<4; m++){
 					#pragma HLS UNROLL
 					if(pool[m] > max)max = pool[m];
 				}
 				res.write(max);
 		    }
 		  }
-		  for(int k=0; k<CONFIG_T::n_chan; k++){
+		  loop9:for(int k=0; k<CONFIG_T::n_chan; k++){
+			#pragma HLS UNROLL
 			if(CONFIG_T::in_width > cal_width){
 				tmpt4 = data.read();
 			}
 		  }
       }
-	  for(int j=0; j<CONFIG_T::in_width; j++){
-	    for(int k=0; k<CONFIG_T::n_chan; k++){
+	  loop10:for(int j=0; j<CONFIG_T::in_width; j++){
+	    loop11:for(int k=0; k<CONFIG_T::n_chan; k++){
+			#pragma HLS UNROLL
 			if(CONFIG_T::in_height > cal_height){
 				tmpt5 = data.read();
 			}
 		}
 	  }
   }
-
 
 
 ////////////////////////////////////////////////////Dylan 2022
