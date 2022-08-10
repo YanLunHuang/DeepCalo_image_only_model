@@ -1,7 +1,7 @@
 # hls4ml on Alveo U50 (HLS C/C++ Kernel)
 ## Vitis version 2019.2
 ## Some Information
-### This branch is fork from others.
+### This model is fork from others.
 ```bash
 git clone https://github.com/drankincms/hls4ml_c -b alveo_deepcalo
 ```
