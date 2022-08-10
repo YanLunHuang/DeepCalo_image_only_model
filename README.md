@@ -16,6 +16,6 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ```bash
 This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
 This version also uses dense_ss(new dense_stream).
-The reuse factors in dense layer are the same as Dylan's.
+The reuse factors in dense layer are the same as Dylan used.
 The big weight data is sent by host.
 ```
