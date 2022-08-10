@@ -12,3 +12,9 @@ XCL_EMULATION_MODE=sw_emu ./host ./build_dir.sw_emu.xilinx_u50_xdma_201920_1/alv
 XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alveo_hls4ml.xclbin  # hardware emulation
 ./host alveo_hls4ml.xclbin  # run on U50
 ```
+## Some detail
+```bash
+This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
+This version also uses dense_ss(new dense_stream).
+the big weight data is sent by host.
+```
