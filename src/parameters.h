@@ -1,160 +1,200 @@
 #ifndef PARAMETERS_H_
 #define PARAMETERS_H_
 
+#include <complex>
 #include "ap_int.h"
 #include "ap_fixed.h"
-#include "defines.h"
-
-#include "nnet_utils/nnet_helpers.h"
-//hls-fpga-machine-learning insert includes
-#include "nnet_utils/nnet_activation.h"
-#include "nnet_utils/nnet_activation_stream.h"
-#include "nnet_utils/nnet_batchnorm.h"
-#include "nnet_utils/nnet_batchnorm_stream.h"
-#include "nnet_utils/nnet_conv2d.h"
-#include "nnet_utils/nnet_conv2d_stream.h"
 #include "nnet_utils/nnet_dense.h"
+#include "nnet_utils/nnet_dense_large.h"
 #include "nnet_utils/nnet_dense_compressed.h"
-#include "nnet_utils/nnet_dense_stream.h"
-#include "nnet_utils/nnet_image.h"
-#include "nnet_utils/nnet_image_stream.h"
-#include "nnet_utils/nnet_padding.h"
-#include "nnet_utils/nnet_padding_stream.h"
+#include "nnet_utils/nnet_conv.h"
+#include "nnet_utils/nnet_conv_large.h"
+#include "nnet_utils/nnet_conv2d.h"
+#include "nnet_utils/nnet_conv2d_large.h"
+#include "nnet_utils/nnet_upsampling2d.h"
+#include "nnet_utils/nnet_activation.h"
+#include "nnet_utils/nnet_common.h"
+#include "nnet_utils/nnet_batchnorm.h"
 #include "nnet_utils/nnet_pooling.h"
-#include "nnet_utils/nnet_pooling_stream.h"
- 
-//hls-fpga-machine-learning insert weights
-#include "weights/s3.h"
-#include "weights/b3.h"
-#include "weights/w4.h"
-#include "weights/b4.h"
-#include "weights/w9.h"
-#include "weights/b9.h"
-#include "weights/w13.h"
-#include "weights/b13.h"
-#include "weights/w18.h"
-#include "weights/b18.h"
-#include "weights/w22.h"
-#include "weights/b22.h"
-#include "weights/w27.h"
-#include "weights/b27.h"
-#include "weights/w31.h"
-#include "weights/b31.h"
-#include "weights/w36.h"
-#include "weights/b36.h"
-#include "weights/w40.h"
-#include "weights/b40.h"
-#include "weights/w45.h"
-#include "weights/b45.h"
-#include "weights/w49.h"
-#include "weights/b49.h"
-#include "weights/w53.h"
-#include "weights/b53.h"
+#include "nnet_utils/nnet_merge.h"
+#include "nnet_utils/nnet_helpers.h"
 
+
+//hls-fpga-machine-learning insert numbers
+#define N_INPUT_1_1 56
+#define N_INPUT_2_1 11
+#define N_INPUT_3_1 5
+#define OUT_HEIGHT_2 56
+#define OUT_WIDTH_2 55
+#define N_CHANNEL_2 5
+#define OUT_HEIGHT_4 56
+#define OUT_WIDTH_4 55
+#define N_FILT_4 17
+#define OUT_HEIGHT_8 28
+#define OUT_WIDTH_8 27
+#define N_FILT_8 17
+#define OUT_HEIGHT_9 28
+#define OUT_WIDTH_9 27
+#define N_FILT_9 33
+#define OUT_HEIGHT_13 28
+#define OUT_WIDTH_13 27
+#define N_FILT_13 33
+#define OUT_HEIGHT_17 14
+#define OUT_WIDTH_17 13
+#define N_FILT_17 33
+#define OUT_HEIGHT_18 14
+#define OUT_WIDTH_18 13
+#define N_FILT_18 65
+#define OUT_HEIGHT_22 14
+#define OUT_WIDTH_22 13
+#define N_FILT_22 65
+#define OUT_HEIGHT_26 7
+#define OUT_WIDTH_26 6
+#define N_FILT_26 65
+#define OUT_HEIGHT_27 7
+#define OUT_WIDTH_27 6
+#define N_FILT_27 129
+#define OUT_HEIGHT_31 7
+#define OUT_WIDTH_31 6
+#define N_FILT_31 129
+#define OUT_HEIGHT_35 3
+#define OUT_WIDTH_35 3
+#define N_FILT_35 129
+#define OUT_HEIGHT_36 3
+#define OUT_WIDTH_36 3
+#define N_FILT_36 257
+#define OUT_HEIGHT_40 3
+#define OUT_WIDTH_40 3
+#define N_FILT_40 257
+#define N_LAYER_44 257
+#define N_LAYER_48 257
+#define N_LAYER_52 2
+
+//hls-fpga-machine-learning insert layer-precision
+typedef ap_fixed<16,6> model_default_t;
+typedef ap_fixed<16,6> model_weightdefault_t;
+typedef ap_fixed<16,6> input_t;
+typedef ap_fixed<16,6> layer2_t;
+typedef ap_fixed<16,6> layer3_t;
+typedef ap_fixed<16,6> layer4_t;
+typedef ap_fixed<16,6> layer7_t;
+typedef ap_fixed<16,6> layer6_t;
+typedef ap_fixed<16,6> layer8_t;
+typedef ap_fixed<16,6> layer9_t;
+typedef ap_fixed<16,6> layer12_t;
+typedef ap_fixed<16,6> layer11_t;
+typedef ap_fixed<16,6> layer13_t;
+typedef ap_fixed<16,6> layer16_t;
+typedef ap_fixed<16,6> layer15_t;
+typedef ap_fixed<16,6> layer17_t;
+typedef ap_fixed<16,6> layer18_t;
+typedef ap_fixed<16,6> layer21_t;
+typedef ap_fixed<16,6> layer20_t;
+typedef ap_fixed<16,6> layer22_t;
+typedef ap_fixed<16,6> layer25_t;
+typedef ap_fixed<16,6> layer24_t;
+typedef ap_fixed<16,6> layer26_t;
+typedef ap_fixed<16,6> layer27_t;
+typedef ap_fixed<16,6> layer30_t;
+typedef ap_fixed<16,6> layer29_t;
+typedef ap_fixed<16,6> layer31_t;
+typedef ap_fixed<16,6> layer34_t;
+typedef ap_fixed<16,6> layer33_t;
+typedef ap_fixed<16,6> layer35_t;
+typedef ap_fixed<16,6> layer36_t;
+typedef ap_fixed<16,6> layer39_t;
+typedef ap_fixed<16,6> layer38_t;
+typedef ap_fixed<16,6> layer40_t;
+typedef ap_fixed<16,6> layer43_t;
+typedef ap_fixed<16,6> layer42_t;
+typedef ap_fixed<16,6> layer44_t;
+typedef ap_fixed<16,6> layer46_t;
+typedef ap_fixed<16,6> layer47_t;
+typedef ap_fixed<16,6> layer48_t;
+typedef ap_fixed<16,6> layer50_t;
+typedef ap_fixed<16,6> layer51_t;
+typedef ap_fixed<16,6> layer52_t;
+typedef ap_fixed<16,6> result_t;
 
 //hls-fpga-machine-learning insert layer-config
-// up_sampling2d
-struct config2 : nnet::resize_config {
-    static const unsigned height = 56;
-    static const unsigned width = 11;
-    static const unsigned n_chan = 4;
-    static const unsigned new_height = 56;
-    static const unsigned new_width = 55;
+struct config2 : nnet::upsampling2d_config {
+    static const unsigned height_factor = 1;
+    static const unsigned width_factor = 5;
+    static const unsigned in_height = N_INPUT_1_1;
+    static const unsigned in_width = N_INPUT_2_1;
+    static const unsigned out_height = OUT_HEIGHT_2;
+    static const unsigned out_width = OUT_WIDTH_2;
+    static const unsigned n_chan    = N_CHANNEL_2;
+    static const nnet::Interp_Op interp_op = nnet::nearest;
 };
 
-// batch_normalization
 struct config3 : nnet::batchnorm_config {
-    static const unsigned n_in = OUT_HEIGHT_2*OUT_WIDTH_2*N_CHAN_2;
+    static const unsigned n_in = N_CHANNEL_2;
     static const unsigned n_filt = 4;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned io_type = nnet::io_serial;
+    static const unsigned reuse_factor = 100000;
     static const bool store_weights_in_bram = false;
     typedef model_default_t bias_t;
-    typedef model_default_t scale_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
+    typedef model_weightdefault_t scale_t;
 };
 
-// zp2d_conv2d
-struct config56 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_2;
-    static const unsigned in_width = OUT_WIDTH_2;
-    static const unsigned n_chan = N_CHAN_2;
-    static const unsigned out_height = OUT_HEIGHT_56;
-    static const unsigned out_width = OUT_WIDTH_56;
+struct config4_relu : nnet::activ_config {
+    static const unsigned n_in = 16;
+    static const unsigned table_size = 1024;
+    static const unsigned io_type = nnet::io_serial;
+};
+
+struct config4_mult : nnet::dense_config {
+    static const unsigned n_in = 100;
+    static const unsigned n_out = 16;
+    static const unsigned reuse_factor = 5;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config4 : nnet::conv2d_config {
     static const unsigned pad_top = 2;
     static const unsigned pad_bottom = 2;
     static const unsigned pad_left = 2;
     static const unsigned pad_right = 2;
-};
-
-// conv2d
-struct config4_mult : nnet::dense_config {
-    static const unsigned n_in = 100;
-    static const unsigned n_out = 16;
-    static const unsigned reuse_factor = 100;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config4 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_56;
-    static const unsigned in_width = OUT_WIDTH_56;
-    static const unsigned n_chan = N_CHAN_56;
+    static const unsigned in_height = OUT_HEIGHT_2;
+    static const unsigned in_width = OUT_WIDTH_2;
+    static const unsigned n_chan = N_CHANNEL_2-1;
+    static const unsigned n_chan_in = N_CHANNEL_2;
     static const unsigned filt_height = 5;
     static const unsigned filt_width = 5;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_4;
+    static const unsigned n_filt = N_FILT_4-1;
+    static const unsigned n_filt_in = N_FILT_4;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_4;
     static const unsigned out_width = OUT_WIDTH_4;
-    static const unsigned reuse_factor = 100;
+    static const unsigned reuse_factor = 2;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 9;
-    static const unsigned min_width = 9;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config4_mult mult_config;
-};
-const ap_uint<config4::filt_height * config4::filt_width> config4::pixels[] = {1,3,7,15,31,30,28,24,16,33,99,231,495,1023,990,924,792,528,1057,3171,7399,15855,32767,31710,29596,25368,16912,33825,101475,236775,507375,1048575,1014750,947100,811800,541200,1082401,3247203,7576807,16236015,33554431,32472030,30307228,25977624,17318416,1082400,3247200,7576800,16236000,33554400,32472000,30307200,25977600,17318400,1082368,3247104,7576576,16235520,33553408,32471040,30306304,25976832,17317888,1081344,3244032,7569408,16220160,33521664,32440320,30277632,25952256,17301504,1048576,3145728,7340032,15728640,32505856,31457280,29360128,25165824,16777216};
-
-// leaky_re_lu
-struct LeakyReLU_config7 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_4*OUT_WIDTH_4*N_FILT_4;
-    static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    typedef config4_relu relu_config;
 };
 
-// max_pooling2d
 struct config8 : nnet::pooling2d_config {
     static const unsigned in_height = OUT_HEIGHT_4;
     static const unsigned in_width = OUT_WIDTH_4;
-    static const unsigned n_filt = N_FILT_8;
+    static const unsigned n_filt = N_FILT_8-1;
+    static const unsigned n_chan = N_FILT_4-1;
+    static const unsigned n_filt_in = N_FILT_8;
+    static const unsigned n_chan_in = N_FILT_4;
     static const unsigned stride_height = 2;
     static const unsigned stride_width = 2;
     static const unsigned pool_height = 2;
     static const unsigned pool_width = 2;
-
     static const unsigned filt_height = 2;
     static const unsigned filt_width = 2;
-    static const unsigned n_chan = N_FILT_8;
-
     static const unsigned out_height = OUT_HEIGHT_8;
     static const unsigned out_width = OUT_WIDTH_8;
     static const unsigned pad_top = 0;
@@ -162,157 +202,110 @@ struct config8 : nnet::pooling2d_config {
     static const unsigned pad_left = 0;
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 100000;
 };
 
-// zp2d_conv2d_1
-struct config57 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_8;
-    static const unsigned in_width = OUT_WIDTH_8;
-    static const unsigned n_chan = N_FILT_8;
-    static const unsigned out_height = OUT_HEIGHT_57;
-    static const unsigned out_width = OUT_WIDTH_57;
+struct config9_relu : nnet::activ_config {
+    static const unsigned n_in = 32;
+    static const unsigned table_size = 1024;
+    static const unsigned io_type = nnet::io_serial;
+};
+
+struct config9_mult : nnet::dense_config {
+    static const unsigned n_in = 144;
+    static const unsigned n_out = 32;
+    static const unsigned reuse_factor = 24;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config9 : nnet::conv2d_config {
     static const unsigned pad_top = 1;
     static const unsigned pad_bottom = 1;
     static const unsigned pad_left = 1;
     static const unsigned pad_right = 1;
-};
-
-// conv2d_1
-struct config9_mult : nnet::dense_config {
-    static const unsigned n_in = 144;
-    static const unsigned n_out = 32;
-    static const unsigned reuse_factor = 144;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config9 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_57;
-    static const unsigned in_width = OUT_WIDTH_57;
-    static const unsigned n_chan = N_CHAN_57;
+    static const unsigned in_height = OUT_HEIGHT_8;
+    static const unsigned in_width = OUT_WIDTH_8;
+    static const unsigned n_chan = N_FILT_8-1;
+    static const unsigned n_chan_in = N_FILT_8;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_9;
+    static const unsigned n_filt = N_FILT_9-1;
+    static const unsigned n_filt_in = N_FILT_9;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_9;
     static const unsigned out_width = OUT_WIDTH_9;
-    static const unsigned reuse_factor = 144;
+    static const unsigned reuse_factor = 6;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config9_mult mult_config;
+    typedef config9_relu relu_config;
 };
-const ap_uint<config9::filt_height * config9::filt_width> config9::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_1
-struct LeakyReLU_config12 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_9*OUT_WIDTH_9*N_FILT_9;
+struct config13_relu : nnet::activ_config {
+    static const unsigned n_in = 32;
     static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    static const unsigned io_type = nnet::io_serial;
 };
 
-// zp2d_conv2d_2
-struct config58 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_9;
-    static const unsigned in_width = OUT_WIDTH_9;
-    static const unsigned n_chan = N_FILT_9;
-    static const unsigned out_height = OUT_HEIGHT_58;
-    static const unsigned out_width = OUT_WIDTH_58;
+struct config13_mult : nnet::dense_config {
+    static const unsigned n_in = 288;
+    static const unsigned n_out = 32;
+    static const unsigned reuse_factor = 24;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config13 : nnet::conv2d_config {
     static const unsigned pad_top = 1;
     static const unsigned pad_bottom = 1;
     static const unsigned pad_left = 1;
     static const unsigned pad_right = 1;
-};
-
-// conv2d_2
-struct config13_mult : nnet::dense_config {
-    static const unsigned n_in = 288;
-    static const unsigned n_out = 32;
-    static const unsigned reuse_factor = 288;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config13 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_58;
-    static const unsigned in_width = OUT_WIDTH_58;
-    static const unsigned n_chan = N_CHAN_58;
+    static const unsigned in_height = OUT_HEIGHT_9;
+    static const unsigned in_width = OUT_WIDTH_9;
+    static const unsigned n_chan = N_FILT_9-1;
+    static const unsigned n_chan_in = N_FILT_9;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_13;
+    static const unsigned n_filt = N_FILT_13-1;
+    static const unsigned n_filt_in = N_FILT_13;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_13;
     static const unsigned out_width = OUT_WIDTH_13;
-    static const unsigned reuse_factor = 288;
+    static const unsigned reuse_factor = 48;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config13_mult mult_config;
-};
-const ap_uint<config13::filt_height * config13::filt_width> config13::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
-
-// leaky_re_lu_2
-struct LeakyReLU_config16 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_13*OUT_WIDTH_13*N_FILT_13;
-    static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    typedef config13_relu relu_config;
 };
 
-// max_pooling2d_1
 struct config17 : nnet::pooling2d_config {
     static const unsigned in_height = OUT_HEIGHT_13;
     static const unsigned in_width = OUT_WIDTH_13;
-    static const unsigned n_filt = N_FILT_17;
+    static const unsigned n_filt = N_FILT_17-1;
+    static const unsigned n_chan = N_FILT_13-1;
+    static const unsigned n_filt_in = N_FILT_17;
+    static const unsigned n_chan_in = N_FILT_13;
     static const unsigned stride_height = 2;
     static const unsigned stride_width = 2;
     static const unsigned pool_height = 2;
     static const unsigned pool_width = 2;
-
     static const unsigned filt_height = 2;
     static const unsigned filt_width = 2;
-    static const unsigned n_chan = N_FILT_17;
-
     static const unsigned out_height = OUT_HEIGHT_17;
     static const unsigned out_width = OUT_WIDTH_17;
     static const unsigned pad_top = 0;
@@ -320,157 +313,110 @@ struct config17 : nnet::pooling2d_config {
     static const unsigned pad_left = 0;
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 100000;
 };
 
-// zp2d_conv2d_3
-struct config59 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_17;
-    static const unsigned in_width = OUT_WIDTH_17;
-    static const unsigned n_chan = N_FILT_17;
-    static const unsigned out_height = OUT_HEIGHT_59;
-    static const unsigned out_width = OUT_WIDTH_59;
+struct config18_relu : nnet::activ_config {
+    static const unsigned n_in = 64;
+    static const unsigned table_size = 1024;
+    static const unsigned io_type = nnet::io_serial;
+};
+
+struct config18_mult : nnet::dense_config {
+    static const unsigned n_in = 288;
+    static const unsigned n_out = 64;
+    static const unsigned reuse_factor = 96;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config18 : nnet::conv2d_config {
     static const unsigned pad_top = 1;
     static const unsigned pad_bottom = 1;
     static const unsigned pad_left = 1;
     static const unsigned pad_right = 1;
-};
-
-// conv2d_3
-struct config18_mult : nnet::dense_config {
-    static const unsigned n_in = 288;
-    static const unsigned n_out = 64;
-    static const unsigned reuse_factor = 288;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config18 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_59;
-    static const unsigned in_width = OUT_WIDTH_59;
-    static const unsigned n_chan = N_CHAN_59;
+    static const unsigned in_height = OUT_HEIGHT_17;
+    static const unsigned in_width = OUT_WIDTH_17;
+    static const unsigned n_chan = N_FILT_17-1;
+    static const unsigned n_chan_in = N_FILT_17;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_18;
+    static const unsigned n_filt = N_FILT_18-1;
+    static const unsigned n_filt_in = N_FILT_18;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_18;
     static const unsigned out_width = OUT_WIDTH_18;
-    static const unsigned reuse_factor = 288;
+    static const unsigned reuse_factor = 48;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config18_mult mult_config;
+    typedef config18_relu relu_config;
 };
-const ap_uint<config18::filt_height * config18::filt_width> config18::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_3
-struct LeakyReLU_config21 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_18*OUT_WIDTH_18*N_FILT_18;
+struct config22_relu : nnet::activ_config {
+    static const unsigned n_in = 64;
     static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    static const unsigned io_type = nnet::io_serial;
 };
 
-// zp2d_conv2d_4
-struct config60 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_18;
-    static const unsigned in_width = OUT_WIDTH_18;
-    static const unsigned n_chan = N_FILT_18;
-    static const unsigned out_height = OUT_HEIGHT_60;
-    static const unsigned out_width = OUT_WIDTH_60;
+struct config22_mult : nnet::dense_config {
+    static const unsigned n_in = 576;
+    static const unsigned n_out = 64;
+    static const unsigned reuse_factor = 96;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config22 : nnet::conv2d_config {
     static const unsigned pad_top = 1;
     static const unsigned pad_bottom = 1;
     static const unsigned pad_left = 1;
     static const unsigned pad_right = 1;
-};
-
-// conv2d_4
-struct config22_mult : nnet::dense_config {
-    static const unsigned n_in = 576;
-    static const unsigned n_out = 64;
-    static const unsigned reuse_factor = 576;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config22 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_60;
-    static const unsigned in_width = OUT_WIDTH_60;
-    static const unsigned n_chan = N_CHAN_60;
+    static const unsigned in_height = OUT_HEIGHT_18;
+    static const unsigned in_width = OUT_WIDTH_18;
+    static const unsigned n_chan = N_FILT_18-1;
+    static const unsigned n_chan_in = N_FILT_18;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_22;
+    static const unsigned n_filt = N_FILT_22-1;
+    static const unsigned n_filt_in = N_FILT_22;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_22;
     static const unsigned out_width = OUT_WIDTH_22;
-    static const unsigned reuse_factor = 576;
+    static const unsigned reuse_factor = 144;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config22_mult mult_config;
-};
-const ap_uint<config22::filt_height * config22::filt_width> config22::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
-
-// leaky_re_lu_4
-struct LeakyReLU_config25 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_22*OUT_WIDTH_22*N_FILT_22;
-    static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    typedef config22_relu relu_config;
 };
 
-// max_pooling2d_2
 struct config26 : nnet::pooling2d_config {
     static const unsigned in_height = OUT_HEIGHT_22;
     static const unsigned in_width = OUT_WIDTH_22;
-    static const unsigned n_filt = N_FILT_26;
+    static const unsigned n_filt = N_FILT_26-1;
+    static const unsigned n_chan = N_FILT_22-1;
+    static const unsigned n_filt_in = N_FILT_26;
+    static const unsigned n_chan_in = N_FILT_22;
     static const unsigned stride_height = 2;
     static const unsigned stride_width = 2;
     static const unsigned pool_height = 2;
     static const unsigned pool_width = 2;
-
     static const unsigned filt_height = 2;
     static const unsigned filt_width = 2;
-    static const unsigned n_chan = N_FILT_26;
-
     static const unsigned out_height = OUT_HEIGHT_26;
     static const unsigned out_width = OUT_WIDTH_26;
     static const unsigned pad_top = 0;
@@ -478,49 +424,39 @@ struct config26 : nnet::pooling2d_config {
     static const unsigned pad_left = 0;
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 100000;
 };
 
-// zp2d_conv2d_5
-struct config61 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_26;
-    static const unsigned in_width = OUT_WIDTH_26;
-    static const unsigned n_chan = N_FILT_26;
-    static const unsigned out_height = OUT_HEIGHT_61;
-    static const unsigned out_width = OUT_WIDTH_61;
+struct config27_relu : nnet::activ_config {
+    static const unsigned n_in = 128;
+    static const unsigned table_size = 1024;
+    static const unsigned io_type = nnet::io_serial;
+};
+
+struct config27_mult : nnet::dense_config {
+    static const unsigned n_in = 576;
+    static const unsigned n_out = 128;
+    static const unsigned reuse_factor = 288;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config27 : nnet::conv2d_config {
     static const unsigned pad_top = 1;
     static const unsigned pad_bottom = 1;
     static const unsigned pad_left = 1;
     static const unsigned pad_right = 1;
-};
-
-// conv2d_5
-struct config27_mult : nnet::dense_config {
-    static const unsigned n_in = 576;
-    static const unsigned n_out = 128;
-    static const unsigned reuse_factor = 576;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config27 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_61;
-    static const unsigned in_width = OUT_WIDTH_61;
-    static const unsigned n_chan = N_CHAN_61;
+    static const unsigned in_height = OUT_HEIGHT_26;
+    static const unsigned in_width = OUT_WIDTH_26;
+    static const unsigned n_chan = N_FILT_26-1;
+    static const unsigned n_chan_in = N_FILT_26;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_27;
+    static const unsigned n_filt = N_FILT_27-1;
+    static const unsigned n_filt_in = N_FILT_27;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_27;
@@ -528,107 +464,70 @@ struct config27 : nnet::conv2d_config {
     static const unsigned reuse_factor = 576;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config27_mult mult_config;
+    typedef config27_relu relu_config;
 };
-const ap_uint<config27::filt_height * config27::filt_width> config27::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_5
-struct LeakyReLU_config30 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_27*OUT_WIDTH_27*N_FILT_27;
+struct config31_relu : nnet::activ_config {
+    static const unsigned n_in = 128;
     static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    static const unsigned io_type = nnet::io_serial;
 };
 
-// zp2d_conv2d_6
-struct config62 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_27;
-    static const unsigned in_width = OUT_WIDTH_27;
-    static const unsigned n_chan = N_FILT_27;
-    static const unsigned out_height = OUT_HEIGHT_62;
-    static const unsigned out_width = OUT_WIDTH_62;
+struct config31_mult : nnet::dense_config {
+    static const unsigned n_in = 1152;
+    static const unsigned n_out = 128;
+    static const unsigned reuse_factor = 288;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config31 : nnet::conv2d_config {
     static const unsigned pad_top = 1;
     static const unsigned pad_bottom = 1;
     static const unsigned pad_left = 1;
     static const unsigned pad_right = 1;
-};
-
-// conv2d_6
-struct config31_mult : nnet::dense_config {
-    static const unsigned n_in = 1152;
-    static const unsigned n_out = 128;
-    static const unsigned reuse_factor = 1152;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config31 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_62;
-    static const unsigned in_width = OUT_WIDTH_62;
-    static const unsigned n_chan = N_CHAN_62;
+    static const unsigned in_height = OUT_HEIGHT_27;
+    static const unsigned in_width = OUT_WIDTH_27;
+    static const unsigned n_chan = N_FILT_27-1;
+    static const unsigned n_chan_in = N_FILT_27;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_31;
+    static const unsigned n_filt = N_FILT_31-1;
+    static const unsigned n_filt_in = N_FILT_31;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_31;
     static const unsigned out_width = OUT_WIDTH_31;
-    static const unsigned reuse_factor = 1152;
+    static const unsigned reuse_factor = 572;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config31_mult mult_config;
-};
-const ap_uint<config31::filt_height * config31::filt_width> config31::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
-
-// leaky_re_lu_6
-struct LeakyReLU_config34 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_31*OUT_WIDTH_31*N_FILT_31;
-    static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    typedef config31_relu relu_config;
 };
 
-// max_pooling2d_3
 struct config35 : nnet::pooling2d_config {
     static const unsigned in_height = OUT_HEIGHT_31;
     static const unsigned in_width = OUT_WIDTH_31;
-    static const unsigned n_filt = N_FILT_35;
+    static const unsigned n_filt = N_FILT_35-1;
+    static const unsigned n_chan = N_FILT_31-1;
+    static const unsigned n_filt_in = N_FILT_35;
+    static const unsigned n_chan_in = N_FILT_31;
     static const unsigned stride_height = 2;
     static const unsigned stride_width = 2;
     static const unsigned pool_height = 2;
     static const unsigned pool_width = 2;
-
     static const unsigned filt_height = 2;
     static const unsigned filt_width = 2;
-    static const unsigned n_chan = N_FILT_35;
-
     static const unsigned out_height = OUT_HEIGHT_35;
     static const unsigned out_width = OUT_WIDTH_35;
     static const unsigned pad_top = 0;
@@ -636,49 +535,39 @@ struct config35 : nnet::pooling2d_config {
     static const unsigned pad_left = 0;
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 100000;
 };
 
-// zp2d_conv2d_7
-struct config63 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_35;
-    static const unsigned in_width = OUT_WIDTH_35;
-    static const unsigned n_chan = N_FILT_35;
-    static const unsigned out_height = OUT_HEIGHT_63;
-    static const unsigned out_width = OUT_WIDTH_63;
-    static const unsigned pad_top = 1;
-    static const unsigned pad_bottom = 1;
-    static const unsigned pad_left = 1;
-    static const unsigned pad_right = 1;
+struct config36_relu : nnet::activ_config {
+    static const unsigned n_in = 256;
+    static const unsigned table_size = 1024;
+    static const unsigned io_type = nnet::io_serial;
 };
 
-// conv2d_7
 struct config36_mult : nnet::dense_config {
     static const unsigned n_in = 1152;
     static const unsigned n_out = 256;
     static const unsigned reuse_factor = 1152;
-    static const unsigned strategy = nnet::resource;
+    static const unsigned merge_factor = 1;
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
 };
 
 struct config36 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_63;
-    static const unsigned in_width = OUT_WIDTH_63;
-    static const unsigned n_chan = N_CHAN_63;
+    static const unsigned pad_top = 1;
+    static const unsigned pad_bottom = 1;
+    static const unsigned pad_left = 1;
+    static const unsigned pad_right = 1;
+    static const unsigned in_height = OUT_HEIGHT_35;
+    static const unsigned in_width = OUT_WIDTH_35;
+    static const unsigned n_chan = N_FILT_35-1;
+    static const unsigned n_chan_in = N_FILT_35;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_36;
+    static const unsigned n_filt = N_FILT_36-1;
+    static const unsigned n_filt_in = N_FILT_36;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_36;
@@ -686,65 +575,43 @@ struct config36 : nnet::conv2d_config {
     static const unsigned reuse_factor = 1152;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config36_mult mult_config;
+    typedef config36_relu relu_config;
 };
-const ap_uint<config36::filt_height * config36::filt_width> config36::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_7
-struct LeakyReLU_config39 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_36*OUT_WIDTH_36*N_FILT_36;
+struct config40_relu : nnet::activ_config {
+    static const unsigned n_in = 256;
     static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    static const unsigned io_type = nnet::io_serial;
 };
 
-// zp2d_conv2d_8
-struct config64 : nnet::padding2d_config {
-    static const unsigned in_height = OUT_HEIGHT_36;
-    static const unsigned in_width = OUT_WIDTH_36;
-    static const unsigned n_chan = N_FILT_36;
-    static const unsigned out_height = OUT_HEIGHT_64;
-    static const unsigned out_width = OUT_WIDTH_64;
+struct config40_mult : nnet::dense_config {
+    static const unsigned n_in = 2304;
+    static const unsigned n_out = 256;
+    static const unsigned reuse_factor = 1152;
+    static const unsigned merge_factor = 1;
+    typedef ap_fixed<16,6> accum_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
+};
+
+struct config40 : nnet::conv2d_config {
     static const unsigned pad_top = 1;
     static const unsigned pad_bottom = 1;
     static const unsigned pad_left = 1;
     static const unsigned pad_right = 1;
-};
-
-// conv2d_8
-struct config40_mult : nnet::dense_config {
-    static const unsigned n_in = 2304;
-    static const unsigned n_out = 256;
-    static const unsigned reuse_factor = 2304;
-    static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
-};
-
-struct config40 : nnet::conv2d_config {
-    static const unsigned pad_top = 0;
-    static const unsigned pad_bottom = 0;
-    static const unsigned pad_left = 0;
-    static const unsigned pad_right = 0;
-    static const unsigned in_height = OUT_HEIGHT_64;
-    static const unsigned in_width = OUT_WIDTH_64;
-    static const unsigned n_chan = N_CHAN_64;
+    static const unsigned in_height = OUT_HEIGHT_36;
+    static const unsigned in_width = OUT_WIDTH_36;
+    static const unsigned n_chan = N_FILT_36-1;
+    static const unsigned n_chan_in = N_FILT_36;
     static const unsigned filt_height = 3;
     static const unsigned filt_width = 3;
-    static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = N_FILT_40;
+    static const unsigned n_filt = N_FILT_40-1;
+    static const unsigned n_filt_in = N_FILT_40;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_40;
@@ -752,106 +619,106 @@ struct config40 : nnet::conv2d_config {
     static const unsigned reuse_factor = 2304;
     static const unsigned n_zeros = 0;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::resource;
-    static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned min_height = 5;
-    static const unsigned min_width = 5;
-    static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
     typedef config40_mult mult_config;
-};
-const ap_uint<config40::filt_height * config40::filt_width> config40::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
-
-// leaky_re_lu_8
-struct LeakyReLU_config43 : nnet::activ_config {
-    static const unsigned n_in = OUT_HEIGHT_40*OUT_WIDTH_40*N_FILT_40;
-    static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    typedef config40_relu relu_config;
 };
 
-// dense
-struct config45 : nnet::dense_config {
-    static const unsigned n_in = N_SIZE_1_44;
-    static const unsigned n_out = N_LAYER_45;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 2304;
-    static const unsigned n_zeros = 0;
+struct config44 : nnet::dense_config {
+    static const unsigned block_factor = 9;
+    static const unsigned merge_factor = 1;
+    static const unsigned n_input = N_FILT_40;
+    static const unsigned n_output = N_LAYER_44;
+    static const unsigned n_in = OUT_HEIGHT_40*OUT_WIDTH_40*(N_FILT_40-1);
+    static const unsigned n_out = N_LAYER_44-1;
+    static const unsigned io_type = nnet::io_serial;
+    static const unsigned reuse_factor = 2304;//x
+    static const unsigned n_zeros = 0; //
     static const unsigned n_nonzeros = 589824;
     static const bool store_weights_in_bram = false;
     typedef ap_fixed<16,6> accum_t;
-    typedef bias45_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
     typedef ap_uint<1> index_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
 };
 
-// leaky_re_lu_9
-struct LeakyReLU_config48 : nnet::activ_config {
-    static const unsigned n_in = N_LAYER_45;
+struct config46 : nnet::batchnorm_config {
+    static const unsigned n_in = N_LAYER_44;
+    static const unsigned n_filt = -1;
+    static const unsigned io_type = nnet::io_serial;
+    static const unsigned reuse_factor = 100000;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t scale_t;
+};
+
+struct LeakyReLU_config47 : nnet::activ_config {
+    static const unsigned n_in = N_LAYER_44;
     static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    static const unsigned io_type = nnet::io_serial;
 };
 
-// dense_1
-struct config49 : nnet::dense_config {
-    static const unsigned n_in = N_LAYER_45;
-    static const unsigned n_out = N_LAYER_49;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 256;
+struct config48 : nnet::dense_config {
+    static const unsigned block_factor = 1;
+    static const unsigned merge_factor = 1;
+    static const unsigned n_input = N_LAYER_44;
+    static const unsigned n_output = N_LAYER_48;
+    static const unsigned n_in = N_LAYER_44-1;
+    static const unsigned n_out = N_LAYER_48-1;
+    static const unsigned io_type = nnet::io_serial;
+    static const unsigned reuse_factor = (N_LAYER_44-1);
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 65536;
     static const bool store_weights_in_bram = false;
     typedef ap_fixed<16,6> accum_t;
-    typedef bias49_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
     typedef ap_uint<1> index_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
 };
 
-// leaky_re_lu_10
-struct LeakyReLU_config52 : nnet::activ_config {
-    static const unsigned n_in = N_LAYER_49;
+struct config50 : nnet::batchnorm_config {
+    static const unsigned n_in = N_LAYER_48;
+    static const unsigned n_filt = -1;
+    static const unsigned io_type = nnet::io_serial;
+    static const unsigned reuse_factor = 100000;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_weightdefault_t scale_t;
+};
+
+struct LeakyReLU_config51 : nnet::activ_config {
+    static const unsigned n_in = N_LAYER_48;
     static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    static const unsigned io_type = nnet::io_serial;
 };
 
-// dense_2
-struct config53 : nnet::dense_config {
-    static const unsigned n_in = N_LAYER_49;
-    static const unsigned n_out = N_LAYER_53;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 256;
+struct config52 : nnet::dense_config {
+    static const unsigned block_factor = 1;
+    static const unsigned merge_factor = 1;
+    static const unsigned n_input = N_LAYER_48;
+    static const unsigned n_output = N_LAYER_52;
+    static const unsigned n_in = N_LAYER_48-1;
+    static const unsigned n_out = N_LAYER_52-1;
+    static const unsigned io_type = nnet::io_serial;
+    static const unsigned reuse_factor = (N_LAYER_48-1);
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 256;
     static const bool store_weights_in_bram = false;
     typedef ap_fixed<16,6> accum_t;
     typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef model_weightdefault_t weight_t;
+    typedef model_default_t weightmult_t;
     typedef ap_uint<1> index_t;
-    template<class x_T, class y_T, class res_T>
-    using product = nnet::product::mult<x_T, y_T, res_T>;
 };
 
-// activation
-struct relu_config55 : nnet::activ_config {
-    static const unsigned n_in = N_LAYER_53;
+struct relu_config54 : nnet::activ_config {
+    static const unsigned n_in = N_LAYER_52;
     static const unsigned table_size = 1024;
-    static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
-    typedef ap_fixed<18,8> table_t;
+    static const unsigned io_type = nnet::io_serial;
 };
 
 

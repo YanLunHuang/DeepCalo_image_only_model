@@ -2,8 +2,6 @@
 #define NNET_TYPES_H_
 
 #include <assert.h>
-#include <cstddef>
-#include <cstdio>
 
 namespace nnet {
 

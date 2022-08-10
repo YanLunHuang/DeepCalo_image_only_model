@@ -20,16 +20,17 @@
 #ifndef MYPROJECT_H_
 #define MYPROJECT_H_
 
+#include <complex>
 #include "ap_int.h"
 #include "ap_fixed.h"
-#include "hls_stream.h"
 
-#include "defines.h"
+#include "parameters.h"
+
 
 // Prototype of top level function for C-synthesis
 void myproject(
-    hls::stream<input_t> &input_1,
-    hls::stream<result_t> &layer55_out
-);
+	hls::stream<input_t>   em_barrel[N_INPUT_3_1],
+	hls::stream<result_t>  layer54_out[N_LAYER_52]
+	);
 
 #endif

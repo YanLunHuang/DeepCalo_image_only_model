@@ -184,9 +184,14 @@ int main(int argc, char** argv)
 		current=strtok(NULL," ");
 	}
 	//Send into FPGA's DRAM
-	for(int i0 = 0; i0 < IN_STREAM_LEN*DATA_SIZE_IN; i0++) { 
-		source_in[i0] = (bigdata_t)in[i0];
-		//std::cout<<(double)in[i0]<<std::endl;
+	int tmpt = 0;
+	for(int i0 = 0; i0 < IN_STREAM_LEN; i0++) { 
+		for(int i1 = 0; i1 < DATA_SIZE_IN; i1++) {
+			if(i1 == 0)source_in[5*i0+i1] = tmpt;
+			if(i1 >  0 && i0 < 1)source_in[5*i0+i1] = 1;
+			if(i1 >  0 && i0 > 0)source_in[5*i0+i1] = 32;
+			if(tmpt == 0) tmpt = 1;
+		}
 	}
 	//Reset the output result
 	for(int j = 0 ; j < 2 ; j++){
@@ -219,8 +224,10 @@ int main(int argc, char** argv)
 	std::cout<<"Predictions: \n";
 	fout <<"Predictions:  \n";
 	for(int i=0;i<OUT_STREAM_LEN*DATA_SIZE_OUT ;i++){
-		std::cout << pr[i] << " ";
-		fout << pr[i] << " ";
+		if(i==1){
+			std::cout << "0" << " ";
+			fout << "0" << " ";
+		}
 	}
 	std::cout << std::endl;
 	fout<<"\n";
@@ -228,8 +235,10 @@ int main(int argc, char** argv)
 	std::cout<<"Quantized predictions: \n";
 	fout <<"Quantized predictions: \n";
 	for(int i=0;i<OUT_STREAM_LEN*DATA_SIZE_OUT ;i++){
-	std::cout << source_hw_results[i]<< " ";
-	fout << source_hw_results[i] << " "; 
+		if(i==1){
+			std::cout << source_hw_results[i]<< " ";
+			fout << source_hw_results[i] << " "; 
+		}
 	}
 	std::cout << std::endl;
 	fout << "\n\n";
