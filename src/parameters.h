@@ -28,26 +28,48 @@
 #include "weights/b3.h"
 #include "weights/w4.h"
 #include "weights/b4.h"
+#include "weights/s6.h"
+#include "weights/b6.h"
 #include "weights/w9.h"
 #include "weights/b9.h"
+#include "weights/s11.h"
+#include "weights/b11.h"
 #include "weights/w13.h"
 #include "weights/b13.h"
+#include "weights/s15.h"
+#include "weights/b15.h"
 #include "weights/w18.h"
 #include "weights/b18.h"
+#include "weights/s20.h"
+#include "weights/b20.h"
 #include "weights/w22.h"
 #include "weights/b22.h"
+#include "weights/s24.h"
+#include "weights/b24.h"
 #include "weights/w27.h"
 #include "weights/b27.h"
+#include "weights/s29.h"
+#include "weights/b29.h"
 #include "weights/w31.h"
 #include "weights/b31.h"
+#include "weights/s33.h"
+#include "weights/b33.h"
 #include "weights/w36.h"
 #include "weights/b36.h"
+#include "weights/s38.h"
+#include "weights/b38.h"
 #include "weights/w40.h"
 #include "weights/b40.h"
+#include "weights/s42.h"
+#include "weights/b42.h"
 #include "weights/w45.h"
 #include "weights/b45.h"
+#include "weights/s47.h"
+#include "weights/b47.h"
 #include "weights/w49.h"
 #include "weights/b49.h"
+#include "weights/s51.h"
+#include "weights/b51.h"
 #include "weights/w53.h"
 #include "weights/b53.h"
 
@@ -62,12 +84,12 @@ struct config2 : nnet::resize_config {
     static const unsigned new_width = 55;
 };
 
-// batch_normalization
+// batch_normalization_5
 struct config3 : nnet::batchnorm_config {
     static const unsigned n_in = OUT_HEIGHT_2*OUT_WIDTH_2*N_CHAN_2;
     static const unsigned n_filt = 4;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     static const bool store_weights_in_bram = false;
     typedef model_default_t bias_t;
     typedef model_default_t scale_t;
@@ -94,9 +116,9 @@ struct config4_mult : nnet::dense_config {
     static const unsigned n_out = 16;
     static const unsigned reuse_factor = 100;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias4_t bias_t;
+    typedef weight4_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -117,28 +139,42 @@ struct config4 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_4;
     static const unsigned out_width = OUT_WIDTH_4;
-    static const unsigned reuse_factor = 100;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 1600;
+    static const unsigned n_zeros = 32;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 9;
     static const unsigned min_width = 9;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias4_t bias_t;
+    typedef weight4_t weight_t;
     typedef config4_mult mult_config;
 };
 const ap_uint<config4::filt_height * config4::filt_width> config4::pixels[] = {1,3,7,15,31,30,28,24,16,33,99,231,495,1023,990,924,792,528,1057,3171,7399,15855,32767,31710,29596,25368,16912,33825,101475,236775,507375,1048575,1014750,947100,811800,541200,1082401,3247203,7576807,16236015,33554431,32472030,30307228,25977624,17318416,1082400,3247200,7576800,16236000,33554400,32472000,30307200,25977600,17318400,1082368,3247104,7576576,16235520,33553408,32471040,30306304,25976832,17317888,1081344,3244032,7569408,16220160,33521664,32440320,30277632,25952256,17301504,1048576,3145728,7340032,15728640,32505856,31457280,29360128,25165824,16777216};
 
-// leaky_re_lu
+// batch_normalization_6
+struct config6 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_4*OUT_WIDTH_4*N_FILT_4;
+    static const unsigned n_filt = 16;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_5
 struct LeakyReLU_config7 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_4*OUT_WIDTH_4*N_FILT_4;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // max_pooling2d
@@ -163,8 +199,8 @@ struct config8 : nnet::pooling2d_config {
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 1;
+    typedef ap_fixed<16,9> accum_t;
 };
 
 // zp2d_conv2d_1
@@ -186,9 +222,9 @@ struct config9_mult : nnet::dense_config {
     static const unsigned n_out = 32;
     static const unsigned reuse_factor = 144;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias9_t bias_t;
+    typedef weight9_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -209,28 +245,42 @@ struct config9 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_9;
     static const unsigned out_width = OUT_WIDTH_9;
-    static const unsigned reuse_factor = 144;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 4608;
+    static const unsigned n_zeros = 149;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias9_t bias_t;
+    typedef weight9_t weight_t;
     typedef config9_mult mult_config;
 };
 const ap_uint<config9::filt_height * config9::filt_width> config9::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_1
+// batch_normalization_7
+struct config11 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_9*OUT_WIDTH_9*N_FILT_9;
+    static const unsigned n_filt = 32;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_6
 struct LeakyReLU_config12 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_9*OUT_WIDTH_9*N_FILT_9;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // zp2d_conv2d_2
@@ -252,9 +302,9 @@ struct config13_mult : nnet::dense_config {
     static const unsigned n_out = 32;
     static const unsigned reuse_factor = 288;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias13_t bias_t;
+    typedef weight13_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -275,28 +325,42 @@ struct config13 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_13;
     static const unsigned out_width = OUT_WIDTH_13;
-    static const unsigned reuse_factor = 288;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 9216;
+    static const unsigned n_zeros = 403;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias13_t bias_t;
+    typedef weight13_t weight_t;
     typedef config13_mult mult_config;
 };
 const ap_uint<config13::filt_height * config13::filt_width> config13::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_2
+// batch_normalization_8
+struct config15 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_13*OUT_WIDTH_13*N_FILT_13;
+    static const unsigned n_filt = 32;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_7
 struct LeakyReLU_config16 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_13*OUT_WIDTH_13*N_FILT_13;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // max_pooling2d_1
@@ -321,8 +385,8 @@ struct config17 : nnet::pooling2d_config {
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 1;
+    typedef ap_fixed<16,9> accum_t;
 };
 
 // zp2d_conv2d_3
@@ -344,9 +408,9 @@ struct config18_mult : nnet::dense_config {
     static const unsigned n_out = 64;
     static const unsigned reuse_factor = 288;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias18_t bias_t;
+    typedef weight18_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -367,28 +431,42 @@ struct config18 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_18;
     static const unsigned out_width = OUT_WIDTH_18;
-    static const unsigned reuse_factor = 288;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 18432;
+    static const unsigned n_zeros = 759;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias18_t bias_t;
+    typedef weight18_t weight_t;
     typedef config18_mult mult_config;
 };
 const ap_uint<config18::filt_height * config18::filt_width> config18::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_3
+// batch_normalization_9
+struct config20 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_18*OUT_WIDTH_18*N_FILT_18;
+    static const unsigned n_filt = 64;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_8
 struct LeakyReLU_config21 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_18*OUT_WIDTH_18*N_FILT_18;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // zp2d_conv2d_4
@@ -410,9 +488,9 @@ struct config22_mult : nnet::dense_config {
     static const unsigned n_out = 64;
     static const unsigned reuse_factor = 576;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias22_t bias_t;
+    typedef weight22_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -433,28 +511,42 @@ struct config22 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_22;
     static const unsigned out_width = OUT_WIDTH_22;
-    static const unsigned reuse_factor = 576;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 36864;
+    static const unsigned n_zeros = 1836;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias22_t bias_t;
+    typedef weight22_t weight_t;
     typedef config22_mult mult_config;
 };
 const ap_uint<config22::filt_height * config22::filt_width> config22::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_4
+// batch_normalization_10
+struct config24 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_22*OUT_WIDTH_22*N_FILT_22;
+    static const unsigned n_filt = 64;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_9
 struct LeakyReLU_config25 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_22*OUT_WIDTH_22*N_FILT_22;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // max_pooling2d_2
@@ -479,8 +571,8 @@ struct config26 : nnet::pooling2d_config {
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 1;
+    typedef ap_fixed<16,9> accum_t;
 };
 
 // zp2d_conv2d_5
@@ -502,9 +594,9 @@ struct config27_mult : nnet::dense_config {
     static const unsigned n_out = 128;
     static const unsigned reuse_factor = 576;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias27_t bias_t;
+    typedef weight27_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -525,28 +617,42 @@ struct config27 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_27;
     static const unsigned out_width = OUT_WIDTH_27;
-    static const unsigned reuse_factor = 576;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 73728;
+    static const unsigned n_zeros = 3843;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias27_t bias_t;
+    typedef weight27_t weight_t;
     typedef config27_mult mult_config;
 };
 const ap_uint<config27::filt_height * config27::filt_width> config27::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_5
+// batch_normalization_11
+struct config29 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_27*OUT_WIDTH_27*N_FILT_27;
+    static const unsigned n_filt = 128;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_10
 struct LeakyReLU_config30 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_27*OUT_WIDTH_27*N_FILT_27;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // zp2d_conv2d_6
@@ -568,9 +674,9 @@ struct config31_mult : nnet::dense_config {
     static const unsigned n_out = 128;
     static const unsigned reuse_factor = 1152;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias31_t bias_t;
+    typedef weight31_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -591,28 +697,42 @@ struct config31 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_31;
     static const unsigned out_width = OUT_WIDTH_31;
-    static const unsigned reuse_factor = 1152;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 147456;
+    static const unsigned n_zeros = 9556;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias31_t bias_t;
+    typedef weight31_t weight_t;
     typedef config31_mult mult_config;
 };
 const ap_uint<config31::filt_height * config31::filt_width> config31::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_6
+// batch_normalization_12
+struct config33 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_31*OUT_WIDTH_31*N_FILT_31;
+    static const unsigned n_filt = 128;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_11
 struct LeakyReLU_config34 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_31*OUT_WIDTH_31*N_FILT_31;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // max_pooling2d_3
@@ -637,8 +757,8 @@ struct config35 : nnet::pooling2d_config {
     static const unsigned pad_right = 0;
     static const nnet::Pool_Op pool_op = nnet::Max;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
-    static const unsigned reuse = 2000;
-    typedef ap_fixed<16,6> accum_t;
+    static const unsigned reuse = 1;
+    typedef ap_fixed<16,9> accum_t;
 };
 
 // zp2d_conv2d_7
@@ -660,9 +780,9 @@ struct config36_mult : nnet::dense_config {
     static const unsigned n_out = 256;
     static const unsigned reuse_factor = 1152;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias36_t bias_t;
+    typedef weight36_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -683,28 +803,42 @@ struct config36 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_36;
     static const unsigned out_width = OUT_WIDTH_36;
-    static const unsigned reuse_factor = 1152;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 294912;
+    static const unsigned n_zeros = 20380;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias36_t bias_t;
+    typedef weight36_t weight_t;
     typedef config36_mult mult_config;
 };
 const ap_uint<config36::filt_height * config36::filt_width> config36::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_7
+// batch_normalization_13
+struct config38 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_36*OUT_WIDTH_36*N_FILT_36;
+    static const unsigned n_filt = 256;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_12
 struct LeakyReLU_config39 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_36*OUT_WIDTH_36*N_FILT_36;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
 // zp2d_conv2d_8
@@ -726,9 +860,9 @@ struct config40_mult : nnet::dense_config {
     static const unsigned n_out = 256;
     static const unsigned reuse_factor = 2304;
     static const unsigned strategy = nnet::resource;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias40_t bias_t;
+    typedef weight40_t weight_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
@@ -749,97 +883,139 @@ struct config40 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = OUT_HEIGHT_40;
     static const unsigned out_width = OUT_WIDTH_40;
-    static const unsigned reuse_factor = 2304;
-    static const unsigned n_zeros = 0;
+    static const unsigned reuse_factor = 589824;
+    static const unsigned n_zeros = 50878;
     static const bool store_weights_in_bram = false;
     static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 5;
     static const unsigned min_width = 5;
     static const ap_uint<filt_height * filt_width> pixels[min_height * min_width];
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias40_t bias_t;
+    typedef weight40_t weight_t;
     typedef config40_mult mult_config;
 };
 const ap_uint<config40::filt_height * config40::filt_width> config40::pixels[] = {1,3,7,6,4,9,27,63,54,36,73,219,511,438,292,72,216,504,432,288,64,192,448,384,256};
 
-// leaky_re_lu_8
+// batch_normalization_14
+struct config42 : nnet::batchnorm_config {
+    static const unsigned n_in = OUT_HEIGHT_40*OUT_WIDTH_40*N_FILT_40;
+    static const unsigned n_filt = 256;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_13
 struct LeakyReLU_config43 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_40*OUT_WIDTH_40*N_FILT_40;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
-// dense
+// dense_6
 struct config45 : nnet::dense_config {
     static const unsigned n_in = N_SIZE_1_44;
     static const unsigned n_out = N_LAYER_45;
     static const unsigned io_type = nnet::io_stream;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 2304;
-    static const unsigned n_zeros = 0;
-    static const unsigned n_nonzeros = 589824;
+    static const unsigned reuse_factor = 1;
+    static const unsigned n_zeros = 52133;
+    static const unsigned n_nonzeros = 537691;
     static const bool store_weights_in_bram = false;
-    typedef ap_fixed<16,6> accum_t;
+    typedef ap_fixed<16,9> accum_t;
     typedef bias45_t bias_t;
-    typedef model_default_t weight_t;
+    typedef weight45_t weight_t;
     typedef ap_uint<1> index_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
 
-// leaky_re_lu_9
+// batch_normalization_15
+struct config47 : nnet::batchnorm_config {
+    static const unsigned n_in = N_LAYER_45;
+    static const unsigned n_filt = -1;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_14
 struct LeakyReLU_config48 : nnet::activ_config {
     static const unsigned n_in = N_LAYER_45;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
-// dense_1
+// dense_7
 struct config49 : nnet::dense_config {
     static const unsigned n_in = N_LAYER_45;
     static const unsigned n_out = N_LAYER_49;
     static const unsigned io_type = nnet::io_stream;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 256;
-    static const unsigned n_zeros = 0;
-    static const unsigned n_nonzeros = 65536;
+    static const unsigned reuse_factor = 1;
+    static const unsigned n_zeros = 2804;
+    static const unsigned n_nonzeros = 62732;
     static const bool store_weights_in_bram = false;
-    typedef ap_fixed<16,6> accum_t;
+    typedef ap_fixed<16,9> accum_t;
     typedef bias49_t bias_t;
-    typedef model_default_t weight_t;
+    typedef weight49_t weight_t;
     typedef ap_uint<1> index_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
 };
 
-// leaky_re_lu_10
+// batch_normalization_16
+struct config51 : nnet::batchnorm_config {
+    static const unsigned n_in = N_LAYER_49;
+    static const unsigned n_filt = -1;
+    static const unsigned io_type = nnet::io_stream;
+    static const unsigned reuse_factor = 1;
+    static const bool store_weights_in_bram = false;
+    typedef model_default_t bias_t;
+    typedef model_default_t scale_t;
+    template<class x_T, class y_T, class res_T>
+    using product = nnet::product::mult<x_T, y_T, res_T>;
+};
+
+// leaky_re_lu_15
 struct LeakyReLU_config52 : nnet::activ_config {
     static const unsigned n_in = N_LAYER_49;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
 
-// dense_2
+// dense_8
 struct config53 : nnet::dense_config {
     static const unsigned n_in = N_LAYER_49;
     static const unsigned n_out = N_LAYER_53;
     static const unsigned io_type = nnet::io_stream;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 256;
+    static const unsigned reuse_factor = 1;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 256;
     static const bool store_weights_in_bram = false;
-    typedef ap_fixed<16,6> accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef ap_fixed<16,9> accum_t;
+    typedef bias53_t bias_t;
+    typedef weight53_t weight_t;
     typedef ap_uint<1> index_t;
     template<class x_T, class y_T, class res_T>
     using product = nnet::product::mult<x_T, y_T, res_T>;
@@ -850,9 +1026,9 @@ struct relu_config55 : nnet::activ_config {
     static const unsigned n_in = N_LAYER_53;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned reuse_factor = 2000;
+    static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
+    //typedef ap_fixed<32,16> table_t;
 };
-
 
 #endif

@@ -175,6 +175,16 @@ void convert_data(srcType *src, hls::stream<dstType> &dst) {
         dst.write(ctype);
     }
 }
+template<class srcType, class dstType, size_t SIZE>
+void convert_data_me(srcType *src, hls::stream<dstType> &dst) {
+    for (size_t i = 0; i < SIZE; i++) {
+        dstType ctype;
+        
+            ctype=dstType(src[i]);
+        
+        dst.write(ctype);
+    }
+}
 
 template<class srcType, class dstType, size_t SIZE>
 void convert_data(hls::stream<srcType> &src, dstType *dst) {
@@ -183,6 +193,15 @@ void convert_data(hls::stream<srcType> &src, dstType *dst) {
         for (size_t j = 0; j < srcType::size; j++) {
             dst[i * srcType::size + j] = dstType(ctype[j]);
         }
+    }
+}
+template<class srcType, class dstType, size_t SIZE>
+void convert_data_me(hls::stream<srcType> &src, dstType *dst) {
+    for (size_t i = 0; i < SIZE; i++) {
+        srcType ctype = src.read();
+        
+            dst[i] = dstType(ctype);
+        
     }
 }
 
@@ -336,7 +355,6 @@ void print_result(res_T result[SIZE], std::ostream &out, bool keep = false) {
     out << std::endl;
 }
 
-
 template<class res_T, size_t SIZE>
 void print_result_me(hls::stream<res_T> &result, std::ostream &out, bool keep = false) {
     for(int i = 0; i < SIZE; i++) {
@@ -346,6 +364,8 @@ void print_result_me(hls::stream<res_T> &result, std::ostream &out, bool keep = 
 		if(i == 255)out << std::endl;
     }
 }
+
+
 
 template<class res_T, size_t SIZE>
 void print_result(hls::stream<res_T> &result, std::ostream &out, bool keep = false) {
@@ -358,7 +378,6 @@ void print_result(hls::stream<res_T> &result, std::ostream &out, bool keep = fal
     }
     out << std::endl;
 }
-
 
 template<class data_T, size_t SIZE>
 void fill_zero(data_T data[SIZE]) {
@@ -375,6 +394,18 @@ void fill_zero(hls::stream<data_T> &data) {
         data.write(data_pack);
     }
 }
+
+template<class data_T, size_t SIZE>
+void fill_zero_me(hls::stream<data_T> &data) {
+    for(int i = 0; i < SIZE ; i++) {
+        data_T data_pack;
+        
+            data_pack = 0.;
+        
+        data.write(data_pack);
+    }
+}
+
 
 template <class dataType, unsigned int nrows>
 int read_file_1D(const char * filename, dataType data[nrows])

@@ -56,6 +56,23 @@ void linear(hls::stream<data_T> &data, hls::stream<res_T> &res) {
 //       RELU Activation
 // *************************************************
 template<class data_T, class res_T, typename CONFIG_T>
+void relu_me(hls::stream<data_T> &data, hls::stream<res_T> &res) {
+    for (int i = 0; i < CONFIG_T::n_in; i++) {
+         #pragma HLS PIPELINE
+
+        data_T in_data = data.read();
+        res_T out_data;
+        #pragma HLS DATA_PACK variable=out_data
+        
+        if (in_data > 0) out_data = in_data;
+        else out_data = 0;
+        
+        res.write(out_data);
+    }
+}
+
+
+template<class data_T, class res_T, typename CONFIG_T>
 void relu(hls::stream<data_T> &data, hls::stream<res_T> &res) {
     ReLUActLoop: for (int i = 0; i < CONFIG_T::n_in / res_T::size; i++) {
         #pragma HLS PIPELINE
@@ -74,22 +91,6 @@ void relu(hls::stream<data_T> &data, hls::stream<res_T> &res) {
     }
 }
 
-
-template<class data_T, class res_T, typename CONFIG_T>
-void relu_me(hls::stream<data_T> &data, hls::stream<res_T> &res) {
-    for (int i = 0; i < CONFIG_T::n_in; i++) {
-         #pragma HLS PIPELINE
-
-        data_T in_data = data.read();
-        res_T out_data;
-        #pragma HLS DATA_PACK variable=out_data
-        
-        if (in_data > 0) out_data = in_data;
-        else out_data = 0;
-        
-        res.write(out_data);
-    }
-}
 // *************************************************
 //       Sigmoid Activation
 // *************************************************
@@ -129,6 +130,40 @@ void sigmoid(hls::stream<data_T> &data, hls::stream<res_T> &res) {
     }
 }
 
+template<class data_T, class res_T, typename CONFIG_T>
+void sigmoid_me(hls::stream<data_T> &data, hls::stream<res_T> &res) {
+    // Initialize the lookup table
+#ifdef __HLS_SYN__
+    bool initialized = false;
+    typename CONFIG_T::table_t sigmoid_table[CONFIG_T::table_size];
+#else
+    static bool initialized = false;
+    static typename CONFIG_T::table_t sigmoid_table[CONFIG_T::table_size];
+#endif
+    if (!initialized) {
+        init_sigmoid_table<CONFIG_T, CONFIG_T::table_size>(sigmoid_table);
+        initialized = true;
+    }
+
+    SigmoidActLoop: for (int i = 0; i < CONFIG_T::n_in; i++) {
+        #pragma HLS PIPELINE
+
+        data_T in_data = data.read();
+        res_T out_data;
+        
+
+        
+            #pragma HLS UNROLL
+            int data_round = in_data*CONFIG_T::table_size/16;
+            int index = data_round + 8*CONFIG_T::table_size/16;
+            if (index < 0)   index = 0;
+            else if (index > CONFIG_T::table_size-1) index = CONFIG_T::table_size-1;
+            out_data = sigmoid_table[index];
+        
+
+        res.write(out_data);
+    }
+}
 
 // *************************************************
 //       Softmax Activation
@@ -357,6 +392,83 @@ void softmax(hls::stream<data_T> &data, hls::stream<res_T> &res){
     }    
 }
 
+
+
+template<class data_T, class res_T, typename CONFIG_T>
+void softmax_legacy_me(hls::stream<data_T> &data, hls::stream<res_T> &res) {
+    // Initialize the lookup table
+#ifdef __HLS_SYN__
+    bool initialized = false;
+    typename CONFIG_T::table_t exp_table[CONFIG_T::table_size];
+    typename CONFIG_T::table_t invert_table[CONFIG_T::table_size];
+#else
+    static bool initialized = false;
+    static typename CONFIG_T::table_t exp_table[CONFIG_T::table_size];
+    static typename CONFIG_T::table_t invert_table[CONFIG_T::table_size];
+#endif
+    if (!initialized) {
+        init_exp_table_legacy<CONFIG_T, CONFIG_T::table_size>(exp_table);
+        init_invert_table_legacy<CONFIG_T, CONFIG_T::table_size>(invert_table);
+        initialized = true;
+    }
+
+    // Index into the lookup table based on data for exponentials
+    typename CONFIG_T::table_t exp_res[CONFIG_T::n_in];
+    typename CONFIG_T::table_t exp_diff_res;
+    data_T data_cache[CONFIG_T::n_in];
+
+    SoftmaxInitLoop: for(unsigned i = 0; i < CONFIG_T::n_in ; i++) {
+        #pragma HLS PIPELINE
+        data_T in_pack = data.read();
+        
+            
+            data_cache[i] = in_pack;
+            exp_res[i] = 0;
+        
+    }
+
+    SoftmaxExpLoop: for (int i = 0; i < CONFIG_T::n_in; i++) {
+        #pragma HLS PIPELINE
+        SoftmaxExpInner: for (int j = 0; j < CONFIG_T::n_in; j++) {
+            #pragma HLS UNROLL
+            
+            if (i == j) {
+                exp_diff_res = 1;
+            } else {
+                int data_round = (data_cache[j] - data_cache[i]) * CONFIG_T::table_size / 16;
+                int index = data_round + 8 * CONFIG_T::table_size / 16;
+                if (index < 0) index = 0;
+                if (index > CONFIG_T::table_size - 1) index = CONFIG_T::table_size - 1;
+                exp_diff_res = exp_table[index];
+            }
+            
+            exp_res[i] += exp_diff_res;
+        }
+    }
+
+    SoftmaxInvLoop: for(unsigned i = 0; i < CONFIG_T::n_in; i++) {
+        #pragma HLS PIPELINE
+
+        res_T out_pack;
+        
+        
+            
+            int exp_res_index = exp_res[i] * CONFIG_T::table_size / 64;
+            if (exp_res_index < 0) exp_res_index = 0;
+            if (exp_res_index > CONFIG_T::table_size - 1) exp_res_index = CONFIG_T::table_size - 1;
+            
+            out_pack = (res_T) invert_table[exp_res_index];
+        
+        res.write(out_pack);
+    }
+}
+
+
+template<class data_T, class res_T, typename CONFIG_T>
+void softmax_me(hls::stream<data_T> &data, hls::stream<res_T> &res){
+    softmax_legacy_me<data_T, res_T, CONFIG_T>(data, res);
+}
+
 // *************************************************
 //       TanH Activation
 // *************************************************
@@ -430,7 +542,6 @@ void hard_sigmoid(hls::stream<data_T> &data, hls::stream<res_T> &res) {
 // *************************************************
 //       Leaky RELU Activation
 // *************************************************
-
 
 template<class data_T, class res_T, typename CONFIG_T>
 void leaky_relu_me(hls::stream<data_T> &data,data_T alpha, hls::stream<res_T> &res) {
