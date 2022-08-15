@@ -17,5 +17,6 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
 This version also uses dense_ss(new dense_stream).
 I adjusted the reuse factor, which is the same as Dylan used.
+(This version will be a little faster than 8_11_qmodel)
 However, in conv2d layer, I commanded the pragma of layer_in so that the number of DSP is not n_in*n_out/rf.
 ```
