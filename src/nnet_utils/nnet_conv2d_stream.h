@@ -8,9 +8,6 @@
 
 namespace nnet {
 
-
-
-
 template<class data_T, typename CONFIG_T>
 void compute_scaled_indices_2d(
     const unsigned h_idx,
@@ -66,8 +63,53 @@ void conv_2d_encoded_cl(
 }
 
 // Line Buffer
+template <class data_T, class res_T, typename CONFIG_T>
+void conv_2d_buffer_cl(
+    hls::stream<data_T> &data,
+    hls::stream<res_T>  &res,
+    typename CONFIG_T::weight_t weights[CONFIG_T::filt_height * CONFIG_T::filt_width * CONFIG_T::n_chan * CONFIG_T::n_filt],
+    typename CONFIG_T::bias_t   biases[CONFIG_T::n_filt])
+{
+    assert(CONFIG_T::pad_top == 0 && CONFIG_T::pad_bottom == 0 && CONFIG_T::pad_left == 0 && CONFIG_T::pad_right == 0);
 
-//modify 2022 03 04
+    static ap_shift_reg<typename data_T::value_type, CONFIG_T::in_width> line_buffer[MAX(CONFIG_T::filt_height - 1,1)][CONFIG_T::n_chan];
+    #pragma HLS ARRAY_PARTITION variable = line_buffer complete dim = 2
+
+    ReadInputHeight: for (unsigned i_ih = 0; i_ih < CONFIG_T::in_height; i_ih++) {
+        ReadInputWidth: for (unsigned i_iw = 0; i_iw < CONFIG_T::in_width; i_iw++) {
+            #pragma HLS LOOP_FLATTEN
+            if(CONFIG_T::strategy == nnet::latency) {
+                #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+            }
+            if (CONFIG_T::filt_height > 1) {
+                compute_output_buffer_2d<data_T, res_T, CONFIG_T>(data.read(), line_buffer, res, weights, biases);
+            } else {
+                compute_output_buffer_1d<data_T, res_T, CONFIG_T>(data.read(), res, weights, biases);
+            }
+        }
+    }
+}
+
+template <class data_T, class res_T, typename CONFIG_T>
+void conv_2d_cl(
+    hls::stream<data_T> &data,
+    hls::stream<res_T>  &res,
+    typename CONFIG_T::weight_t weights[CONFIG_T::filt_height * CONFIG_T::filt_width * CONFIG_T::n_chan * CONFIG_T::n_filt],
+    typename CONFIG_T::bias_t   biases[CONFIG_T::n_filt])
+{
+    #pragma HLS inline region
+    switch(CONFIG_T::implementation){
+        case conv_implementation::linebuffer:
+            conv_2d_buffer_cl<data_T, res_T, CONFIG_T>(data, res, weights, biases);
+            break;
+        case conv_implementation::encoded:
+            conv_2d_encoded_cl<data_T, res_T, CONFIG_T>(data, res, weights, biases);
+            break;
+    }  
+}
+
+//-----------------------------------------------------------------------------------------------
+//add by us
 
 template<class data_T, class res_T, typename CONFIG_T>
 void shift_right_small(//To be fixed with stride
@@ -93,6 +135,7 @@ void shift_right_small(//To be fixed with stride
     }
   }
 }
+
 
 template<class data_T, class res_T, typename CONFIG_T>
   void cnnshift_arr(data_T data[CONFIG_T::n_chan],
@@ -140,7 +183,7 @@ void conv_2d_large_cl_nopad_pad_me(
     #pragma HLS ARRAY_RESHAPE variable=tmpdata complete
 
     static data_T layer_in[CONFIG_T::filt_height*CONFIG_T::filt_width*CONFIG_T::n_chan];
-    #pragma HLS ARRAY_RESHAPE variable=layer_in complete
+    //#pragma HLS ARRAY_RESHAPE variable=layer_in complete
 
     //typename res_T::value_type layer_reluout[CONFIG_T::n_filt];
     //#pragma HLS ARRAY_RESHAPE variable=layer_reluout complete dim=0
@@ -182,6 +225,7 @@ void conv_2d_large_cl_nopad_pad_me(
 			} else {
 				dense_large<data_T,res_T, typename CONFIG_T::mult_config>(layer_in, layer_out, weights, biases);
 			}
+
 			// Pack output
 			CastLoop: for (unsigned i_ic = 0; i_ic < CONFIG_T::n_filt; i_ic++) {
 				#pragma HLS UNROLL
@@ -224,152 +268,6 @@ void conv_2d_large_cl_nopad_pad_me(
 	}
 }
 
-
-
-template<class data_T, class res_T, typename CONFIG_T>
-void conv_2d_large_cl_nopad_pad(
-			    //hls::stream<data_T> data[CONFIG_T::n_chan_in],
-			    //hls::stream<res_T>  res [CONFIG_T::n_filt_in], 
-			    //typename CONFIG_T::weight_t weights[CONFIG_T::filt_height * CONFIG_T::filt_width * CONFIG_T::n_chan * CONFIG_T::n_filt/CONFIG_T::mult_config::merge_factor],
-			    //typename CONFIG_T::bias_t   biases[CONFIG_T::n_filt]
-         hls::stream<data_T> &data,
-         hls::stream<res_T>  &res,
-         typename CONFIG_T::weight_t weights[CONFIG_T::filt_height * CONFIG_T::filt_width * CONFIG_T::n_chan * CONFIG_T::n_filt],
-         typename CONFIG_T::bias_t   biases[CONFIG_T::n_filt]               
-			    ) {
-
-    assert(CONFIG_T::pad_top == 0 && CONFIG_T::pad_bottom == 0 && CONFIG_T::pad_left == 0 && CONFIG_T::pad_right == 0);
-    std::cout  << "USE CONV2D LARGE"<< std::endl;
- 
-    static ap_shift_reg<typename data_T::value_type, (CONFIG_T::in_width+CONFIG_T::pad_left+CONFIG_T::pad_right)> layer_in_row[(CONFIG_T::filt_height)-1][CONFIG_T::n_chan];
-    #pragma HLS ARRAY_RESHAPE variable=layer_in_row complete dim=2
-    
-    typename data_T::value_type tmpdata[CONFIG_T::n_chan];
-    #pragma HLS ARRAY_RESHAPE variable=tmpdata complete
-
-    static typename data_T::value_type layer_in[CONFIG_T::filt_height*CONFIG_T::filt_width*CONFIG_T::n_chan];
-    #pragma HLS ARRAY_RESHAPE variable=layer_in complete
-
-    //typename res_T::value_type layer_reluout[CONFIG_T::n_filt];
-    //#pragma HLS ARRAY_RESHAPE variable=layer_reluout complete dim=0
-
-    typename res_T::value_type layer_out[CONFIG_T::n_filt];
-    #pragma HLS ARRAY_RESHAPE variable=layer_out complete dim=0
-    
-	res_T res_pack;
-    #pragma HLS DATA_PACK variable=res_pack
-	
-	data_T tmp_in;
-	
-	
-	// Thresholds
-    const static int lShiftX = CONFIG_T::filt_width - 1;
-    const static int lShiftY = CONFIG_T::filt_height - 1;
-
-    // Counters
-    static int pX = 0; // Pixel X
-    static int pY = 0; // Pixel Y
-
-    static int sX = 0; // Stride X
-    static int sY = 0; // Stride Y
-	
-	for (unsigned i = 0; i < CONFIG_T::in_height * CONFIG_T::in_width; i++) {
-		
-		tmp_in = data.read();
-		
-		for(int i1 = 0; i1 < CONFIG_T::n_chan; i1++) { 
-		  #pragma HLS UNROLL
-		  //in_data[j].write(tmp_in[j]); 
-		  
-		  tmpdata[i1] = tmp_in[i1]; 
-		}
-		nnet::cnnshift_arr<typename data_T::value_type, typename res_T::value_type,  CONFIG_T>(tmpdata, layer_in_row, layer_in);
-		
-		
-		
-		
-		
-		// Check to see if we have a full kernel
-		if ( (sX - lShiftX) == 0 && (sY - lShiftY) == 0 && pY > lShiftY - 1 && pX > lShiftX - 1) {
-			
-			// Dense multiply
-			#pragma HLS INLINE region
-			if (CONFIG_T::strategy == nnet::latency) {
-				dense_latency<typename data_T::value_type, typename res_T::value_type, typename CONFIG_T::mult_config>(layer_in, layer_out, weights, biases);
-			} else {
-				dense_resource<typename data_T::value_type, typename res_T::value_type, typename CONFIG_T::mult_config>(layer_in, layer_out, weights, biases);
-			}
-
-			// Pack output
-			CastLoop: for (unsigned i_ic = 0; i_ic < CONFIG_T::n_filt; i_ic++) {
-				#pragma HLS UNROLL
-				res_pack[i_ic] = layer_out[i_ic];
-			}
-
-			// Write output to stream when output ready
-			res.write(res_pack);
-		}
-
-		// Counter Housekeeping
-		if (pX + 1 == CONFIG_T::in_width)  // Includes padding, end of line (padded)
-		{
-			pX = 0; 
-			sX = 0;
-			if (pY + 1 == CONFIG_T::in_height) {  // Reached bottom of image
-				pY = 0; 
-				sY = 0;
-			} else {
-				pY = pY + 1;
-				// Update stride (threshold) ? subtract stride : increment stride
-				sY = ((sY - lShiftY) == 0) ? sY - CONFIG_T::stride_height + 1 : sY + 1; 
-			}
-		} else {
-			pX = pX + 1;
-			// Update stride (threshold) ? subtract stride : increment stride
-			sX = ((sX - lShiftX) == 0) ? sX - CONFIG_T::stride_width + 1 : sX + 1; 
-		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	}
-}
-
-
-
-template <class data_T, class res_T, typename CONFIG_T>
-void conv_2d_buffer_cl(
-    hls::stream<data_T> &data,
-    hls::stream<res_T>  &res,
-    typename CONFIG_T::weight_t weights[CONFIG_T::filt_height * CONFIG_T::filt_width * CONFIG_T::n_chan * CONFIG_T::n_filt],
-    typename CONFIG_T::bias_t   biases[CONFIG_T::n_filt])
-{
-    assert(CONFIG_T::pad_top == 0 && CONFIG_T::pad_bottom == 0 && CONFIG_T::pad_left == 0 && CONFIG_T::pad_right == 0);
-
-    static ap_shift_reg<typename data_T::value_type, CONFIG_T::in_width> line_buffer[MAX(CONFIG_T::filt_height - 1,1)][CONFIG_T::n_chan];
-    #pragma HLS ARRAY_PARTITION variable = line_buffer complete dim = 2
-
-    ReadInputHeight: for (unsigned i_ih = 0; i_ih < CONFIG_T::in_height; i_ih++) {
-        ReadInputWidth: for (unsigned i_iw = 0; i_iw < CONFIG_T::in_width; i_iw++) {
-            #pragma HLS LOOP_FLATTEN
-            if(CONFIG_T::strategy == nnet::latency) {
-                #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-            }
-            if (CONFIG_T::filt_height > 1) {
-                compute_output_buffer_2d<data_T, res_T, CONFIG_T>(data.read(), line_buffer, res, weights, biases);
-            } else {
-                compute_output_buffer_1d<data_T, res_T, CONFIG_T>(data.read(), res, weights, biases);
-            }
-        }
-    }
-}
-
 template <class data_T, class res_T, typename CONFIG_T>
 void conv_2d_cl_me(
     hls::stream<data_T> &data,
@@ -380,10 +278,6 @@ void conv_2d_cl_me(
     #pragma HLS inline region
     switch(CONFIG_T::implementation){
         case conv_implementation::linebuffer:
-        //modify
-            //conv_2d_buffer_cl<data_T, res_T, CONFIG_T>(data, res, weights, biases);
-            
-            
             conv_2d_large_cl_nopad_pad_me<data_T, res_T, CONFIG_T>(data, res, weights, biases);
             break;
         case conv_implementation::encoded:
@@ -391,6 +285,9 @@ void conv_2d_cl_me(
             break;
     }  
 }
+
+
+
 
 }
 #endif

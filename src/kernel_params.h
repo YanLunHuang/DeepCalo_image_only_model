@@ -9,4 +9,4 @@
 #define DATA_SIZE_IN  N_INPUT_3_1
 #define DATA_SIZE_OUT  1
 
-typedef ap_fixed<16,6> bigdata_t;
+typedef ap_fixed<16,9> bigdata_t;
