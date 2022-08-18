@@ -15,4 +15,6 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ## Some detail
 ```bash
 This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
+The pragma on " layer_in " has been uncommented. 
+As for 8th and 9th conv2d still unchanged because it will make the memory full...
 ```
