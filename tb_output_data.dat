@@ -1,26 +1,26 @@
 Processing event 0
-FPGA time: 1692533 ns 
+FPGA time: 1676873 ns 
 Predictions:  
 83.2436 
 Quantized predictions: 
 0 
 
 Processing event 1
-FPGA time: 1540494 ns 
+FPGA time: 1504556 ns 
 Predictions:  
 88.3869 
 Quantized predictions: 
 0 
 
 Processing event 2
-FPGA time: 1528341 ns 
+FPGA time: 1490680 ns 
 Predictions:  
 95.5094 
 Quantized predictions: 
 0 
 
 Processing event 3
-FPGA time: 1518213 ns 
+FPGA time: 1479038 ns 
 Predictions:  
 0 
 Quantized predictions: 
