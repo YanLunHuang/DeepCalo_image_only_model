@@ -18,6 +18,8 @@ This version uses single stream & new pooling layer so that it can solve the rou
 It also uses dense_ss to reduce the latency and save the resource utilization.
 The pragma on " layer_in " all have been uncommented. 
 I also modified upsampling layer & normalize layer.
+I adjusted the clock period: 5 -> 4 ns.
 
 The latency is about 1.5 ms.
+That is, It didn't have any difference.
 ```
