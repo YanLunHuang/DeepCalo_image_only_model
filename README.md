@@ -20,6 +20,6 @@ The pragma on " layer_in " all have been uncommented.
 I also modified upsampling layer & normalize layer.
 I adjusted the clock period: 5 -> 4 ns.
 
-The pooling layer is a little different, and it save a lot of latency on 4th pooling layer.
+The pooling layer is a little different, and it saved a lot of latency on 4th pooling layer.
 The latency is about 0.9 ms.
 ```
