@@ -21,5 +21,5 @@ I also modified upsampling layer & normalize layer.
 I adjusted the clock period: 5 -> 4 ns.
 
 The latency is about 1.5 ms.
-That is, It didn't have any difference.
+That is, It did not have any difference.
 ```
