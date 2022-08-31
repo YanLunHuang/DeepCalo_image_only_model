@@ -24,7 +24,7 @@
 
 
 void myproject(
-    hls::stream<input_t> &input_1,
+    hls::stream<input_t> input_1[N_INPUT_3_1],
     hls::stream<result_t> &layer55_out
 ) {
 
@@ -68,80 +68,81 @@ void myproject(
 	// ****************************************
     // NETWORK INSTANTIATION
     // ****************************************
-
+	
     //hls-fpga-machine-learning insert layers
-	hls::stream<layer2_t> layer2_out("layer2_out");
+std::cout<<"1"<<std::endl;
+    hls::stream<layer2_t> layer2_out[N_CHAN_2];
     #pragma HLS STREAM variable=layer2_out depth=3080
-    nnet::resize_nearest_me<input_t, config2>(input_1, layer2_out); // up_sampling2d
-
-    hls::stream<layer3_t> layer3_out("layer3_out");
+    nnet::resize_nearest_me2<input_t, config2>(input_1, layer2_out); // up_sampling2d
+std::cout<<"2"<<std::endl;
+    hls::stream<layer3_t> layer3_out[N_CHAN_2];
     #pragma HLS STREAM variable=layer3_out depth=3080
-    nnet::normalize_me<layer2_t, layer3_t, config3>(layer2_out, layer3_out, s3, b3); // batch_normalization
-
-    hls::stream<layer56_t> layer56_out("layer56_out");
+    nnet::normalize_me2<layer2_t, layer3_t, config3>(layer2_out, layer3_out, s3, b3); // batch_normalization
+std::cout<<"3"<<std::endl;
+    hls::stream<layer56_t> layer56_out[N_CHAN_56];
     #pragma HLS STREAM variable=layer56_out depth=3540
-    nnet::zeropad2d_cl_me<layer3_t, layer56_t, config56>(layer3_out, layer56_out); // zp2d_conv2d
-
-    hls::stream<layer4_t> layer4_out("layer4_out");
+    nnet::zeropad2d_cl_me2<layer3_t, layer56_t, config56>(layer3_out, layer56_out); // zp2d_conv2d
+std::cout<<"4"<<std::endl;
+    hls::stream<layer4_t> layer4_out[N_FILT_4];
     #pragma HLS STREAM variable=layer4_out depth=3080
-    nnet::conv_2d_cl_me<layer56_t, layer4_t, config4>(layer56_out, layer4_out, w4, b4); // conv2d
-
-    hls::stream<layer7_t> layer7_out("layer7_out");
+    nnet::conv_2d_cl_me2<layer56_t, layer4_t, config4>(layer56_out, layer4_out, w4, b4); // conv2d
+std::cout<<"5"<<std::endl;
+    hls::stream<layer7_t> layer7_out[N_FILT_4];
     #pragma HLS STREAM variable=layer7_out depth=3080
-    nnet::leaky_relu_me<layer4_t, layer7_t, LeakyReLU_config7>(layer4_out, 0.30000001192092896, layer7_out); // leaky_re_lu
-
-    hls::stream<layer8_t> layer8_out("layer8_out");
+    nnet::leaky_relu_me2<layer4_t, layer7_t, LeakyReLU_config7>(layer4_out, 0.30000001192092896, layer7_out); // leaky_re_lu
+std::cout<<"6"<<std::endl;
+    hls::stream<layer8_t> layer8_out[N_FILT_8];
     #pragma HLS STREAM variable=layer8_out depth=756
-    nnet::pooling_me<layer7_t, layer8_t, config8>(layer7_out, layer8_out); // max_pooling2d
-
-    hls::stream<layer57_t> layer57_out("layer57_out");
+    nnet::pooling_me2<layer7_t, layer8_t, config8>(layer7_out, layer8_out); // max_pooling2d
+std::cout<<"7"<<std::endl;
+    hls::stream<layer57_t> layer57_out[N_CHAN_57];
     #pragma HLS STREAM variable=layer57_out depth=870
-    nnet::zeropad2d_cl_me<layer8_t, layer57_t, config57>(layer8_out, layer57_out); // zp2d_conv2d_1
-
-    hls::stream<layer9_t> layer9_out("layer9_out");
+    nnet::zeropad2d_cl_me2<layer8_t, layer57_t, config57>(layer8_out, layer57_out); // zp2d_conv2d_1
+std::cout<<"8"<<std::endl;
+    hls::stream<layer9_t> layer9_out[N_FILT_9];
     #pragma HLS STREAM variable=layer9_out depth=756
-    nnet::conv_2d_cl_me<layer57_t, layer9_t, config9>(layer57_out, layer9_out, w9, b9); // conv2d_1
-
-    hls::stream<layer12_t> layer12_out("layer12_out");
+    nnet::conv_2d_cl_me2<layer57_t, layer9_t, config9>(layer57_out, layer9_out, w9, b9); // conv2d_1
+std::cout<<"9"<<std::endl;
+    hls::stream<layer12_t> layer12_out[N_FILT_9];
     #pragma HLS STREAM variable=layer12_out depth=756
-    nnet::leaky_relu_me<layer9_t, layer12_t, LeakyReLU_config12>(layer9_out, 0.30000001192092896, layer12_out); // leaky_re_lu_1
-
-    hls::stream<layer58_t> layer58_out("layer58_out");
+    nnet::leaky_relu_me2<layer9_t, layer12_t, LeakyReLU_config12>(layer9_out, 0.30000001192092896, layer12_out); // leaky_re_lu_1
+std::cout<<"10"<<std::endl;
+    hls::stream<layer58_t> layer58_out[N_CHAN_58];
     #pragma HLS STREAM variable=layer58_out depth=870
-    nnet::zeropad2d_cl_me<layer12_t, layer58_t, config58>(layer12_out, layer58_out); // zp2d_conv2d_2
-
-    hls::stream<layer13_t> layer13_out("layer13_out");
+    nnet::zeropad2d_cl_me2<layer12_t, layer58_t, config58>(layer12_out, layer58_out); // zp2d_conv2d_2
+std::cout<<"11"<<std::endl;
+    hls::stream<layer13_t> layer13_out[N_FILT_13];
     #pragma HLS STREAM variable=layer13_out depth=756
-    nnet::conv_2d_cl_me<layer58_t, layer13_t, config13>(layer58_out, layer13_out, w13, b13); // conv2d_2
-
-    hls::stream<layer16_t> layer16_out("layer16_out");
+    nnet::conv_2d_cl_me2<layer58_t, layer13_t, config13>(layer58_out, layer13_out, w13, b13); // conv2d_2
+std::cout<<"12"<<std::endl;
+    hls::stream<layer16_t> layer16_out[N_FILT_13];
     #pragma HLS STREAM variable=layer16_out depth=756
-    nnet::leaky_relu_me<layer13_t, layer16_t, LeakyReLU_config16>(layer13_out, 0.30000001192092896, layer16_out); // leaky_re_lu_2
-
-    hls::stream<layer17_t> layer17_out("layer17_out");
+    nnet::leaky_relu_me2<layer13_t, layer16_t, LeakyReLU_config16>(layer13_out, 0.30000001192092896, layer16_out); // leaky_re_lu_2
+std::cout<<"13"<<std::endl;
+    hls::stream<layer17_t> layer17_out[N_FILT_17];
     #pragma HLS STREAM variable=layer17_out depth=182
-    nnet::pooling_me<layer16_t, layer17_t, config17>(layer16_out, layer17_out); // max_pooling2d_1
-
-    hls::stream<layer59_t> layer59_out("layer59_out");
+    nnet::pooling_me2<layer16_t, layer17_t, config17>(layer16_out, layer17_out); // max_pooling2d_1
+std::cout<<"14"<<std::endl;
+    hls::stream<layer59_t> layer59_out[N_CHAN_59];
     #pragma HLS STREAM variable=layer59_out depth=240
-    nnet::zeropad2d_cl_me<layer17_t, layer59_t, config59>(layer17_out, layer59_out); // zp2d_conv2d_3
-
-    hls::stream<layer18_t> layer18_out("layer18_out");
+    nnet::zeropad2d_cl_me2<layer17_t, layer59_t, config59>(layer17_out, layer59_out); // zp2d_conv2d_3
+std::cout<<"15"<<std::endl;
+    hls::stream<layer18_t> layer18_out[N_FILT_18];
     #pragma HLS STREAM variable=layer18_out depth=182
-    nnet::conv_2d_cl_me<layer59_t, layer18_t, config18>(layer59_out, layer18_out, w18, b18); // conv2d_3
-
-    hls::stream<layer21_t> layer21_out("layer21_out");
+    nnet::conv_2d_cl_me2<layer59_t, layer18_t, config18>(layer59_out, layer18_out, w18, b18); // conv2d_3
+std::cout<<"16"<<std::endl;
+    hls::stream<layer21_t> layer21_out[N_FILT_18];
     #pragma HLS STREAM variable=layer21_out depth=182
-    nnet::leaky_relu_me<layer18_t, layer21_t, LeakyReLU_config21>(layer18_out, 0.30000001192092896, layer21_out); // leaky_re_lu_3
-
-    hls::stream<layer60_t> layer60_out("layer60_out");
+    nnet::leaky_relu_me2<layer18_t, layer21_t, LeakyReLU_config21>(layer18_out, 0.30000001192092896, layer21_out); // leaky_re_lu_3
+std::cout<<"17"<<std::endl;
+    hls::stream<layer60_t> layer60_out[N_CHAN_60];
     #pragma HLS STREAM variable=layer60_out depth=240
-    nnet::zeropad2d_cl_me<layer21_t, layer60_t, config60>(layer21_out, layer60_out); // zp2d_conv2d_4
-
+    nnet::zeropad2d_cl_me2<layer21_t, layer60_t, config60>(layer21_out, layer60_out); // zp2d_conv2d_4
+std::cout<<"18"<<std::endl;
     hls::stream<layer22_t> layer22_out("layer22_out");
     #pragma HLS STREAM variable=layer22_out depth=182
-    nnet::conv_2d_cl_me<layer60_t, layer22_t, config22>(layer60_out, layer22_out, w22, b22); // conv2d_4
-
+    nnet::conv_2d_cl_me3<layer60_t, layer22_t, config22>(layer60_out, layer22_out, w22, b22); // conv2d_4
+std::cout<<"19"<<std::endl;
     hls::stream<layer25_t> layer25_out("layer25_out");
     #pragma HLS STREAM variable=layer25_out depth=182
     nnet::leaky_relu_me<layer22_t, layer25_t, LeakyReLU_config25>(layer22_out, 0.30000001192092896, layer25_out); // leaky_re_lu_4

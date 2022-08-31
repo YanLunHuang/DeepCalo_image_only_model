@@ -135,6 +135,7 @@ const ap_uint<config4::filt_height * config4::filt_width> config4::pixels[] = {1
 // leaky_re_lu
 struct LeakyReLU_config7 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_4*OUT_WIDTH_4*N_FILT_4;
+	static const unsigned n_chan = N_FILT_4;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
     static const unsigned reuse_factor = 2000;
@@ -227,6 +228,7 @@ const ap_uint<config9::filt_height * config9::filt_width> config9::pixels[] = {1
 // leaky_re_lu_1
 struct LeakyReLU_config12 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_9*OUT_WIDTH_9*N_FILT_9;
+	static const unsigned n_chan = N_FILT_9;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
     static const unsigned reuse_factor = 2000;
@@ -293,6 +295,7 @@ const ap_uint<config13::filt_height * config13::filt_width> config13::pixels[] =
 // leaky_re_lu_2
 struct LeakyReLU_config16 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_13*OUT_WIDTH_13*N_FILT_13;
+	static const unsigned n_chan = N_FILT_13;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
     static const unsigned reuse_factor = 2000;
@@ -385,6 +388,7 @@ const ap_uint<config18::filt_height * config18::filt_width> config18::pixels[] =
 // leaky_re_lu_3
 struct LeakyReLU_config21 : nnet::activ_config {
     static const unsigned n_in = OUT_HEIGHT_18*OUT_WIDTH_18*N_FILT_18;
+	static const unsigned n_chan = N_FILT_18;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_stream;
     static const unsigned reuse_factor = 2000;
@@ -853,6 +857,5 @@ struct relu_config55 : nnet::activ_config {
     static const unsigned reuse_factor = 2000;
     typedef ap_fixed<18,8> table_t;
 };
-
 
 #endif

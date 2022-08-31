@@ -57,7 +57,7 @@ void alveo_hls4ml(
 	bigdata_t in_bigbuf[DATA_SIZE_IN*IN_STREAM_LEN];
 	bigdata_t out_bigbuf;
 	
-	hls::stream<input_t> in_buf;
+	hls::stream<input_t> in_buf[DATA_SIZE_IN];
 	hls::stream<result_t> out_buf;
 	//these will get partitioned properly in the hls4ml code
 
@@ -82,7 +82,7 @@ void alveo_hls4ml(
 		for(int i1 = 0; i1 < DATA_SIZE_IN; i1++) { 
 			#pragma HLS UNROLL
 			tmp = in_bigbuf[i0*4+i1];
-			in_buf.write(tmp);
+			in_buf[i1].write(tmp);
 			//std::cout<<double(tmp)<<std::endl;
 		}
 	}
