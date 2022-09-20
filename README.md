@@ -19,6 +19,7 @@ It also uses dense_ss to reduce the latency and save the resource utilization.
 The pragma on " layer_in " all have been uncommented. 
 I also modified upsampling layer & normalize layer.
 
-The former part (from input to 5th conv2d) is array of stream.
+This version can auto change the datatype.
+The transition conv2d is 4th.
 The latency is about 0.6 ms.
 ```
