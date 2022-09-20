@@ -42,66 +42,62 @@ Description:
 extern "C" {
 
 void alveo_hls4ml(
-	const bigdata_t *in, // Read-Only Vector
-	bigdata_t *out       // Output Result
-	)
+    const bigdata_t *in, // Read-Only Vector
+    bigdata_t *out       // Output Result
+    )
 {
-	#pragma HLS INTERFACE m_axi port=in  offset=slave bundle=gmem
-	#pragma HLS INTERFACE m_axi port=out offset=slave bundle=gmem
-	#pragma HLS INTERFACE s_axilite port=in   bundle=control
-	#pragma HLS INTERFACE s_axilite port=out  bundle=control
-	#pragma HLS INTERFACE s_axilite port=return bundle=control
-	//necessary for hls4ml kernel, not used
-	#pragma HLS DATAFLOW
+    #pragma HLS INTERFACE m_axi port=in  offset=slave bundle=gmem0
+    #pragma HLS INTERFACE m_axi port=out offset=slave bundle=gmem1
+    #pragma HLS INTERFACE s_axilite port=in   bundle=control
+    #pragma HLS INTERFACE s_axilite port=out  bundle=control
+    #pragma HLS INTERFACE s_axilite port=return bundle=control
+    //necessary for hls4ml kernel, not used
+    #pragma HLS DATAFLOW
 
-	bigdata_t in_bigbuf[DATA_SIZE_IN*IN_STREAM_LEN];
-	bigdata_t out_bigbuf;
-	
-	hls::stream<input_t> in_buf[DATA_SIZE_IN];
-	hls::stream<result_t> out_buf;
-	//these will get partitioned properly in the hls4ml code
+    bigdata_t in_bigbuf[DATA_SIZE_IN*IN_STREAM_LEN];
+    bigdata_t out_bigbuf;
 
-	//#pragma HLS ARRAY_PARTITION   variable=in_buf  complete dim=0
-	//#pragma HLS ARRAY_PARTITION   variable=out_buf complete dim=0
-	#pragma HLS STREAM   variable=in_buf  depth=1000
-	#pragma HLS STREAM   variable=out_buf depth=1
-	
-	//getting data from DRAM
-	for (int i = 0; i < DATA_SIZE_IN*IN_STREAM_LEN; i++) {
-		#pragma HLS LOOP UNROLL
-		in_bigbuf[i] = in[i];
-		//std::cout <<int(in[i])<<std::endl;
-	}
-	
-	std::cout<<"------------------"<<std::endl;
-	//=============================================
-	//input
-	//=============================================
-	input_t tmp;
-	for(int i0 = 0; i0 < IN_STREAM_LEN; i0++) { 
-		for(int i1 = 0; i1 < DATA_SIZE_IN; i1++) { 
-			#pragma HLS UNROLL
-			tmp = in_bigbuf[i0*4+i1];
-			in_buf[i1].write(tmp);
-			//std::cout<<double(tmp)<<std::endl;
-		}
-	}
-	
-	std::cout<<"inf start"<<std::endl;
-	myproject(in_buf,out_buf);
-	std::cout<<"inf end"<<std::endl;
+    hls::stream<input_t> in_buf[DATA_SIZE_IN];
+    hls::stream<result_t> out_buf[1];
+    //these will get partitioned properly in the hls4ml code
 
-	//=============================================
-	//output
-	//=============================================
-	for(int i1 = 0; i1 < DATA_SIZE_OUT*OUT_STREAM_LEN; i1++) {
-		#pragma HLS UNROLL
-		//std::cout<<"reading from ["<<i1<<"]"<<std::endl;
-		result_t tmp_small = out_buf.read();
-		out_bigbuf = tmp_small;
-	}
-	out[0] = out_bigbuf;
-	out[1] = 0;
-	//std::cout <<(double)out_bigbuf<<std::endl;
+    //#pragma HLS ARRAY_PARTITION   variable=in_buf  complete dim=0
+    //#pragma HLS ARRAY_PARTITION   variable=out_buf complete dim=0
+    #pragma HLS STREAM   variable=in_buf  depth=1000
+    #pragma HLS STREAM   variable=out_buf depth=1
+
+    //getting data from DRAM
+    for (int i = 0; i < DATA_SIZE_IN*IN_STREAM_LEN; i++) {
+        #pragma HLS PIPELINE
+        in_bigbuf[i] = in[i];
+    }
+
+    std::cout<<"------------------"<<std::endl;
+    //=============================================
+    //input
+    //=============================================
+    input_t tmp;
+    for(int i0 = 0; i0 < IN_STREAM_LEN; i0++) { 
+        for(int i1 = 0; i1 < DATA_SIZE_IN; i1++) { 
+            #pragma HLS PIPELINE
+            tmp = in_bigbuf[i0*4+i1];
+            in_buf[i1].write(tmp);
+        }
+    }
+
+    std::cout<<"inf start"<<std::endl;
+    myproject(in_buf,out_buf);
+    std::cout<<"inf end"<<std::endl;
+
+    //=============================================
+    //output
+    //=============================================
+    for(int i1 = 0; i1 < DATA_SIZE_OUT*OUT_STREAM_LEN; i1++) {
+        #pragma HLS PIPELINE
+        result_t tmp_small = out_buf[0].read();
+        out_bigbuf = tmp_small;
+    }
+    out[0] = out_bigbuf;
+    out[1] = 0;
 }
 }

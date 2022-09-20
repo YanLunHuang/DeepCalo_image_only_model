@@ -417,85 +417,88 @@ void dense_large_rf_gt_nin_rem0(
     res_T  res[CONFIG_T::n_out],
     typename CONFIG_T::weight_t weights[CONFIG_T::n_in*CONFIG_T::n_out],
     typename CONFIG_T::bias_t   biases[CONFIG_T::n_out]) {
-		//std::cout << "1" << std::endl;
+
     const int rufactor = MIN(CONFIG_T::reuse_factor, CONFIG_T::n_in * CONFIG_T::n_out);
-		//std::cout << "2" << std::endl;
     const int multfactor = MIN(CONFIG_T::n_in,CONFIG_T::reuse_factor);
-		//std::cout << "3" << std::endl;
     const int multiplier_limit = DIV_ROUNDUP(CONFIG_T::n_in*CONFIG_T::n_out, multfactor);
-		//std::cout << "4" << std::endl;
     const int block_factor = DIV_ROUNDUP(CONFIG_T::n_in*CONFIG_T::n_out, CONFIG_T::reuse_factor);
-		//std::cout << "5" << std::endl;
     const int multscale = multiplier_limit/CONFIG_T::n_out;
-		//std::cout << "6" << std::endl;
     const int nin = CONFIG_T::n_in;
-		//std::cout << "7" << std::endl;
     const int nout = CONFIG_T::n_out;
-		//std::cout << "8" << std::endl;
+
     assert((multiplier_limit % nout == 0 || rufactor >= nin) && "The current Reuse Factor is not allowed");
     assert((rufactor > nin && rufactor % nin == 0) && "This function is correct only for RF > N_IN && RF % N_IN == 0");
-		//std::cout << "9" << std::endl;
+
     #pragma HLS function_instantiate variable=biases
     //#pragma HLS RESOURCE variable=weights core=RAM_2P_BRAM Commenting out the deisgnation HLS seems to choose correctly
     #pragma HLS ARRAY_RESHAPE   variable=weights block factor=block_factor
     #pragma HLS ARRAY_PARTITION variable=biases complete
 
     typename CONFIG_T::accum_t acc[CONFIG_T::n_out];
-		//std::cout << "10" << std::endl;
     #pragma HLS ARRAY_PARTITION variable=acc complete
-	//std::cout << "----> InitAccum begin" << std::endl;
+
     InitAccum:
     for (int iacc = 0; iacc < nout; iacc++) {
         #pragma HLS UNROLL
         acc[iacc] = (typename CONFIG_T::accum_t) biases[iacc];
-		//std::cout << "----> biases[iacc]" <<  biases[iacc] << std::endl;
-		//std::cout << "----> acc[iacc]" << acc[iacc] << std::endl;
     }
-	//std::cout << "----> InitAccum finish" << std::endl;
+
     int w_index;
     int in_index = 0;
     int out_index;
     int outstep = 0;
     const int outscale = rufactor / nin;
-	//std::cout << "----> outscale " << outscale <<std::endl;
-    int outidx[rufactor];
 
-	//std::cout << "----> ReuseLoop begin" << std::endl;
+    int outidx[rufactor];
+    IndexLoop:
+    for (int ir = 0; ir < rufactor; ir++) {
+        outidx[ir] = outstep;
+        if ((ir + 1) % nin == 0) {
+            outstep++;
+        }
+    }
+
     ReuseLoop:
     for (int ir = 0; ir < rufactor; ir++) {
-        #pragma HLS PIPELINE II=1
+        #pragma HLS PIPELINE II=1 rewind
+
+        //w_index = ir;
+        //out_index = outidx[ir]/*outstep*/;
         
 	unsigned in_index  = ir - int(ir/nin)*nin;
-	//std::cout << " check in_index "  << in_index << std::endl;
 	unsigned out_idx_r = int(ir/nin);
-	//std::cout << " check out_idx_r " << out_idx_r << std::endl;
-		//std::cout << "----> MultLoop begin "<< std::endl;
+	//if(in_index  != in_index1) std::cout << " check in_index "  << in_index  << " -- " << in_index1 << std::endl;
+	//if(out_index != out_idx_r) std::cout << " check out_index " << out_index << " -- " << out_idx_r << std::endl;
+	
         MultLoop:
         for (int im = 0; im < block_factor; im++) {
             #pragma HLS UNROLL
             unsigned w_index     = ir + rufactor*im;
-			//std::cout << "----> w_index " << w_index<< std::endl;
 	    unsigned out_index   = im*outscale+out_idx_r;
-		//std::cout << "----> out_index " << out_index << std::endl;
+	    //if(w_index   != w_index1)   std::cout << "----> w_index " << w_index     << " -- " << w_index1 << std::endl;
+	    //if(out_index != out_index1) std::cout << "----> out_index " << out_index << " -- " << out_index1 << std::endl;
 	    acc[out_index] += product_dense<data_T, typename CONFIG_T::weight_t, typename CONFIG_T::accum_t>(data[in_index], weights[w_index]);
-		//std::cout << "----> acc[out_index] " << acc[out_index] << std::endl;
 
+	    // w_index += rufactor;
+            //if (w_index >= CONFIG_T::n_in * CONFIG_T::n_out) break; // check out of bounds
+            //out_index += outscale;
         }
-		//std::cout << "----> MultLoop finish "<< std::endl;
-    }
-		//std::cout << "----> ReuseLoop finish "<< std::endl;
 
-	//std::cout << "----> Result begin "<< std::endl;
+        //in_index++;
+        //if (in_index >= nin) {
+	//   in_index = 0;
+            //outstep++; // This causes a huge increase in scheduling and RTL generation times, hence the above workaround.
+        //}
+    }
+
+    // Cast to "res_t" type
     Result:
     for (int ires = 0; ires < CONFIG_T::n_out; ires++) {
         #pragma HLS UNROLL
-
+       // res[ires] = cast<data_T, res_T, CONFIG_T>(acc[ires]);
         res_T tmp = acc[ires];
-		//std::cout << "----> acc[ires] " << acc[ires] << std::endl;
         res[ires] =  tmp;
-		//std::cout << "----> res[ires] " << res[ires] << std::endl;
     }
-	//std::cout << "----> Result finish "<< std::endl;
 }
 
 template<class data_T, class res_T, typename CONFIG_T>
@@ -644,83 +647,6 @@ void dense_large_stream(
      }
 }
 
-template<class data_T, class res_T, typename CONFIG_T>
-void dense_large_stream_me(
-      hls::stream<data_T> &data,
-      hls::stream<res_T>  &res,
-      typename CONFIG_T::weight_t weights[CONFIG_T::n_in*CONFIG_T::n_out],
-      typename CONFIG_T::bias_t   biases[CONFIG_T::n_out]) {
-
-      
-      static data_T tmpdata[CONFIG_T::n_in];
-      #pragma HLS ARRAY_PARTITION variable=tmpdata complete
-      
-      DataPrepare: for(int i_in = 0; i_in < CONFIG_T::n_in; i_in++) {
-        if (CONFIG_T::n_in > 1) {
-            #pragma HLS PIPELINE
-        }
-            #pragma HLS UNROLL
-            tmpdata[i_in] = data.read();
-    }
-     
-       res_T tmpres[CONFIG_T::n_out];
-       #pragma HLS ARRAY_PARTITION variable=tmpdres complete
-	     dense_large<data_T,res_T, CONFIG_T>(tmpdata,tmpres,weights,biases);
-
-	 ResWrite: for(unsigned i_out = 0; i_out < CONFIG_T::n_out; i_out++) {
-        if (CONFIG_T::n_out > 1) {
-            #pragma HLS PIPELINE
-        }
-        #pragma HLS UNROLL
-        res.write(tmpres[i_out]);
-    }
-
-}
-
-template<class data_T, class res_T, typename CONFIG_T>
-void dense_ss(
-      hls::stream<data_T> &data,
-      hls::stream<res_T>  &res,
-      typename CONFIG_T::weight_t weights[CONFIG_T::n_in*CONFIG_T::n_out],
-      typename CONFIG_T::bias_t   biases[CONFIG_T::n_out]) {
-      
-      const int block_factor = DIV_ROUNDUP(CONFIG_T::n_out, CONFIG_T::reuse_factor);
-      #pragma HLS ARRAY_RESHAPE variable=weights block factor=CONFIG_T::n_out
-      #pragma HLS ARRAY_PARTITION variable=biases complete
-      
-      typename CONFIG_T::accum_t acc[block_factor][CONFIG_T::reuse_factor];
-      #pragma HLS ARRAY_PARTITION variable=acc complete dim=0
-      
-      InitAccum:
-      for (int iacc = 0; iacc < CONFIG_T::reuse_factor; iacc++) {
-          #pragma HLS UNROLL
-          for (int iacc2 = 0; iacc2 < block_factor; iacc2++) {
-            #pragma HLS UNROLL
-            acc[iacc2][iacc] = (typename CONFIG_T::accum_t) biases[iacc*block_factor+iacc2];
-          }
-      }
-    
-     for(int i_in = 0; i_in < CONFIG_T::n_in; i_in++) {
-        #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-        data_T tmpdata = data.read();
-        for (int iacc = 0; iacc < CONFIG_T::reuse_factor; iacc++) {
-          #pragma HLS UNROLL
-          for (int iacc2 = 0; iacc2 < block_factor; iacc2++) {
-            #pragma HLS UNROLL
-            unsigned w_index  =  i_in + (CONFIG_T::n_in*(iacc*block_factor+iacc2)); 
-            acc[iacc2][iacc] += product_dense<data_T, typename CONFIG_T::weight_t, typename CONFIG_T::accum_t>(tmpdata, weights[w_index]);
-          }
-      }
-     }
-     ResWrite:for (int iacc = 0; iacc < CONFIG_T::reuse_factor; iacc++) {
-          #pragma HLS UNROLL
-          for (int iacc2 = 0; iacc2 < block_factor; iacc2++) {
-            #pragma HLS UNROLL
-            res_T tmpres = (res_T)acc[iacc2][iacc];
-            res.write(tmpres);
-          }
-     }
-}
 
 }
 
