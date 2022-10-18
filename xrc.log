@@ -1,0 +1,13 @@
+Tue Oct 18 09:50:59 2022: Server was asked to start on port: '40271'
+Tue Oct 18 09:50:59 2022: Server is using token UUID: 'f63b8e03-8a5e-425d-ac61-f66e3ba57a96'
+Tue Oct 18 09:50:59 2022: Attempting to start server on port '40271'
+Tue Oct 18 09:50:59 2022: XRC main fifo: created main fifo '/tmp/xrcmainf63b8e03-8a5e-425d-ac61-f66e3ba57a96', fd read = 12
+Tue Oct 18 09:50:59 2022: Running Rule Check Server
+Tue Oct 18 09:50:59 2022: Version 1.5.1
+Tue Oct 18 09:50:59 2022: Rule Check Server: Accepted socket connection from client
+Tue Oct 18 09:50:59 2022: EXCHANGE_TOKEN received, server token: f63b8e03-8a5e-425d-ac61-f66e3ba57a96, passed token: f63b8e03-8a5e-425d-ac61-f66e3ba57a96
+Tue Oct 18 09:50:59 2022: SESSION_MGR: creating session with session uuid: '9114c699-76df-4cc1-865e-b69e45b39581' and name 'v++_link_alveo_hls4ml'
+Tue Oct 18 09:51:07 2022: Rule Check Server: Accepted socket connection from client
+Tue Oct 18 09:51:37 2022: Rule Check Server: Accepted socket connection from client
+Tue Oct 18 11:32:13 2022: Rule Check Server: Accepted socket connection from client
+Tue Oct 18 15:55:32 2022: SESSION_MGR: closing session for UUID '9114c699-76df-4cc1-865e-b69e45b39581' with name 'v++_link_alveo_hls4ml'
