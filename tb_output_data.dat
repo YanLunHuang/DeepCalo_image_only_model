@@ -1,0 +1,3421 @@
+Processing event 0
+FPGA time: 1169581 ns 
+Predictions:  
+146.548 
+Quantized predictions: 
+141.339 
+
+Processing event 1
+FPGA time: 961206 ns 
+Predictions:  
+101.037 
+Quantized predictions: 
+98.9575 
+
+Processing event 2
+FPGA time: 917182 ns 
+Predictions:  
+169.751 
+Quantized predictions: 
+172.742 
+
+Processing event 3
+FPGA time: 927401 ns 
+Predictions:  
+218.841 
+Quantized predictions: 
+224.123 
+
+Processing event 4
+FPGA time: 921310 ns 
+Predictions:  
+116.149 
+Quantized predictions: 
+118.997 
+
+Processing event 5
+FPGA time: 923053 ns 
+Predictions:  
+227.329 
+Quantized predictions: 
+226.946 
+
+Processing event 6
+FPGA time: 916070 ns 
+Predictions:  
+137.433 
+Quantized predictions: 
+135.543 
+
+Processing event 7
+FPGA time: 906261 ns 
+Predictions:  
+130.06 
+Quantized predictions: 
+131.981 
+
+Processing event 8
+FPGA time: 910439 ns 
+Predictions:  
+186.766 
+Quantized predictions: 
+191.28 
+
+Processing event 9
+FPGA time: 931238 ns 
+Predictions:  
+71.5676 
+Quantized predictions: 
+82.2531 
+
+Processing event 10
+FPGA time: 909467 ns 
+Predictions:  
+74.1243 
+Quantized predictions: 
+69.104 
+
+Processing event 11
+FPGA time: 900771 ns 
+Predictions:  
+118.685 
+Quantized predictions: 
+127.376 
+
+Processing event 12
+FPGA time: 915549 ns 
+Predictions:  
+77.1773 
+Quantized predictions: 
+41.5949 
+
+Processing event 13
+FPGA time: 919666 ns 
+Predictions:  
+163.018 
+Quantized predictions: 
+149.466 
+
+Processing event 14
+FPGA time: 919096 ns 
+Predictions:  
+152.102 
+Quantized predictions: 
+154.308 
+
+Processing event 15
+FPGA time: 915549 ns 
+Predictions:  
+189.937 
+Quantized predictions: 
+187.36 
+
+Processing event 16
+FPGA time: 911471 ns 
+Predictions:  
+115.179 
+Quantized predictions: 
+118.413 
+
+Processing event 17
+FPGA time: 901262 ns 
+Predictions:  
+161.192 
+Quantized predictions: 
+172.143 
+
+Processing event 18
+FPGA time: 942199 ns 
+Predictions:  
+93.5205 
+Quantized predictions: 
+87.781 
+
+Processing event 19
+FPGA time: 903286 ns 
+Predictions:  
+169.949 
+Quantized predictions: 
+169.396 
+
+Processing event 20
+FPGA time: 938362 ns 
+Predictions:  
+207.24 
+Quantized predictions: 
+211.905 
+
+Processing event 21
+FPGA time: 950855 ns 
+Predictions:  
+211.325 
+Quantized predictions: 
+213.052 
+
+Processing event 22
+FPGA time: 917752 ns 
+Predictions:  
+162.229 
+Quantized predictions: 
+163.967 
+
+Processing event 23
+FPGA time: 907092 ns 
+Predictions:  
+42.7124 
+Quantized predictions: 
+39.5141 
+
+Processing event 24
+FPGA time: 908716 ns 
+Predictions:  
+227.125 
+Quantized predictions: 
+228.575 
+
+Processing event 25
+FPGA time: 916701 ns 
+Predictions:  
+155.161 
+Quantized predictions: 
+155.841 
+
+Processing event 26
+FPGA time: 910700 ns 
+Predictions:  
+386.335 
+Quantized predictions: 
+384.347 
+
+Processing event 27
+FPGA time: 909497 ns 
+Predictions:  
+158.516 
+Quantized predictions: 
+157.63 
+
+Processing event 28
+FPGA time: 909267 ns 
+Predictions:  
+140.131 
+Quantized predictions: 
+134.514 
+
+Processing event 29
+FPGA time: 925267 ns 
+Predictions:  
+93.1264 
+Quantized predictions: 
+121.797 
+
+Processing event 30
+FPGA time: 908235 ns 
+Predictions:  
+141.762 
+Quantized predictions: 
+139.931 
+
+Processing event 31
+FPGA time: 922862 ns 
+Predictions:  
+24.2072 
+Quantized predictions: 
+33.3013 
+
+Processing event 32
+FPGA time: 922933 ns 
+Predictions:  
+142.285 
+Quantized predictions: 
+136.185 
+
+Processing event 33
+FPGA time: 924857 ns 
+Predictions:  
+182.484 
+Quantized predictions: 
+188.523 
+
+Processing event 34
+FPGA time: 911881 ns 
+Predictions:  
+122.122 
+Quantized predictions: 
+121.609 
+
+Processing event 35
+FPGA time: 919075 ns 
+Predictions:  
+157.23 
+Quantized predictions: 
+156.997 
+
+Processing event 36
+FPGA time: 906641 ns 
+Predictions:  
+99.2686 
+Quantized predictions: 
+99.772 
+
+Processing event 37
+FPGA time: 919336 ns 
+Predictions:  
+234.564 
+Quantized predictions: 
+246.464 
+
+Processing event 38
+FPGA time: 908766 ns 
+Predictions:  
+226.403 
+Quantized predictions: 
+248.115 
+
+Processing event 39
+FPGA time: 910910 ns 
+Predictions:  
+129.667 
+Quantized predictions: 
+132.851 
+
+Processing event 40
+FPGA time: 917493 ns 
+Predictions:  
+53.9923 
+Quantized predictions: 
+56.8667 
+
+Processing event 41
+FPGA time: 906121 ns 
+Predictions:  
+149.958 
+Quantized predictions: 
+147.51 
+
+Processing event 42
+FPGA time: 924005 ns 
+Predictions:  
+122.078 
+Quantized predictions: 
+123.098 
+
+Processing event 43
+FPGA time: 911551 ns 
+Predictions:  
+59.4093 
+Quantized predictions: 
+114.192 
+
+Processing event 44
+FPGA time: 905319 ns 
+Predictions:  
+371.596 
+Quantized predictions: 
+361.103 
+
+Processing event 45
+FPGA time: 903376 ns 
+Predictions:  
+56.0755 
+Quantized predictions: 
+60.4468 
+
+Processing event 46
+FPGA time: 908155 ns 
+Predictions:  
+245.312 
+Quantized predictions: 
+246.945 
+
+Processing event 47
+FPGA time: 914316 ns 
+Predictions:  
+163.922 
+Quantized predictions: 
+158.745 
+
+Processing event 48
+FPGA time: 913034 ns 
+Predictions:  
+211.944 
+Quantized predictions: 
+210.366 
+
+Processing event 49
+FPGA time: 922913 ns 
+Predictions:  
+143.175 
+Quantized predictions: 
+155.016 
+
+Processing event 50
+FPGA time: 919657 ns 
+Predictions:  
+333.978 
+Quantized predictions: 
+331.961 
+
+Processing event 51
+FPGA time: 917743 ns 
+Predictions:  
+108.567 
+Quantized predictions: 
+109.432 
+
+Processing event 52
+FPGA time: 916009 ns 
+Predictions:  
+123.361 
+Quantized predictions: 
+121.654 
+
+Processing event 53
+FPGA time: 906221 ns 
+Predictions:  
+193.744 
+Quantized predictions: 
+187.319 
+
+Processing event 54
+FPGA time: 910228 ns 
+Predictions:  
+148.367 
+Quantized predictions: 
+153.969 
+
+Processing event 55
+FPGA time: 914707 ns 
+Predictions:  
+120.916 
+Quantized predictions: 
+109.525 
+
+Processing event 56
+FPGA time: 908425 ns 
+Predictions:  
+150.967 
+Quantized predictions: 
+155.464 
+
+Processing event 57
+FPGA time: 919796 ns 
+Predictions:  
+55.3618 
+Quantized predictions: 
+61.1203 
+
+Processing event 58
+FPGA time: 906201 ns 
+Predictions:  
+134.36 
+Quantized predictions: 
+136.951 
+
+Processing event 59
+FPGA time: 914406 ns 
+Predictions:  
+151.628 
+Quantized predictions: 
+147.725 
+
+Processing event 60
+FPGA time: 899629 ns 
+Predictions:  
+140.543 
+Quantized predictions: 
+141.684 
+
+Processing event 61
+FPGA time: 919606 ns 
+Predictions:  
+154.889 
+Quantized predictions: 
+155.392 
+
+Processing event 62
+FPGA time: 908836 ns 
+Predictions:  
+126.691 
+Quantized predictions: 
+123.506 
+
+Processing event 63
+FPGA time: 923725 ns 
+Predictions:  
+169.369 
+Quantized predictions: 
+168.776 
+
+Processing event 64
+FPGA time: 901632 ns 
+Predictions:  
+168.174 
+Quantized predictions: 
+169.996 
+
+Processing event 65
+FPGA time: 906421 ns 
+Predictions:  
+154.579 
+Quantized predictions: 
+153.233 
+
+Processing event 66
+FPGA time: 904238 ns 
+Predictions:  
+143.281 
+Quantized predictions: 
+146.764 
+
+Processing event 67
+FPGA time: 930838 ns 
+Predictions:  
+55.449 
+Quantized predictions: 
+73.6776 
+
+Processing event 68
+FPGA time: 912132 ns 
+Predictions:  
+206.326 
+Quantized predictions: 
+211.737 
+
+Processing event 69
+FPGA time: 915218 ns 
+Predictions:  
+122.341 
+Quantized predictions: 
+122.775 
+
+Processing event 70
+FPGA time: 897455 ns 
+Predictions:  
+142.929 
+Quantized predictions: 
+143.402 
+
+Processing event 71
+FPGA time: 916832 ns 
+Predictions:  
+101.174 
+Quantized predictions: 
+102.532 
+
+Processing event 72
+FPGA time: 915299 ns 
+Predictions:  
+82.6352 
+Quantized predictions: 
+76.1044 
+
+Processing event 73
+FPGA time: 927451 ns 
+Predictions:  
+155.33 
+Quantized predictions: 
+157.441 
+
+Processing event 74
+FPGA time: 897785 ns 
+Predictions:  
+216.258 
+Quantized predictions: 
+210.916 
+
+Processing event 75
+FPGA time: 910750 ns 
+Predictions:  
+164.063 
+Quantized predictions: 
+166.584 
+
+Processing event 76
+FPGA time: 922863 ns 
+Predictions:  
+94.3329 
+Quantized predictions: 
+97.7554 
+
+Processing event 77
+FPGA time: 910139 ns 
+Predictions:  
+208.02 
+Quantized predictions: 
+205.639 
+
+Processing event 78
+FPGA time: 937220 ns 
+Predictions:  
+90.7986 
+Quantized predictions: 
+94.6962 
+
+Processing event 79
+FPGA time: 916711 ns 
+Predictions:  
+128.642 
+Quantized predictions: 
+129.459 
+
+Processing event 80
+FPGA time: 926830 ns 
+Predictions:  
+116.97 
+Quantized predictions: 
+114.303 
+
+Processing event 81
+FPGA time: 919627 ns 
+Predictions:  
+58.6838 
+Quantized predictions: 
+60.5072 
+
+Processing event 82
+FPGA time: 922321 ns 
+Predictions:  
+174.61 
+Quantized predictions: 
+175.042 
+
+Processing event 83
+FPGA time: 917032 ns 
+Predictions:  
+118.855 
+Quantized predictions: 
+108.14 
+
+Processing event 84
+FPGA time: 903676 ns 
+Predictions:  
+181.822 
+Quantized predictions: 
+180.495 
+
+Processing event 85
+FPGA time: 926350 ns 
+Predictions:  
+75.3109 
+Quantized predictions: 
+75.5051 
+
+Processing event 86
+FPGA time: 925648 ns 
+Predictions:  
+150.461 
+Quantized predictions: 
+150.941 
+
+Processing event 87
+FPGA time: 919066 ns 
+Predictions:  
+106.172 
+Quantized predictions: 
+106.445 
+
+Processing event 88
+FPGA time: 912924 ns 
+Predictions:  
+238.829 
+Quantized predictions: 
+240.716 
+
+Processing event 89
+FPGA time: 914777 ns 
+Predictions:  
+64.4321 
+Quantized predictions: 
+65.6535 
+
+Processing event 90
+FPGA time: 912714 ns 
+Predictions:  
+139.53 
+Quantized predictions: 
+146.864 
+
+Processing event 91
+FPGA time: 932942 ns 
+Predictions:  
+78.4515 
+Quantized predictions: 
+82.154 
+
+Processing event 92
+FPGA time: 947670 ns 
+Predictions:  
+106.556 
+Quantized predictions: 
+106.764 
+
+Processing event 93
+FPGA time: 922321 ns 
+Predictions:  
+105.635 
+Quantized predictions: 
+110.913 
+
+Processing event 94
+FPGA time: 899839 ns 
+Predictions:  
+137.96 
+Quantized predictions: 
+136.941 
+
+Processing event 95
+FPGA time: 930036 ns 
+Predictions:  
+188.568 
+Quantized predictions: 
+213.661 
+
+Processing event 96
+FPGA time: 907784 ns 
+Predictions:  
+130.432 
+Quantized predictions: 
+130.828 
+
+Processing event 97
+FPGA time: 913505 ns 
+Predictions:  
+142.393 
+Quantized predictions: 
+145.021 
+
+Processing event 98
+FPGA time: 925257 ns 
+Predictions:  
+128.735 
+Quantized predictions: 
+126.446 
+
+Processing event 99
+FPGA time: 917552 ns 
+Predictions:  
+157.457 
+Quantized predictions: 
+159.835 
+
+Processing event 100
+FPGA time: 913024 ns 
+Predictions:  
+180.203 
+Quantized predictions: 
+172.521 
+
+Processing event 101
+FPGA time: 937210 ns 
+Predictions:  
+267.908 
+Quantized predictions: 
+267.689 
+
+Processing event 102
+FPGA time: 906331 ns 
+Predictions:  
+117.017 
+Quantized predictions: 
+118.827 
+
+Processing event 103
+FPGA time: 928263 ns 
+Predictions:  
+71.5497 
+Quantized predictions: 
+71.3383 
+
+Processing event 104
+FPGA time: 930336 ns 
+Predictions:  
+129.051 
+Quantized predictions: 
+116.793 
+
+Processing event 105
+FPGA time: 927140 ns 
+Predictions:  
+78.377 
+Quantized predictions: 
+84.6622 
+
+Processing event 106
+FPGA time: 933012 ns 
+Predictions:  
+180.227 
+Quantized predictions: 
+178.801 
+
+Processing event 107
+FPGA time: 932070 ns 
+Predictions:  
+122.238 
+Quantized predictions: 
+131.07 
+
+Processing event 108
+FPGA time: 902304 ns 
+Predictions:  
+171.526 
+Quantized predictions: 
+224.158 
+
+Processing event 109
+FPGA time: 915699 ns 
+Predictions:  
+125.815 
+Quantized predictions: 
+126.79 
+
+Processing event 110
+FPGA time: 922763 ns 
+Predictions:  
+147.732 
+Quantized predictions: 
+145.214 
+
+Processing event 111
+FPGA time: 930887 ns 
+Predictions:  
+51.9953 
+Quantized predictions: 
+104.02 
+
+Processing event 112
+FPGA time: 914527 ns 
+Predictions:  
+212.841 
+Quantized predictions: 
+218.827 
+
+Processing event 113
+FPGA time: 930246 ns 
+Predictions:  
+146.74 
+Quantized predictions: 
+149.965 
+
+Processing event 114
+FPGA time: 928584 ns 
+Predictions:  
+114.348 
+Quantized predictions: 
+158.785 
+
+Processing event 115
+FPGA time: 919426 ns 
+Predictions:  
+151.821 
+Quantized predictions: 
+161.449 
+
+Processing event 116
+FPGA time: 936288 ns 
+Predictions:  
+69.7907 
+Quantized predictions: 
+70.4427 
+
+Processing event 117
+FPGA time: 920428 ns 
+Predictions:  
+158.209 
+Quantized predictions: 
+157.794 
+
+Processing event 118
+FPGA time: 907854 ns 
+Predictions:  
+158.885 
+Quantized predictions: 
+161.306 
+
+Processing event 119
+FPGA time: 908355 ns 
+Predictions:  
+91.7398 
+Quantized predictions: 
+82.0272 
+
+Processing event 120
+FPGA time: 902865 ns 
+Predictions:  
+104.886 
+Quantized predictions: 
+111.946 
+
+Processing event 121
+FPGA time: 921349 ns 
+Predictions:  
+108.529 
+Quantized predictions: 
+112.476 
+
+Processing event 122
+FPGA time: 917864 ns 
+Predictions:  
+134.362 
+Quantized predictions: 
+133.232 
+
+Processing event 123
+FPGA time: 927751 ns 
+Predictions:  
+213.116 
+Quantized predictions: 
+196.773 
+
+Processing event 124
+FPGA time: 907664 ns 
+Predictions:  
+35.1548 
+Quantized predictions: 
+40.6895 
+
+Processing event 125
+FPGA time: 950405 ns 
+Predictions:  
+131.835 
+Quantized predictions: 
+134.544 
+
+Processing event 126
+FPGA time: 908506 ns 
+Predictions:  
+49.4879 
+Quantized predictions: 
+51.239 
+
+Processing event 127
+FPGA time: 920177 ns 
+Predictions:  
+167.614 
+Quantized predictions: 
+165.876 
+
+Processing event 128
+FPGA time: 903526 ns 
+Predictions:  
+109.548 
+Quantized predictions: 
+109.619 
+
+Processing event 129
+FPGA time: 916430 ns 
+Predictions:  
+110.414 
+Quantized predictions: 
+115.076 
+
+Processing event 130
+FPGA time: 906181 ns 
+Predictions:  
+154.291 
+Quantized predictions: 
+157.657 
+
+Processing event 131
+FPGA time: 920569 ns 
+Predictions:  
+84.7719 
+Quantized predictions: 
+86.9798 
+
+Processing event 132
+FPGA time: 925758 ns 
+Predictions:  
+131.435 
+Quantized predictions: 
+131.096 
+
+Processing event 133
+FPGA time: 928754 ns 
+Predictions:  
+164.848 
+Quantized predictions: 
+167.23 
+
+Processing event 134
+FPGA time: 910579 ns 
+Predictions:  
+234.394 
+Quantized predictions: 
+231.765 
+
+Processing event 135
+FPGA time: 909197 ns 
+Predictions:  
+151.755 
+Quantized predictions: 
+163.327 
+
+Processing event 136
+FPGA time: 901883 ns 
+Predictions:  
+230.124 
+Quantized predictions: 
+231.452 
+
+Processing event 137
+FPGA time: 904258 ns 
+Predictions:  
+98.7608 
+Quantized predictions: 
+103.572 
+
+Processing event 138
+FPGA time: 911331 ns 
+Predictions:  
+30.3008 
+Quantized predictions: 
+30.7511 
+
+Processing event 139
+FPGA time: 908886 ns 
+Predictions:  
+248.976 
+Quantized predictions: 
+246.859 
+
+Processing event 140
+FPGA time: 914096 ns 
+Predictions:  
+220.242 
+Quantized predictions: 
+220.794 
+
+Processing event 141
+FPGA time: 928683 ns 
+Predictions:  
+75.3412 
+Quantized predictions: 
+63.0961 
+
+Processing event 142
+FPGA time: 921159 ns 
+Predictions:  
+187.447 
+Quantized predictions: 
+188.796 
+
+Processing event 143
+FPGA time: 907573 ns 
+Predictions:  
+59.8117 
+Quantized predictions: 
+63.4097 
+
+Processing event 144
+FPGA time: 913094 ns 
+Predictions:  
+187.722 
+Quantized predictions: 
+185.788 
+
+Processing event 145
+FPGA time: 911871 ns 
+Predictions:  
+149.659 
+Quantized predictions: 
+118.44 
+
+Processing event 146
+FPGA time: 894769 ns 
+Predictions:  
+118.032 
+Quantized predictions: 
+116.372 
+
+Processing event 147
+FPGA time: 922472 ns 
+Predictions:  
+223.593 
+Quantized predictions: 
+222.89 
+
+Processing event 148
+FPGA time: 914907 ns 
+Predictions:  
+170.608 
+Quantized predictions: 
+172.837 
+
+Processing event 149
+FPGA time: 918123 ns 
+Predictions:  
+144.455 
+Quantized predictions: 
+144.206 
+
+Processing event 150
+FPGA time: 937391 ns 
+Predictions:  
+93.5891 
+Quantized predictions: 
+97.0372 
+
+Processing event 151
+FPGA time: 905139 ns 
+Predictions:  
+46.9984 
+Quantized predictions: 
+42.0212 
+
+Processing event 152
+FPGA time: 898166 ns 
+Predictions:  
+188.093 
+Quantized predictions: 
+184.613 
+
+Processing event 153
+FPGA time: 929395 ns 
+Predictions:  
+253.305 
+Quantized predictions: 
+266.727 
+
+Processing event 154
+FPGA time: 908355 ns 
+Predictions:  
+240.626 
+Quantized predictions: 
+237.238 
+
+Processing event 155
+FPGA time: 913004 ns 
+Predictions:  
+192.823 
+Quantized predictions: 
+195.328 
+
+Processing event 156
+FPGA time: 917383 ns 
+Predictions:  
+93.2631 
+Quantized predictions: 
+93.0613 
+
+Processing event 157
+FPGA time: 947520 ns 
+Predictions:  
+135.841 
+Quantized predictions: 
+136.017 
+
+Processing event 158
+FPGA time: 947760 ns 
+Predictions:  
+319.203 
+Quantized predictions: 
+314.981 
+
+Processing event 159
+FPGA time: 920979 ns 
+Predictions:  
+36.1015 
+Quantized predictions: 
+34.1565 
+
+Processing event 160
+FPGA time: 916231 ns 
+Predictions:  
+118.288 
+Quantized predictions: 
+120.039 
+
+Processing event 161
+FPGA time: 917572 ns 
+Predictions:  
+161.807 
+Quantized predictions: 
+162.359 
+
+Processing event 162
+FPGA time: 911892 ns 
+Predictions:  
+137.654 
+Quantized predictions: 
+140.53 
+
+Processing event 163
+FPGA time: 917672 ns 
+Predictions:  
+106.483 
+Quantized predictions: 
+107.256 
+
+Processing event 164
+FPGA time: 934815 ns 
+Predictions:  
+97.6514 
+Quantized predictions: 
+98.3816 
+
+Processing event 165
+FPGA time: 927130 ns 
+Predictions:  
+106.739 
+Quantized predictions: 
+111.289 
+
+Processing event 166
+FPGA time: 914657 ns 
+Predictions:  
+257.869 
+Quantized predictions: 
+265.748 
+
+Processing event 167
+FPGA time: 923313 ns 
+Predictions:  
+143.125 
+Quantized predictions: 
+119.15 
+
+Processing event 168
+FPGA time: 909547 ns 
+Predictions:  
+212.53 
+Quantized predictions: 
+211.694 
+
+Processing event 169
+FPGA time: 913505 ns 
+Predictions:  
+126.052 
+Quantized predictions: 
+126.833 
+
+Processing event 170
+FPGA time: 920338 ns 
+Predictions:  
+235.85 
+Quantized predictions: 
+233.469 
+
+Processing event 171
+FPGA time: 920197 ns 
+Predictions:  
+129.899 
+Quantized predictions: 
+123.793 
+
+Processing event 172
+FPGA time: 918825 ns 
+Predictions:  
+82.9388 
+Quantized predictions: 
+82.4567 
+
+Processing event 173
+FPGA time: 946007 ns 
+Predictions:  
+389.139 
+Quantized predictions: 
+388.352 
+
+Processing event 174
+FPGA time: 903876 ns 
+Predictions:  
+196.21 
+Quantized predictions: 
+189.37 
+
+Processing event 175
+FPGA time: 917172 ns 
+Predictions:  
+185.935 
+Quantized predictions: 
+190.544 
+
+Processing event 176
+FPGA time: 907984 ns 
+Predictions:  
+87.7316 
+Quantized predictions: 
+86.6528 
+
+Processing event 177
+FPGA time: 918254 ns 
+Predictions:  
+78.5533 
+Quantized predictions: 
+78.6016 
+
+Processing event 178
+FPGA time: 904027 ns 
+Predictions:  
+265.919 
+Quantized predictions: 
+264.844 
+
+Processing event 179
+FPGA time: 945726 ns 
+Predictions:  
+149.242 
+Quantized predictions: 
+147.157 
+
+Processing event 180
+FPGA time: 911040 ns 
+Predictions:  
+44.3456 
+Quantized predictions: 
+42.4746 
+
+Processing event 181
+FPGA time: 902714 ns 
+Predictions:  
+171.504 
+Quantized predictions: 
+170.306 
+
+Processing event 182
+FPGA time: 901833 ns 
+Predictions:  
+185.536 
+Quantized predictions: 
+186.406 
+
+Processing event 183
+FPGA time: 899779 ns 
+Predictions:  
+139.367 
+Quantized predictions: 
+133.706 
+
+Processing event 184
+FPGA time: 902985 ns 
+Predictions:  
+128.133 
+Quantized predictions: 
+122.775 
+
+Processing event 185
+FPGA time: 904598 ns 
+Predictions:  
+32.4439 
+Quantized predictions: 
+20.3084 
+
+Processing event 186
+FPGA time: 920688 ns 
+Predictions:  
+256.823 
+Quantized predictions: 
+256.174 
+
+Processing event 187
+FPGA time: 925828 ns 
+Predictions:  
+188.654 
+Quantized predictions: 
+182.826 
+
+Processing event 188
+FPGA time: 902283 ns 
+Predictions:  
+136.317 
+Quantized predictions: 
+136.866 
+
+Processing event 189
+FPGA time: 945967 ns 
+Predictions:  
+50.4462 
+Quantized predictions: 
+53.9081 
+
+Processing event 190
+FPGA time: 922832 ns 
+Predictions:  
+145.034 
+Quantized predictions: 
+148.479 
+
+Processing event 191
+FPGA time: 926169 ns 
+Predictions:  
+164.436 
+Quantized predictions: 
+160.955 
+
+Processing event 192
+FPGA time: 914737 ns 
+Predictions:  
+141.087 
+Quantized predictions: 
+146.944 
+
+Processing event 193
+FPGA time: 909397 ns 
+Predictions:  
+103.406 
+Quantized predictions: 
+106.146 
+
+Processing event 194
+FPGA time: 914327 ns 
+Predictions:  
+176.685 
+Quantized predictions: 
+180.295 
+
+Processing event 195
+FPGA time: 922752 ns 
+Predictions:  
+121.529 
+Quantized predictions: 
+115.827 
+
+Processing event 196
+FPGA time: 907243 ns 
+Predictions:  
+118.592 
+Quantized predictions: 
+114.235 
+
+Processing event 197
+FPGA time: 922722 ns 
+Predictions:  
+81.7924 
+Quantized predictions: 
+74.6875 
+
+Processing event 198
+FPGA time: 908626 ns 
+Predictions:  
+157.71 
+Quantized predictions: 
+158.808 
+
+Processing event 199
+FPGA time: 931880 ns 
+Predictions:  
+150.879 
+Quantized predictions: 
+154.928 
+
+Processing event 200
+FPGA time: 919607 ns 
+Predictions:  
+92.3335 
+Quantized predictions: 
+93.9695 
+
+Processing event 201
+FPGA time: 919356 ns 
+Predictions:  
+196.622 
+Quantized predictions: 
+208.183 
+
+Processing event 202
+FPGA time: 920999 ns 
+Predictions:  
+134.546 
+Quantized predictions: 
+138.619 
+
+Processing event 203
+FPGA time: 913935 ns 
+Predictions:  
+189.195 
+Quantized predictions: 
+193.625 
+
+Processing event 204
+FPGA time: 905540 ns 
+Predictions:  
+128.937 
+Quantized predictions: 
+132.715 
+
+Processing event 205
+FPGA time: 897154 ns 
+Predictions:  
+101.264 
+Quantized predictions: 
+102.436 
+
+Processing event 206
+FPGA time: 928424 ns 
+Predictions:  
+197.318 
+Quantized predictions: 
+199.769 
+
+Processing event 207
+FPGA time: 915388 ns 
+Predictions:  
+92.338 
+Quantized predictions: 
+85.1834 
+
+Processing event 208
+FPGA time: 906282 ns 
+Predictions:  
+116.835 
+Quantized predictions: 
+123.24 
+
+Processing event 209
+FPGA time: 926420 ns 
+Predictions:  
+220.424 
+Quantized predictions: 
+216.636 
+
+Processing event 210
+FPGA time: 901532 ns 
+Predictions:  
+133.656 
+Quantized predictions: 
+134.151 
+
+Processing event 211
+FPGA time: 913254 ns 
+Predictions:  
+196.698 
+Quantized predictions: 
+195.412 
+
+Processing event 212
+FPGA time: 908886 ns 
+Predictions:  
+111.363 
+Quantized predictions: 
+113.47 
+
+Processing event 213
+FPGA time: 913655 ns 
+Predictions:  
+142.208 
+Quantized predictions: 
+145.963 
+
+Processing event 214
+FPGA time: 899107 ns 
+Predictions:  
+148.271 
+Quantized predictions: 
+156.457 
+
+Processing event 215
+FPGA time: 916381 ns 
+Predictions:  
+128.004 
+Quantized predictions: 
+126.383 
+
+Processing event 216
+FPGA time: 895771 ns 
+Predictions:  
+97.3277 
+Quantized predictions: 
+87.7564 
+
+Processing event 217
+FPGA time: 921781 ns 
+Predictions:  
+148.171 
+Quantized predictions: 
+151.25 
+
+Processing event 218
+FPGA time: 918755 ns 
+Predictions:  
+81.0108 
+Quantized predictions: 
+80.3233 
+
+Processing event 219
+FPGA time: 916009 ns 
+Predictions:  
+122.867 
+Quantized predictions: 
+122.9 
+
+Processing event 220
+FPGA time: 910079 ns 
+Predictions:  
+181.41 
+Quantized predictions: 
+182.205 
+
+Processing event 221
+FPGA time: 946618 ns 
+Predictions:  
+195.105 
+Quantized predictions: 
+195.463 
+
+Processing event 222
+FPGA time: 921259 ns 
+Predictions:  
+114.23 
+Quantized predictions: 
+113.08 
+
+Processing event 223
+FPGA time: 917112 ns 
+Predictions:  
+145.409 
+Quantized predictions: 
+145.589 
+
+Processing event 224
+FPGA time: 902073 ns 
+Predictions:  
+96.7878 
+Quantized predictions: 
+91.0788 
+
+Processing event 225
+FPGA time: 921811 ns 
+Predictions:  
+111.72 
+Quantized predictions: 
+110.728 
+
+Processing event 226
+FPGA time: 905089 ns 
+Predictions:  
+122.604 
+Quantized predictions: 
+123.192 
+
+Processing event 227
+FPGA time: 924025 ns 
+Predictions:  
+131.728 
+Quantized predictions: 
+120.055 
+
+Processing event 228
+FPGA time: 929986 ns 
+Predictions:  
+193.617 
+Quantized predictions: 
+197.428 
+
+Processing event 229
+FPGA time: 924817 ns 
+Predictions:  
+82.28 
+Quantized predictions: 
+79.9178 
+
+Processing event 230
+FPGA time: 921600 ns 
+Predictions:  
+144.064 
+Quantized predictions: 
+147.02 
+
+Processing event 231
+FPGA time: 918053 ns 
+Predictions:  
+95.1388 
+Quantized predictions: 
+94.2817 
+
+Processing event 232
+FPGA time: 912182 ns 
+Predictions:  
+104.668 
+Quantized predictions: 
+107.606 
+
+Processing event 233
+FPGA time: 914376 ns 
+Predictions:  
+139.52 
+Quantized predictions: 
+134.437 
+
+Processing event 234
+FPGA time: 907103 ns 
+Predictions:  
+126.685 
+Quantized predictions: 
+121.088 
+
+Processing event 235
+FPGA time: 939054 ns 
+Predictions:  
+93.1915 
+Quantized predictions: 
+92.7458 
+
+Processing event 236
+FPGA time: 917152 ns 
+Predictions:  
+179.838 
+Quantized predictions: 
+180.961 
+
+Processing event 237
+FPGA time: 915288 ns 
+Predictions:  
+202.525 
+Quantized predictions: 
+204.143 
+
+Processing event 238
+FPGA time: 931338 ns 
+Predictions:  
+95.0869 
+Quantized predictions: 
+88.7927 
+
+Processing event 239
+FPGA time: 923023 ns 
+Predictions:  
+190.444 
+Quantized predictions: 
+191.917 
+
+Processing event 240
+FPGA time: 918254 ns 
+Predictions:  
+218.242 
+Quantized predictions: 
+222.431 
+
+Processing event 241
+FPGA time: 928323 ns 
+Predictions:  
+127.41 
+Quantized predictions: 
+133.484 
+
+Processing event 242
+FPGA time: 904698 ns 
+Predictions:  
+162.622 
+Quantized predictions: 
+163.744 
+
+Processing event 243
+FPGA time: 925127 ns 
+Predictions:  
+290.143 
+Quantized predictions: 
+292.293 
+
+Processing event 244
+FPGA time: 911661 ns 
+Predictions:  
+174.663 
+Quantized predictions: 
+174.304 
+
+Processing event 245
+FPGA time: 919236 ns 
+Predictions:  
+124.226 
+Quantized predictions: 
+123.973 
+
+Processing event 246
+FPGA time: 922592 ns 
+Predictions:  
+246.806 
+Quantized predictions: 
+244.725 
+
+Processing event 247
+FPGA time: 927762 ns 
+Predictions:  
+138.181 
+Quantized predictions: 
+139.907 
+
+Processing event 248
+FPGA time: 917853 ns 
+Predictions:  
+194.589 
+Quantized predictions: 
+193.137 
+
+Processing event 249
+FPGA time: 916841 ns 
+Predictions:  
+238.004 
+Quantized predictions: 
+232.841 
+
+Processing event 250
+FPGA time: 928544 ns 
+Predictions:  
+85.664 
+Quantized predictions: 
+93.2694 
+
+Processing event 251
+FPGA time: 932912 ns 
+Predictions:  
+63.6139 
+Quantized predictions: 
+66.329 
+
+Processing event 252
+FPGA time: 914567 ns 
+Predictions:  
+110.151 
+Quantized predictions: 
+108.841 
+
+Processing event 253
+FPGA time: 918334 ns 
+Predictions:  
+236.162 
+Quantized predictions: 
+238.113 
+
+Processing event 254
+FPGA time: 896403 ns 
+Predictions:  
+113.578 
+Quantized predictions: 
+119.957 
+
+Processing event 255
+FPGA time: 939694 ns 
+Predictions:  
+41.4985 
+Quantized predictions: 
+39.0554 
+
+Processing event 256
+FPGA time: 922181 ns 
+Predictions:  
+70.0411 
+Quantized predictions: 
+67.6754 
+
+Processing event 257
+FPGA time: 933182 ns 
+Predictions:  
+212.906 
+Quantized predictions: 
+214.732 
+
+Processing event 258
+FPGA time: 926349 ns 
+Predictions:  
+153.086 
+Quantized predictions: 
+152.999 
+
+Processing event 259
+FPGA time: 930838 ns 
+Predictions:  
+112.407 
+Quantized predictions: 
+113.168 
+
+Processing event 260
+FPGA time: 912253 ns 
+Predictions:  
+144.251 
+Quantized predictions: 
+149.626 
+
+Processing event 261
+FPGA time: 907865 ns 
+Predictions:  
+156.775 
+Quantized predictions: 
+160.45 
+
+Processing event 262
+FPGA time: 914988 ns 
+Predictions:  
+141.014 
+Quantized predictions: 
+140.81 
+
+Processing event 263
+FPGA time: 918033 ns 
+Predictions:  
+95.4846 
+Quantized predictions: 
+88.1064 
+
+Processing event 264
+FPGA time: 920388 ns 
+Predictions:  
+196.612 
+Quantized predictions: 
+199.121 
+
+Processing event 265
+FPGA time: 924216 ns 
+Predictions:  
+186.682 
+Quantized predictions: 
+204.898 
+
+Processing event 266
+FPGA time: 908154 ns 
+Predictions:  
+138.521 
+Quantized predictions: 
+142.504 
+
+Processing event 267
+FPGA time: 905841 ns 
+Predictions:  
+109.491 
+Quantized predictions: 
+109.941 
+
+Processing event 268
+FPGA time: 906521 ns 
+Predictions:  
+142.484 
+Quantized predictions: 
+140.916 
+
+Processing event 269
+FPGA time: 911621 ns 
+Predictions:  
+253.559 
+Quantized predictions: 
+248.243 
+
+Processing event 270
+FPGA time: 910670 ns 
+Predictions:  
+69.4645 
+Quantized predictions: 
+68.8215 
+
+Processing event 271
+FPGA time: 917543 ns 
+Predictions:  
+174.219 
+Quantized predictions: 
+180.866 
+
+Processing event 272
+FPGA time: 909577 ns 
+Predictions:  
+181.27 
+Quantized predictions: 
+191.357 
+
+Processing event 273
+FPGA time: 920528 ns 
+Predictions:  
+111.738 
+Quantized predictions: 
+113.075 
+
+Processing event 274
+FPGA time: 917412 ns 
+Predictions:  
+140.034 
+Quantized predictions: 
+142.877 
+
+Processing event 275
+FPGA time: 921490 ns 
+Predictions:  
+155.992 
+Quantized predictions: 
+158.206 
+
+Processing event 276
+FPGA time: 916581 ns 
+Predictions:  
+58.7346 
+Quantized predictions: 
+59.7555 
+
+Processing event 277
+FPGA time: 910419 ns 
+Predictions:  
+128.179 
+Quantized predictions: 
+126.318 
+
+Processing event 278
+FPGA time: 906472 ns 
+Predictions:  
+192.244 
+Quantized predictions: 
+192.408 
+
+Processing event 279
+FPGA time: 906882 ns 
+Predictions:  
+112.024 
+Quantized predictions: 
+104.418 
+
+Processing event 280
+FPGA time: 921560 ns 
+Predictions:  
+172.491 
+Quantized predictions: 
+172.609 
+
+Processing event 281
+FPGA time: 942120 ns 
+Predictions:  
+125.25 
+Quantized predictions: 
+128.664 
+
+Processing event 282
+FPGA time: 921861 ns 
+Predictions:  
+104.118 
+Quantized predictions: 
+109.591 
+
+Processing event 283
+FPGA time: 910259 ns 
+Predictions:  
+201.829 
+Quantized predictions: 
+201.395 
+
+Processing event 284
+FPGA time: 899138 ns 
+Predictions:  
+92.2693 
+Quantized predictions: 
+95.3118 
+
+Processing event 285
+FPGA time: 921661 ns 
+Predictions:  
+60.1438 
+Quantized predictions: 
+59.0497 
+
+Processing event 286
+FPGA time: 899779 ns 
+Predictions:  
+157.778 
+Quantized predictions: 
+157.434 
+
+Processing event 287
+FPGA time: 912894 ns 
+Predictions:  
+216.938 
+Quantized predictions: 
+217.452 
+
+Processing event 288
+FPGA time: 908987 ns 
+Predictions:  
+57.8112 
+Quantized predictions: 
+61.9381 
+
+Processing event 289
+FPGA time: 917503 ns 
+Predictions:  
+185.625 
+Quantized predictions: 
+180.649 
+
+Processing event 290
+FPGA time: 910029 ns 
+Predictions:  
+201.048 
+Quantized predictions: 
+200.919 
+
+Processing event 291
+FPGA time: 936759 ns 
+Predictions:  
+356.606 
+Quantized predictions: 
+358.505 
+
+Processing event 292
+FPGA time: 926780 ns 
+Predictions:  
+118.925 
+Quantized predictions: 
+118.873 
+
+Processing event 293
+FPGA time: 939645 ns 
+Predictions:  
+267.65 
+Quantized predictions: 
+262.335 
+
+Processing event 294
+FPGA time: 914356 ns 
+Predictions:  
+108.684 
+Quantized predictions: 
+99.015 
+
+Processing event 295
+FPGA time: 901983 ns 
+Predictions:  
+276.807 
+Quantized predictions: 
+284.015 
+
+Processing event 296
+FPGA time: 908505 ns 
+Predictions:  
+88.0355 
+Quantized predictions: 
+95.2368 
+
+Processing event 297
+FPGA time: 926840 ns 
+Predictions:  
+132.73 
+Quantized predictions: 
+134.333 
+
+Processing event 298
+FPGA time: 914146 ns 
+Predictions:  
+137.097 
+Quantized predictions: 
+205.173 
+
+Processing event 299
+FPGA time: 912082 ns 
+Predictions:  
+110.415 
+Quantized predictions: 
+108.058 
+
+Processing event 300
+FPGA time: 916711 ns 
+Predictions:  
+127.971 
+Quantized predictions: 
+130.599 
+
+Processing event 301
+FPGA time: 930748 ns 
+Predictions:  
+240.161 
+Quantized predictions: 
+240.394 
+
+Processing event 302
+FPGA time: 928884 ns 
+Predictions:  
+155.915 
+Quantized predictions: 
+152.328 
+
+Processing event 303
+FPGA time: 922592 ns 
+Predictions:  
+95.1722 
+Quantized predictions: 
+98.969 
+
+Processing event 304
+FPGA time: 925047 ns 
+Predictions:  
+92.4239 
+Quantized predictions: 
+92.9359 
+
+Processing event 305
+FPGA time: 900982 ns 
+Predictions:  
+82.6894 
+Quantized predictions: 
+72.2735 
+
+Processing event 306
+FPGA time: 899187 ns 
+Predictions:  
+225.737 
+Quantized predictions: 
+226.229 
+
+Processing event 307
+FPGA time: 910970 ns 
+Predictions:  
+104.246 
+Quantized predictions: 
+103.057 
+
+Processing event 308
+FPGA time: 909327 ns 
+Predictions:  
+205.146 
+Quantized predictions: 
+211.74 
+
+Processing event 309
+FPGA time: 919396 ns 
+Predictions:  
+125.629 
+Quantized predictions: 
+152.002 
+
+Processing event 310
+FPGA time: 920338 ns 
+Predictions:  
+171.796 
+Quantized predictions: 
+176.138 
+
+Processing event 311
+FPGA time: 928824 ns 
+Predictions:  
+102.618 
+Quantized predictions: 
+102.127 
+
+Processing event 312
+FPGA time: 930577 ns 
+Predictions:  
+223.123 
+Quantized predictions: 
+221.481 
+
+Processing event 313
+FPGA time: 947860 ns 
+Predictions:  
+120.696 
+Quantized predictions: 
+153.052 
+
+Processing event 314
+FPGA time: 915278 ns 
+Predictions:  
+184.567 
+Quantized predictions: 
+182.115 
+
+Processing event 315
+FPGA time: 913635 ns 
+Predictions:  
+135.939 
+Quantized predictions: 
+129.728 
+
+Processing event 316
+FPGA time: 902824 ns 
+Predictions:  
+161.701 
+Quantized predictions: 
+164.444 
+
+Processing event 317
+FPGA time: 903416 ns 
+Predictions:  
+166.513 
+Quantized predictions: 
+167.72 
+
+Processing event 318
+FPGA time: 904317 ns 
+Predictions:  
+159.926 
+Quantized predictions: 
+162.197 
+
+Processing event 319
+FPGA time: 906842 ns 
+Predictions:  
+150.072 
+Quantized predictions: 
+161.974 
+
+Processing event 320
+FPGA time: 908014 ns 
+Predictions:  
+376.999 
+Quantized predictions: 
+368.929 
+
+Processing event 321
+FPGA time: 935206 ns 
+Predictions:  
+102.362 
+Quantized predictions: 
+105.772 
+
+Processing event 322
+FPGA time: 937019 ns 
+Predictions:  
+216.534 
+Quantized predictions: 
+218.349 
+
+Processing event 323
+FPGA time: 939324 ns 
+Predictions:  
+192.589 
+Quantized predictions: 
+193.892 
+
+Processing event 324
+FPGA time: 929656 ns 
+Predictions:  
+121.914 
+Quantized predictions: 
+119.13 
+
+Processing event 325
+FPGA time: 906722 ns 
+Predictions:  
+174.95 
+Quantized predictions: 
+179.195 
+
+Processing event 326
+FPGA time: 910569 ns 
+Predictions:  
+145.014 
+Quantized predictions: 
+137.738 
+
+Processing event 327
+FPGA time: 926800 ns 
+Predictions:  
+90.5012 
+Quantized predictions: 
+89.8432 
+
+Processing event 328
+FPGA time: 907623 ns 
+Predictions:  
+136.446 
+Quantized predictions: 
+137.214 
+
+Processing event 329
+FPGA time: 909296 ns 
+Predictions:  
+97.4357 
+Quantized predictions: 
+95.9577 
+
+Processing event 330
+FPGA time: 917362 ns 
+Predictions:  
+152.347 
+Quantized predictions: 
+152.945 
+
+Processing event 331
+FPGA time: 913735 ns 
+Predictions:  
+135.25 
+Quantized predictions: 
+135.617 
+
+Processing event 332
+FPGA time: 921470 ns 
+Predictions:  
+115.571 
+Quantized predictions: 
+117.788 
+
+Processing event 333
+FPGA time: 941849 ns 
+Predictions:  
+240.651 
+Quantized predictions: 
+234.078 
+
+Processing event 334
+FPGA time: 912413 ns 
+Predictions:  
+164.83 
+Quantized predictions: 
+163.362 
+
+Processing event 335
+FPGA time: 932591 ns 
+Predictions:  
+147.776 
+Quantized predictions: 
+149.308 
+
+Processing event 336
+FPGA time: 923865 ns 
+Predictions:  
+172.72 
+Quantized predictions: 
+169.769 
+
+Processing event 337
+FPGA time: 912964 ns 
+Predictions:  
+96.3916 
+Quantized predictions: 
+98.7327 
+
+Processing event 338
+FPGA time: 916931 ns 
+Predictions:  
+172.188 
+Quantized predictions: 
+169.414 
+
+Processing event 339
+FPGA time: 927722 ns 
+Predictions:  
+158.53 
+Quantized predictions: 
+178.505 
+
+Processing event 340
+FPGA time: 900520 ns 
+Predictions:  
+236.991 
+Quantized predictions: 
+235.085 
+
+Processing event 341
+FPGA time: 932030 ns 
+Predictions:  
+160.161 
+Quantized predictions: 
+164.82 
+
+Processing event 342
+FPGA time: 894349 ns 
+Predictions:  
+168.71 
+Quantized predictions: 
+173.315 
+
+Processing event 343
+FPGA time: 909347 ns 
+Predictions:  
+67.8923 
+Quantized predictions: 
+67.9342 
+
+Processing event 344
+FPGA time: 900431 ns 
+Predictions:  
+259.943 
+Quantized predictions: 
+262.999 
+
+Processing event 345
+FPGA time: 931178 ns 
+Predictions:  
+104.094 
+Quantized predictions: 
+88.0726 
+
+Processing event 346
+FPGA time: 914837 ns 
+Predictions:  
+186.329 
+Quantized predictions: 
+176.754 
+
+Processing event 347
+FPGA time: 918274 ns 
+Predictions:  
+116.172 
+Quantized predictions: 
+119.265 
+
+Processing event 348
+FPGA time: 917052 ns 
+Predictions:  
+109.378 
+Quantized predictions: 
+111.716 
+
+Processing event 349
+FPGA time: 940566 ns 
+Predictions:  
+167.516 
+Quantized predictions: 
+168.848 
+
+Processing event 350
+FPGA time: 929214 ns 
+Predictions:  
+131.848 
+Quantized predictions: 
+128.773 
+
+Processing event 351
+FPGA time: 920267 ns 
+Predictions:  
+114.264 
+Quantized predictions: 
+122.871 
+
+Processing event 352
+FPGA time: 910199 ns 
+Predictions:  
+307.931 
+Quantized predictions: 
+314.54 
+
+Processing event 353
+FPGA time: 919246 ns 
+Predictions:  
+103.14 
+Quantized predictions: 
+85.8047 
+
+Processing event 354
+FPGA time: 903045 ns 
+Predictions:  
+102.666 
+Quantized predictions: 
+101.52 
+
+Processing event 355
+FPGA time: 923454 ns 
+Predictions:  
+201.384 
+Quantized predictions: 
+205.331 
+
+Processing event 356
+FPGA time: 914296 ns 
+Predictions:  
+98.8178 
+Quantized predictions: 
+123.613 
+
+Processing event 357
+FPGA time: 921891 ns 
+Predictions:  
+138.355 
+Quantized predictions: 
+137.082 
+
+Processing event 358
+FPGA time: 900711 ns 
+Predictions:  
+103.6 
+Quantized predictions: 
+105.211 
+
+Processing event 359
+FPGA time: 924736 ns 
+Predictions:  
+198.647 
+Quantized predictions: 
+196.389 
+
+Processing event 360
+FPGA time: 912343 ns 
+Predictions:  
+115.358 
+Quantized predictions: 
+109.669 
+
+Processing event 361
+FPGA time: 917372 ns 
+Predictions:  
+137.933 
+Quantized predictions: 
+136.526 
+
+Processing event 362
+FPGA time: 918855 ns 
+Predictions:  
+191.58 
+Quantized predictions: 
+190.72 
+
+Processing event 363
+FPGA time: 919136 ns 
+Predictions:  
+113.005 
+Quantized predictions: 
+114.616 
+
+Processing event 364
+FPGA time: 914277 ns 
+Predictions:  
+51.4472 
+Quantized predictions: 
+45.8995 
+
+Processing event 365
+FPGA time: 930177 ns 
+Predictions:  
+111.77 
+Quantized predictions: 
+109.614 
+
+Processing event 366
+FPGA time: 932652 ns 
+Predictions:  
+148.402 
+Quantized predictions: 
+146.502 
+
+Processing event 367
+FPGA time: 916401 ns 
+Predictions:  
+175.081 
+Quantized predictions: 
+178.42 
+
+Processing event 368
+FPGA time: 907443 ns 
+Predictions:  
+158.578 
+Quantized predictions: 
+154.934 
+
+Processing event 369
+FPGA time: 914246 ns 
+Predictions:  
+70.1454 
+Quantized predictions: 
+71.1472 
+
+Processing event 370
+FPGA time: 925538 ns 
+Predictions:  
+94.6142 
+Quantized predictions: 
+91.3683 
+
+Processing event 371
+FPGA time: 917152 ns 
+Predictions:  
+67.3747 
+Quantized predictions: 
+72.7747 
+
+Processing event 372
+FPGA time: 910248 ns 
+Predictions:  
+143.883 
+Quantized predictions: 
+145.022 
+
+Processing event 373
+FPGA time: 917312 ns 
+Predictions:  
+304.964 
+Quantized predictions: 
+298.09 
+
+Processing event 374
+FPGA time: 904517 ns 
+Predictions:  
+166.147 
+Quantized predictions: 
+172.032 
+
+Processing event 375
+FPGA time: 907163 ns 
+Predictions:  
+176.331 
+Quantized predictions: 
+177.649 
+
+Processing event 376
+FPGA time: 918925 ns 
+Predictions:  
+126.135 
+Quantized predictions: 
+121.206 
+
+Processing event 377
+FPGA time: 918475 ns 
+Predictions:  
+191.865 
+Quantized predictions: 
+184.544 
+
+Processing event 378
+FPGA time: 912393 ns 
+Predictions:  
+144.543 
+Quantized predictions: 
+149.468 
+
+Processing event 379
+FPGA time: 927261 ns 
+Predictions:  
+110.647 
+Quantized predictions: 
+107.236 
+
+Processing event 380
+FPGA time: 913324 ns 
+Predictions:  
+177.002 
+Quantized predictions: 
+184.635 
+
+Processing event 381
+FPGA time: 911862 ns 
+Predictions:  
+303.284 
+Quantized predictions: 
+305.158 
+
+Processing event 382
+FPGA time: 899428 ns 
+Predictions:  
+281.357 
+Quantized predictions: 
+283.656 
+
+Processing event 383
+FPGA time: 914717 ns 
+Predictions:  
+101.335 
+Quantized predictions: 
+104.441 
+
+Processing event 384
+FPGA time: 908205 ns 
+Predictions:  
+131.95 
+Quantized predictions: 
+133.314 
+
+Processing event 385
+FPGA time: 909096 ns 
+Predictions:  
+70.6833 
+Quantized predictions: 
+72.3203 
+
+Processing event 386
+FPGA time: 935115 ns 
+Predictions:  
+139.089 
+Quantized predictions: 
+144.946 
+
+Processing event 387
+FPGA time: 946948 ns 
+Predictions:  
+162.188 
+Quantized predictions: 
+166.929 
+
+Processing event 388
+FPGA time: 911631 ns 
+Predictions:  
+143.492 
+Quantized predictions: 
+138.992 
+
+Processing event 389
+FPGA time: 915509 ns 
+Predictions:  
+285.311 
+Quantized predictions: 
+287.444 
+
+Processing event 390
+FPGA time: 898376 ns 
+Predictions:  
+128.072 
+Quantized predictions: 
+126.484 
+
+Processing event 391
+FPGA time: 915709 ns 
+Predictions:  
+98.8575 
+Quantized predictions: 
+95.9312 
+
+Processing event 392
+FPGA time: 893838 ns 
+Predictions:  
+138.557 
+Quantized predictions: 
+139.788 
+
+Processing event 393
+FPGA time: 935867 ns 
+Predictions:  
+133.095 
+Quantized predictions: 
+133.201 
+
+Processing event 394
+FPGA time: 915919 ns 
+Predictions:  
+134.93 
+Quantized predictions: 
+145.266 
+
+Processing event 395
+FPGA time: 929957 ns 
+Predictions:  
+90.0986 
+Quantized predictions: 
+89.0423 
+
+Processing event 396
+FPGA time: 922462 ns 
+Predictions:  
+173.883 
+Quantized predictions: 
+177.298 
+
+Processing event 397
+FPGA time: 927622 ns 
+Predictions:  
+244.879 
+Quantized predictions: 
+244.581 
+
+Processing event 398
+FPGA time: 903546 ns 
+Predictions:  
+102.362 
+Quantized predictions: 
+98.5972 
+
+Processing event 399
+FPGA time: 910870 ns 
+Predictions:  
+180.693 
+Quantized predictions: 
+170.215 
+
+Processing event 400
+FPGA time: 938582 ns 
+Predictions:  
+163.807 
+Quantized predictions: 
+161.3 
+
+Processing event 401
+FPGA time: 944674 ns 
+Predictions:  
+182.1 
+Quantized predictions: 
+178.688 
+
+Processing event 402
+FPGA time: 939955 ns 
+Predictions:  
+210.108 
+Quantized predictions: 
+203.305 
+
+Processing event 403
+FPGA time: 907653 ns 
+Predictions:  
+189.304 
+Quantized predictions: 
+189.95 
+
+Processing event 404
+FPGA time: 904799 ns 
+Predictions:  
+173.011 
+Quantized predictions: 
+166.885 
+
+Processing event 405
+FPGA time: 907303 ns 
+Predictions:  
+90.696 
+Quantized predictions: 
+94.0457 
+
+Processing event 406
+FPGA time: 905018 ns 
+Predictions:  
+90.5708 
+Quantized predictions: 
+93.8338 
+
+Processing event 407
+FPGA time: 908134 ns 
+Predictions:  
+118.242 
+Quantized predictions: 
+120.56 
+
+Processing event 408
+FPGA time: 925268 ns 
+Predictions:  
+110.516 
+Quantized predictions: 
+112.053 
+
+Processing event 409
+FPGA time: 913064 ns 
+Predictions:  
+168.982 
+Quantized predictions: 
+170.934 
+
+Processing event 410
+FPGA time: 917182 ns 
+Predictions:  
+149.968 
+Quantized predictions: 
+153.596 
+
+Processing event 411
+FPGA time: 918775 ns 
+Predictions:  
+122.113 
+Quantized predictions: 
+110.826 
+
+Processing event 412
+FPGA time: 908736 ns 
+Predictions:  
+140.527 
+Quantized predictions: 
+141.527 
+
+Processing event 413
+FPGA time: 915067 ns 
+Predictions:  
+168.95 
+Quantized predictions: 
+168.487 
+
+Processing event 414
+FPGA time: 907053 ns 
+Predictions:  
+202.546 
+Quantized predictions: 
+199.742 
+
+Processing event 415
+FPGA time: 915579 ns 
+Predictions:  
+122.992 
+Quantized predictions: 
+119.655 
+
+Processing event 416
+FPGA time: 923003 ns 
+Predictions:  
+80.2741 
+Quantized predictions: 
+71.7945 
+
+Processing event 417
+FPGA time: 920157 ns 
+Predictions:  
+144.209 
+Quantized predictions: 
+144.748 
+
+Processing event 418
+FPGA time: 901692 ns 
+Predictions:  
+186.513 
+Quantized predictions: 
+185.721 
+
+Processing event 419
+FPGA time: 900009 ns 
+Predictions:  
+123.998 
+Quantized predictions: 
+123.665 
+
+Processing event 420
+FPGA time: 910980 ns 
+Predictions:  
+173.587 
+Quantized predictions: 
+176.975 
+
+Processing event 421
+FPGA time: 909537 ns 
+Predictions:  
+102.628 
+Quantized predictions: 
+97.4488 
+
+Processing event 422
+FPGA time: 908536 ns 
+Predictions:  
+46.8182 
+Quantized predictions: 
+49.9747 
+
+Processing event 423
+FPGA time: 923354 ns 
+Predictions:  
+156.874 
+Quantized predictions: 
+158.005 
+
+Processing event 424
+FPGA time: 912423 ns 
+Predictions:  
+135.957 
+Quantized predictions: 
+134.978 
+
+Processing event 425
+FPGA time: 913905 ns 
+Predictions:  
+105.059 
+Quantized predictions: 
+103.574 
+
+Processing event 426
+FPGA time: 914036 ns 
+Predictions:  
+219.661 
+Quantized predictions: 
+220.678 
+
+Processing event 427
+FPGA time: 917001 ns 
+Predictions:  
+503.084 
+Quantized predictions: 
+500.072 
+
+Processing event 428
+FPGA time: 905439 ns 
+Predictions:  
+77.823 
+Quantized predictions: 
+77.2798 
+
+Processing event 429
+FPGA time: 915899 ns 
+Predictions:  
+155.323 
+Quantized predictions: 
+157.874 
+
+Processing event 430
+FPGA time: 907123 ns 
+Predictions:  
+157.447 
+Quantized predictions: 
+154.507 
+
+Processing event 431
+FPGA time: 920438 ns 
+Predictions:  
+98.5557 
+Quantized predictions: 
+99.5119 
+
+Processing event 432
+FPGA time: 902213 ns 
+Predictions:  
+129.996 
+Quantized predictions: 
+122.203 
+
+Processing event 433
+FPGA time: 935637 ns 
+Predictions:  
+121.493 
+Quantized predictions: 
+125.563 
+
+Processing event 434
+FPGA time: 936368 ns 
+Predictions:  
+76.4177 
+Quantized predictions: 
+80.2454 
+
+Processing event 435
+FPGA time: 903546 ns 
+Predictions:  
+95.7666 
+Quantized predictions: 
+96.3524 
+
+Processing event 436
+FPGA time: 910288 ns 
+Predictions:  
+124.117 
+Quantized predictions: 
+126.188 
+
+Processing event 437
+FPGA time: 905129 ns 
+Predictions:  
+278.291 
+Quantized predictions: 
+280.635 
+
+Processing event 438
+FPGA time: 899568 ns 
+Predictions:  
+201.732 
+Quantized predictions: 
+206.426 
+
+Processing event 439
+FPGA time: 930547 ns 
+Predictions:  
+199.208 
+Quantized predictions: 
+198.392 
+
+Processing event 440
+FPGA time: 921921 ns 
+Predictions:  
+139.66 
+Quantized predictions: 
+137.992 
+
+Processing event 441
+FPGA time: 908456 ns 
+Predictions:  
+94.6734 
+Quantized predictions: 
+94.2075 
+
+Processing event 442
+FPGA time: 917573 ns 
+Predictions:  
+62.9202 
+Quantized predictions: 
+67.7075 
+
+Processing event 443
+FPGA time: 917353 ns 
+Predictions:  
+107.605 
+Quantized predictions: 
+107.266 
+
+Processing event 444
+FPGA time: 916610 ns 
+Predictions:  
+161.043 
+Quantized predictions: 
+185.759 
+
+Processing event 445
+FPGA time: 921380 ns 
+Predictions:  
+195.836 
+Quantized predictions: 
+197.786 
+
+Processing event 446
+FPGA time: 910750 ns 
+Predictions:  
+38.556 
+Quantized predictions: 
+38.748 
+
+Processing event 447
+FPGA time: 924405 ns 
+Predictions:  
+362.117 
+Quantized predictions: 
+363.855 
+
+Processing event 448
+FPGA time: 923093 ns 
+Predictions:  
+255.602 
+Quantized predictions: 
+261.234 
+
+Processing event 449
+FPGA time: 912994 ns 
+Predictions:  
+178.376 
+Quantized predictions: 
+173.531 
+
+Processing event 450
+FPGA time: 904107 ns 
+Predictions:  
+123.238 
+Quantized predictions: 
+119.136 
+
+Processing event 451
+FPGA time: 915789 ns 
+Predictions:  
+135.073 
+Quantized predictions: 
+136.233 
+
+Processing event 452
+FPGA time: 904168 ns 
+Predictions:  
+159.034 
+Quantized predictions: 
+153.266 
+
+Processing event 453
+FPGA time: 915890 ns 
+Predictions:  
+156.699 
+Quantized predictions: 
+159.051 
+
+Processing event 454
+FPGA time: 912984 ns 
+Predictions:  
+146.256 
+Quantized predictions: 
+146.094 
+
+Processing event 455
+FPGA time: 931309 ns 
+Predictions:  
+70.5839 
+Quantized predictions: 
+75.8591 
+
+Processing event 456
+FPGA time: 960895 ns 
+Predictions:  
+259.495 
+Quantized predictions: 
+261.071 
+
+Processing event 457
+FPGA time: 918264 ns 
+Predictions:  
+64.6697 
+Quantized predictions: 
+65.9087 
+
+Processing event 458
+FPGA time: 912653 ns 
+Predictions:  
+57.44 
+Quantized predictions: 
+60.7018 
+
+Processing event 459
+FPGA time: 926970 ns 
+Predictions:  
+129.302 
+Quantized predictions: 
+133.241 
+
+Processing event 460
+FPGA time: 911852 ns 
+Predictions:  
+269.241 
+Quantized predictions: 
+260.577 
+
+Processing event 461
+FPGA time: 925197 ns 
+Predictions:  
+185.253 
+Quantized predictions: 
+186.422 
+
+Processing event 462
+FPGA time: 919526 ns 
+Predictions:  
+180.671 
+Quantized predictions: 
+186.134 
+
+Processing event 463
+FPGA time: 930948 ns 
+Predictions:  
+224.598 
+Quantized predictions: 
+224.876 
+
+Processing event 464
+FPGA time: 911862 ns 
+Predictions:  
+168.481 
+Quantized predictions: 
+177.422 
+
+Processing event 465
+FPGA time: 917202 ns 
+Predictions:  
+74.5948 
+Quantized predictions: 
+74.0556 
+
+Processing event 466
+FPGA time: 912183 ns 
+Predictions:  
+155.403 
+Quantized predictions: 
+151.85 
+
+Processing event 467
+FPGA time: 923043 ns 
+Predictions:  
+111.069 
+Quantized predictions: 
+153.976 
+
+Processing event 468
+FPGA time: 914407 ns 
+Predictions:  
+92.2611 
+Quantized predictions: 
+93.6518 
+
+Processing event 469
+FPGA time: 917874 ns 
+Predictions:  
+159.231 
+Quantized predictions: 
+161.612 
+
+Processing event 470
+FPGA time: 905039 ns 
+Predictions:  
+158.513 
+Quantized predictions: 
+140.185 
+
+Processing event 471
+FPGA time: 927432 ns 
+Predictions:  
+222.736 
+Quantized predictions: 
+212.072 
+
+Processing event 472
+FPGA time: 910579 ns 
+Predictions:  
+247.9 
+Quantized predictions: 
+180.444 
+
+Processing event 473
+FPGA time: 910970 ns 
+Predictions:  
+142.808 
+Quantized predictions: 
+144.258 
+
+Processing event 474
+FPGA time: 936839 ns 
+Predictions:  
+157.605 
+Quantized predictions: 
+162.13 
+
+Processing event 475
+FPGA time: 930277 ns 
+Predictions:  
+52.845 
+Quantized predictions: 
+56.4328 
+
+Processing event 476
+FPGA time: 904558 ns 
+Predictions:  
+89.959 
+Quantized predictions: 
+88.2679 
+
+Processing event 477
+FPGA time: 913285 ns 
+Predictions:  
+195.055 
+Quantized predictions: 
+194.799 
+
+Processing event 478
+FPGA time: 911611 ns 
+Predictions:  
+245.452 
+Quantized predictions: 
+239.607 
+
+Processing event 479
+FPGA time: 924195 ns 
+Predictions:  
+202.837 
+Quantized predictions: 
+206.196 
+
+Processing event 480
+FPGA time: 913956 ns 
+Predictions:  
+67.7654 
+Quantized predictions: 
+70.793 
+
+Processing event 481
+FPGA time: 916370 ns 
+Predictions:  
+65.5946 
+Quantized predictions: 
+64.2181 
+
+Processing event 482
+FPGA time: 916721 ns 
+Predictions:  
+102.074 
+Quantized predictions: 
+105.495 
+
+Processing event 483
+FPGA time: 939464 ns 
+Predictions:  
+104.93 
+Quantized predictions: 
+107.944 
+
+Processing event 484
+FPGA time: 906001 ns 
+Predictions:  
+130.526 
+Quantized predictions: 
+155.882 
+
+Processing event 485
+FPGA time: 921070 ns 
+Predictions:  
+218.374 
+Quantized predictions: 
+217.404 
+
+Processing event 486
+FPGA time: 901182 ns 
+Predictions:  
+200.733 
+Quantized predictions: 
+195.042 
+
+Processing event 487
+FPGA time: 924676 ns 
+Predictions:  
+225.053 
+Quantized predictions: 
+225.03 
+
+Processing event 488
+FPGA time: 904679 ns 
+Predictions:  
+74.6228 
+Quantized predictions: 

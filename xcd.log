@@ -1,0 +1,17 @@
+Mon Oct 17 05:16:42 2022: Server was asked to start on port: '46657'
+Mon Oct 17 05:16:42 2022: Server is using token UUID: '4931208e-cf3b-4a0f-8002-ed0826360b16'
+Mon Oct 17 05:16:42 2022: SESSION_MGR: creating session with session uuid: '6d04a3e9-ade5-4ab9-8d63-1f78fcd2ec76' and name 'default'
+Mon Oct 17 05:16:42 2022: Attempting to start server on port '46657'
+Mon Oct 17 05:16:42 2022: XCD main fifo: created main fifo '/tmp/xcdmain4931208e-cf3b-4a0f-8002-ed0826360b16', fd read = 12
+Mon Oct 17 05:16:42 2022: Running Dispatch Server
+Mon Oct 17 05:16:42 2022: Version 1.0.1
+Mon Oct 17 05:16:43 2022: Dispatch Server: Accepted socket connection from client
+Mon Oct 17 05:16:43 2022: EXCHANGE_TOKEN received, server token: 4931208e-cf3b-4a0f-8002-ed0826360b16, passed token: 4931208e-cf3b-4a0f-8002-ed0826360b16
+Mon Oct 17 05:16:43 2022: SESSION_MGR: creating session with session uuid: '040e2c28-27a7-412c-bc6e-88701c2fafd0' and name 'v++_link_alveo_hls4ml'
+Mon Oct 17 05:17:21 2022: Dispatch Server: Accepted socket connection from client
+Mon Oct 17 05:17:26 2022: Dispatch Server: Accepted socket connection from client
+Mon Oct 17 07:30:11 2022: Dispatch Server: Accepted socket connection from client
+Mon Oct 17 08:47:06 2022: Dispatch Server: Accepted socket connection from client
+Mon Oct 17 11:16:43 2022: Dispatch Server: Accepted socket connection from client
+Mon Oct 17 11:38:45 2022: Dispatch Server: Accepted socket connection from client
+Mon Oct 17 11:38:46 2022: SESSION_MGR: closing session for UUID '040e2c28-27a7-412c-bc6e-88701c2fafd0' with name 'v++_link_alveo_hls4ml'
