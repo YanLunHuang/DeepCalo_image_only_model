@@ -14,7 +14,7 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ```
 ## Some detail
 ```bash
-This is quantized model, and it's the final version !!!
+This is quantized model, and it is the final version !!!
 This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
 It also uses dense_ss to reduce the latency and save the resource utilization.
 I also modified upsampling layer & normalize layer.
