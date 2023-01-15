@@ -14,14 +14,7 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ```
 ## Some detail
 ```bash
-This is quantized model, and it is the final version !!!
-This version uses single stream & new pooling layer so that it can solve the routing congestion problem.
-It also uses dense_ss to reduce the latency and save the resource utilization.
-I also modified upsampling layer & normalize layer.
-
-This version is all single stream.
-The pragma on " layer_in " all have been uncommented, but it will switch the pragma.
-I used URAM and LUTRAM to prevent the overuse of BRAM.
-(Actually, using LUTRAM can speed up.)
-The latency is about 0.915 ms.
+I used new dense_ss layer (reuse =2).
+I commented linear layers because they are useless.
+the latency isn't the best I get.
 ```
