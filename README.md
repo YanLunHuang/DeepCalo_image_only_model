@@ -16,5 +16,5 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ```bash
 I used new dense_ss layer (reuse =2).
 I commented linear layers because they are useless.
-the latency isn't the best I get.
+the latency is not the best I get.
 ```
