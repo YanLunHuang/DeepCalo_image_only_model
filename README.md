@@ -15,6 +15,6 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ## Some detail
 ```bash
 I send five set of input one time.
-The speed-up value in total time is about 0.93/0.597 = 1.55.
+The speed-up value in total time is about 0.93/0.597 = 1.558.
 The speed-up value in kernel time is about 0.83/0.578 = 1.436.
 ```
