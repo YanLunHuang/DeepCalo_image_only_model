@@ -1,0 +1,248 @@
+
+
+================================================================
+== Vivado HLS Report for 'myproject'
+================================================================
+* Date:           Sat Jan 14 08:59:29 2023
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        alveo_hls4ml
+* Solution:       solution
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 4.00 ns | 3.092 ns |   0.90 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+--------+----------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval    | Pipeline |
+    |   min   |   max   |    min   |    max   |  min  |   max  |   Type   |
+    +---------+---------+----------+----------+-------+--------+----------+
+    |   163976|   163976| 0.656 ms | 0.656 ms |  54042|  109742| dataflow |
+    +---------+---------+----------+----------+-------+--------+----------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+---------+-----------+-----------+-------+--------+---------+
+        |                                                                        |                                                                       |  Latency (cycles) |   Latency (absolute)  |    Interval    | Pipeline|
+        |                                Instance                                |                                 Module                                |   min   |   max   |    min    |    max    |  min  |   max  |   Type  |
+        +------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+---------+-----------+-----------+-------+--------+---------+
+        |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config32_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config32_s            |     6651|    42376| 26.604 us |  0.170 ms |   6651|   42376|   none  |
+        |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config25_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config25_s            |     9937|    62065| 39.748 us |  0.248 ms |   9937|   62065|   none  |
+        |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config11_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config11_s            |    28711|    80911|  0.115 ms |  0.324 ms |  28711|   80911|   none  |
+        |conv_2d_cl_switch_ap_fixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config4_U0   |conv_2d_cl_switch_ap_fixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config4_s   |    17701|   109741| 70.804 us |  0.439 ms |  17701|  109741|   none  |
+        |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config18_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config18_s            |    15601|    54961| 62.404 us |  0.220 ms |  15601|   54961|   none  |
+        |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config29_U0  |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config29_s  |     3451|    38801| 13.804 us |  0.155 ms |   3451|   38801|   none  |
+        |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config22_U0  |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config22_s  |     4681|    34921| 18.724 us |  0.140 ms |   4681|   34921|   none  |
+        |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config15_U0  |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config15_s  |     7921|    47281| 31.684 us |  0.189 ms |   7921|   47281|   none  |
+        |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config8_U0   |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config8_s   |    14791|    66991| 59.164 us |  0.268 ms |  14791|   66991|   none  |
+        |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config36_U0     |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config36_s     |     7177|     7177| 28.708 us | 28.708 us |   7177|    7177|   none  |
+        |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config39_U0     |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config39_s     |     1033|     1033|  4.132 us |  4.132 us |   1033|    1033|   none  |
+        |resize_nearest_switch_ap_fixed_16_6_5_3_0_config2_U0                    |resize_nearest_switch_ap_fixed_16_6_5_3_0_config2_s                    |    12322|    12322| 49.288 us | 49.288 us |  12322|   12322|   none  |
+        |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config14_U0           |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config14_s           |    25397|    25397|  0.102 ms |  0.102 ms |  25397|   25397|   none  |
+        |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config7_U0            |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config7_s            |    54041|    54041|  0.216 ms |  0.216 ms |  54041|   54041|   none  |
+        |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config21_U0           |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config21_s           |    11957|    11957| 47.828 us | 47.828 us |  11957|   11957|   none  |
+        |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config28_U0           |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config28_s           |     5445|     5445| 21.780 us | 21.780 us |   5445|    5445|   none  |
+        |dense_ss_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config42_U0          |dense_ss_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config42_s          |      261|      261|  1.044 us |  1.044 us |    261|     261|   none  |
+        |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config53_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config53_s          |     6426|     6426| 25.704 us | 25.704 us |   6426|    6426|   none  |
+        |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config51_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config51_s          |     9270|     9270| 37.080 us | 37.080 us |   9270|    9270|   none  |
+        |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config49_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config49_s          |    15463|    15463| 61.852 us | 61.852 us |  15463|   15463|   none  |
+        |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config47_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config47_s          |    28041|    28041|  0.112 ms |  0.112 ms |  28041|   28041|   none  |
+        |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config52_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config52_s            |     3226|     3226| 12.904 us | 12.904 us |   3226|    3226|   none  |
+        |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config50_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config50_s            |     4662|     4662| 18.648 us | 18.648 us |   4662|    4662|   none  |
+        |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_8_0_0_0_config45_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_8_0_0_0_config45_s            |    14557|    14557| 58.228 us | 58.228 us |  14557|   14557|   none  |
+        |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config46_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config46_s            |    14121|    14121| 56.484 us | 56.484 us |  14121|   14121|   none  |
+        |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config48_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config48_s            |     7783|     7783| 31.132 us | 31.132 us |   7783|    7783|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config13_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config13_s  |    24195|    24195| 96.780 us | 96.780 us |  24195|   24195|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config27_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config27_s  |     5379|     5379| 21.516 us | 21.516 us |   5379|    5379|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config31_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config31_s  |     2307|     2307|  9.228 us |  9.228 us |   2307|    2307|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config34_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config34_s  |     2307|     2307|  9.228 us |  9.228 us |   2307|    2307|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config6_U0   |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config6_s   |    49282|    49282|  0.197 ms |  0.197 ms |  49282|   49282|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config10_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config10_s  |    24194|    24194| 96.776 us | 96.776 us |  24194|   24194|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config17_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config17_s  |    11650|    11650| 46.600 us | 46.600 us |  11650|   11650|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config20_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config20_s  |    11650|    11650| 46.600 us | 46.600 us |  11650|   11650|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config24_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config24_s  |     5378|     5378| 21.512 us | 21.512 us |   5378|    5378|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config38_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config38_s  |      258|      258|  1.032 us |  1.032 us |    258|     258|   none  |
+        |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config41_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config41_s  |      258|      258|  1.032 us |  1.032 us |    258|     258|   none  |
+        |relu_switch_ap_fixed_ap_ufixed_32_16_0_0_0_relu_config44_U0             |relu_switch_ap_fixed_ap_ufixed_32_16_0_0_0_relu_config44_s             |        1|        1|  4.000 ns |  4.000 ns |      1|       1|   none  |
+        +------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+---------+-----------+-----------+-------+--------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+--------+-----+
+|         Name        | BRAM_18K| DSP48E|    FF   |   LUT  | URAM|
++---------------------+---------+-------+---------+--------+-----+
+|DSP                  |        -|      -|        -|       -|    -|
+|Expression           |        -|      -|        0|       2|    -|
+|FIFO                 |        4|      -|     2295|    8764|    -|
+|Instance             |     2719|   3267|   441497|  882072|  115|
+|Memory               |        -|      -|        -|       -|    -|
+|Multiplexer          |        -|      -|        -|       -|    -|
+|Register             |        -|      -|        -|       -|    -|
++---------------------+---------+-------+---------+--------+-----+
+|Total                |     2723|   3267|   443792|  890838|  115|
++---------------------+---------+-------+---------+--------+-----+
+|Available SLR        |     1344|   2976|   871680|  435840|  320|
++---------------------+---------+-------+---------+--------+-----+
+|Utilization SLR (%)  |      202|    109|       50|     204|   35|
++---------------------+---------+-------+---------+--------+-----+
+|Available            |     2688|   5952|  1743360|  871680|  640|
++---------------------+---------+-------+---------+--------+-----+
+|Utilization (%)      |      101|     54|       25|     102|   17|
++---------------------+---------+-------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+--------+--------+-----+
+    |                                Instance                                |                                 Module                                | BRAM_18K| DSP48E|   FF   |   LUT  | URAM|
+    +------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+--------+--------+-----+
+    |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config15_U0  |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config15_s  |       85|    191|   20562|   48667|    0|
+    |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config22_U0  |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config22_s  |      114|    256|   40628|   41980|    0|
+    |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config29_U0  |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config29_s  |      341|    256|   63448|   33258|   29|
+    |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config8_U0   |conv_2d_cl_switch_ap_fixed_16_6_5_3_0_ap_fixed_32_16_5_3_0_config8_s   |       86|    192|   10502|   63066|    0|
+    |conv_2d_cl_switch_ap_fixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config4_U0   |conv_2d_cl_switch_ap_fixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config4_s   |      142|    320|    7586|  169115|    0|
+    |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config11_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config11_s            |      171|    383|   17480|  167945|    0|
+    |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config18_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config18_s            |      171|    384|   34110|   95132|    0|
+    |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config25_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config25_s            |      228|    515|  119165|  115019|   29|
+    |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config32_U0            |conv_2d_cl_switch_ap_ufixed_ap_fixed_32_16_5_3_0_config32_s            |      682|    513|  107933|   91717|   57|
+    |dense_ss_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config42_U0          |dense_ss_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config42_s          |        1|      1|     149|     199|    0|
+    |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config36_U0     |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config36_s     |      573|    128|    8802|   23091|    0|
+    |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config39_U0     |dense_ss_test_ap_ufixed_16_8_0_0_0_ap_fixed_32_16_5_3_0_config39_s     |      115|    128|    8676|   23057|    0|
+    |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config14_U0           |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config14_s           |        2|      0|     171|     659|    0|
+    |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config21_U0           |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config21_s           |        3|      0|     132|     643|    0|
+    |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config28_U0           |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config28_s           |        3|      0|     120|     595|    0|
+    |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config7_U0            |pooling2d_cl_switch_ap_ufixed_ap_fixed_16_6_5_3_0_config7_s            |        2|      0|     171|     659|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config10_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config10_s  |        0|      0|      23|     215|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config13_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config13_s  |        0|      0|      41|     220|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config17_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config17_s  |        0|      0|      22|     214|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config20_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config20_s  |        0|      0|      22|     214|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config24_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config24_s  |        0|      0|      21|     213|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config27_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config27_s  |        0|      0|      39|     218|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config31_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config31_s  |        0|      0|      38|     217|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config34_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config34_s  |        0|      0|      38|     217|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config38_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config38_s  |        0|      0|      17|     209|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config41_U0  |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config41_s  |        0|      0|      17|     209|    0|
+    |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config6_U0   |relu_switch_ap_fixed_32_16_5_3_0_ap_ufixed_16_8_0_0_0_relu_config6_s   |        0|      0|      24|     216|    0|
+    |relu_switch_ap_fixed_ap_ufixed_32_16_0_0_0_relu_config44_U0             |relu_switch_ap_fixed_ap_ufixed_32_16_0_0_0_relu_config44_s             |        0|      0|      34|      95|    0|
+    |resize_nearest_switch_ap_fixed_16_6_5_3_0_config2_U0                    |resize_nearest_switch_ap_fixed_16_6_5_3_0_config2_s                    |        0|      0|     815|    1220|    0|
+    |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config46_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config46_s            |        0|      0|      76|     395|    0|
+    |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config48_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config48_s            |        0|      0|      76|     393|    0|
+    |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config50_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config50_s            |        0|      0|      78|     395|    0|
+    |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config52_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_6_5_3_0_config52_s            |        0|      0|      78|     399|    0|
+    |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_8_0_0_0_config45_U0            |zeropad2d_cl_switch_ap_fixed_ap_fixed_16_8_0_0_0_config45_s            |        0|      0|      75|     407|    0|
+    |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config47_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config47_s          |        0|      0|      81|     398|    0|
+    |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config49_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config49_s          |        0|      0|      81|     398|    0|
+    |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config51_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config51_s          |        0|      0|      83|     404|    0|
+    |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config53_U0          |zeropad2d_cl_switch_ap_ufixed_ap_ufixed_16_8_0_0_0_config53_s          |        0|      0|      83|     404|    0|
+    +------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+--------+--------+-----+
+    |Total                                                                   |                                                                       |     2719|   3267|  441497|  882072|  115|
+    +------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+--------+--------+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +---------------------+---------+-----+----+-----+------+-----+---------+
+    |         Name        | BRAM_18K|  FF | LUT| URAM| Depth| Bits| Size:D*B|
+    +---------------------+---------+-----+----+-----+------+-----+---------+
+    |layer10_out_0_V_V_U  |        0|   63|   0|    -|   756|   16|    12096|
+    |layer11_out_0_V_V_U  |        0|   95|   0|    -|   756|   32|    24192|
+    |layer13_out_0_V_V_U  |        1|   48|   0|    -|   756|   16|    12096|
+    |layer14_out_0_V_V_U  |        0|   55|   0|    -|   182|   16|     2912|
+    |layer15_out_0_V_V_U  |        0|   87|   0|    -|   182|   32|     5824|
+    |layer17_out_0_V_V_U  |        0|   55|   0|    -|   182|   16|     2912|
+    |layer18_out_0_V_V_U  |        0|   87|   0|    -|   182|   32|     5824|
+    |layer20_out_0_V_V_U  |        0|   55|   0|    -|   182|   16|     2912|
+    |layer21_out_0_V_V_U  |        0|   50|   0|    -|    42|   16|      672|
+    |layer22_out_0_V_V_U  |        0|   82|   0|    -|    42|   32|     1344|
+    |layer24_out_0_V_V_U  |        0|   50|   0|    -|    42|   16|      672|
+    |layer25_out_0_V_V_U  |        2|   50|   0|    -|    42|   32|     1344|
+    |layer27_out_0_V_V_U  |        0|   50|   0|    -|    42|   16|      672|
+    |layer28_out_0_V_V_U  |        0|   45|   0|    -|     9|   16|      144|
+    |layer29_out_0_V_V_U  |        0|    6|   0|    -|     9|   32|      288|
+    |layer2_out_0_V_V_U   |        0|   72|   0|    -|  1540|   16|    24640|
+    |layer31_out_0_V_V_U  |        0|   45|   0|    -|     9|   16|      144|
+    |layer32_out_0_V_V_U  |        0|    6|   0|    -|     9|   32|      288|
+    |layer34_out_0_V_V_U  |        0|   45|   0|    -|     9|   16|      144|
+    |layer36_out_0_V_V_U  |        0|   74|   0|    -|     1|   32|       32|
+    |layer38_out_0_V_V_U  |        0|   42|   0|    -|     1|   16|       16|
+    |layer39_out_0_V_V_U  |        0|   74|   0|    -|     1|   32|       32|
+    |layer41_out_0_V_V_U  |        0|   42|   0|    -|     1|   16|       16|
+    |layer42_out_0_V_V_U  |        0|   74|   0|    -|     1|   32|       32|
+    |layer45_out_0_V_V_U  |        0|   75|   0|    -|  1770|   16|    28320|
+    |layer46_out_0_V_V_U  |        0|   64|   0|    -|   870|   16|    13920|
+    |layer47_out_0_V_V_U  |        0|   64|   0|    -|   870|   16|    13920|
+    |layer48_out_0_V_V_U  |        0|   57|   0|    -|   240|   16|     3840|
+    |layer49_out_0_V_V_U  |        0|   57|   0|    -|   240|   16|     3840|
+    |layer4_out_0_V_V_U   |        0|  104|   0|    -|  1540|   32|    49280|
+    |layer50_out_0_V_V_U  |        0|   51|   0|    -|    72|   16|     1152|
+    |layer51_out_0_V_V_U  |        1|   35|   0|    -|    72|   16|     1152|
+    |layer52_out_0_V_V_U  |        0|  103|   0|    -|    25|   16|      400|
+    |layer53_out_0_V_V_U  |        0|  103|   0|    -|    25|   16|      400|
+    |layer6_out_0_V_V_U   |        0|   72|   0|    -|  1540|   16|    24640|
+    |layer7_out_0_V_V_U   |        0|   63|   0|    -|   756|   16|    12096|
+    |layer8_out_0_V_V_U   |        0|   95|   0|    -|   756|   32|    24192|
+    +---------------------+---------+-----+----+-----+------+-----+---------+
+    |Total                |        4| 2295|   0|    0| 13754|  784|   276400|
+    +---------------------+---------+-----+----+-----+------+-----+---------+
+
+    * Expression: 
+    +--------------+----------+-------+---+----+------------+------------+
+    | Variable Name| Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------+----------+-------+---+----+------------+------------+
+    |ap_idle       |    and   |      0|  0|   2|           1|           1|
+    +--------------+----------+-------+---+----+------------+------------+
+    |Total         |          |      0|  0|   2|           1|           1|
+    +--------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+-----------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |  Source Object  |    C Type    |
++------------------------+-----+-----+------------+-----------------+--------------+
+|em_endcap_V_V_dout      |  in |   16|   ap_fifo  |  em_endcap_V_V  |    pointer   |
+|em_endcap_V_V_empty_n   |  in |    1|   ap_fifo  |  em_endcap_V_V  |    pointer   |
+|em_endcap_V_V_read      | out |    1|   ap_fifo  |  em_endcap_V_V  |    pointer   |
+|layer44_out_V_V_din     | out |   32|   ap_fifo  | layer44_out_V_V |    pointer   |
+|layer44_out_V_V_full_n  |  in |    1|   ap_fifo  | layer44_out_V_V |    pointer   |
+|layer44_out_V_V_write   | out |    1|   ap_fifo  | layer44_out_V_V |    pointer   |
+|ap_clk                  |  in |    1| ap_ctrl_hs |    myproject    | return value |
+|ap_rst                  |  in |    1| ap_ctrl_hs |    myproject    | return value |
+|ap_start                |  in |    1| ap_ctrl_hs |    myproject    | return value |
+|ap_done                 | out |    1| ap_ctrl_hs |    myproject    | return value |
+|ap_ready                | out |    1| ap_ctrl_hs |    myproject    | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs |    myproject    | return value |
+|ap_continue             |  in |    1| ap_ctrl_hs |    myproject    | return value |
++------------------------+-----+-----+------------+-----------------+--------------+
+
