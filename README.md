@@ -15,5 +15,5 @@ XCL_EMULATION_MODE=hw_emu ./host ./build_dir.hw_emu.xilinx_u50_xdma_201920_1/alv
 ## Some detail
 ```bash
 I send five set of input one time.
-This version is worse than 12_11 version
+This version is worse than 12_11_array version 
 ```
