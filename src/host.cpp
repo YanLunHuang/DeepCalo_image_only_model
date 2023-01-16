@@ -147,7 +147,7 @@ int main(int argc, char** argv)
 //=====================
 
 	//load input data from text file
-    std::ifstream fin("/home/YL_HUANG/11_18/alveo_single_good/tb_input_features.dat");
+    std::ifstream fin(datadir+"tb_input_features.dat");
     //load predictions from text file
     std::ifstream fpr(datadir+"/tb_output_predictions.dat");
     //open output file
