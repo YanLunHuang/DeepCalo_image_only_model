@@ -65,8 +65,8 @@ void alveo_hls4ml(
 
     //#pragma HLS ARRAY_PARTITION   variable=in_buf  complete dim=0
     //#pragma HLS ARRAY_PARTITION   variable=out_buf complete dim=0
-    #pragma HLS STREAM   variable=in_buf  depth=6160
-    #pragma HLS STREAM   variable=out_buf depth=10
+    #pragma HLS STREAM   variable=in_buf  depth=616
+    #pragma HLS STREAM   variable=out_buf depth=1
 
   for (int k = 0; k < DATA_SET; k++){
     //getting data from DRAM
